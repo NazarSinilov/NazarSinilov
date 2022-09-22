@@ -4,10 +4,13 @@ Output:
 Ivan
 Igor*/
 
-const people = [{ name: "Ivan", age: 24 }, { name: "Oleg", age: 16}, { name: "Igor", age: 24}]
+const people = [{name: "Ivan", age: 24}, {name: "Oleg", age: 16}, {name: "Igor", age: 24}]
 
 function age(array) {
-  return array.filter(el => el.age > 18 ).forEach(el => console.log(el.name));
+    return array.forEach(el => {
+            if (el.age > 18) console.log(el.name)
+        }
+    )
 }
 
 age(people);
