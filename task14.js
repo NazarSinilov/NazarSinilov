@@ -2,7 +2,20 @@
 В функции выполнить эту операцию и вернуть результат.*/
 
 function typeElem(a, b, oper) {
-  return eval(a + oper + b  )
+  switch (oper) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "/":
+      return a / b;
+    case "*":
+      return a * b;
+    case "%":
+      return a % b;
+    case "**":
+      return a ** b;
+  }
 }
 
 console.log(typeElem(30, 7, "*"));
