@@ -10,4 +10,4 @@ function sortArray(arr, methodSort) {
     else return arr
 }
 
-console.log(sortArray([4, 5, 2, 4, 1, 5, 3], "ASC"));
+console.log(sortArray([4, 5, 2, 4, 1, 5, 3], "ASC"))
