@@ -18,7 +18,7 @@ function fib(N) {
     second = nextTurn
   }
 
-  return arrFib;
+  return arrFib
 }
 
 console.log(fib(7));
