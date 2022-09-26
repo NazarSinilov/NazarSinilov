@@ -5,9 +5,7 @@ Input: [4, 5, 2, 4, 1, 5, 3], ‘ASC’
 Output: [1, 2, 3, 4, 4, 5, 5]*/
 
 function sortArray(arr, methodSort) {
-    if (methodSort === "ASC") return arr.sort((a, b) => a - b)
-    else if (methodSort === "DESC") arr.sort((a, b) => b - a)
-    return arr
+    return arr.sort((a, b) => methodSort === "ASC"? a - b: methodSort === "DESC"? b - a : arr)
 }
 
 console.log(sortArray([4, 5, 2, 4, 1, 5, 3], "ASC"))
