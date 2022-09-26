@@ -7,9 +7,7 @@ function uniqSort(arr) {
     let newObj = {}
 
     for (let i = 0; i < arr.length; i++) {
-        if (newObj[arr[i]]) {
-            newObj[arr[i]]++
-        } else newObj[arr[i]] = 1
+        newObj[arr[i]] = (newObj[arr[i]] || 0) + 1
     }
 
     for (let key in newObj) {
