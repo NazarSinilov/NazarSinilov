@@ -5,19 +5,18 @@
 Input: func (17)(6)(2)
 Output: 171,69*/
 
-function func(a, w, z) {
+function func(a) {
     let res = 0
-    if (!w) {
-        a = a % 2 === 0? a * a: a * a * a
-        return function (b) {
-            res = a * b
-            if (!z) {
-                return function (c) {
-                    res = Math.sqrt(res + c)
-                    res = Math.floor(res * 100) / 100
-                    return res
-                }
-            }
+    a = a % 2 === 0 ? a * a : a * a * a
+
+    return function (b) {
+        res = a * b
+
+        return function (c) {
+            res = Math.sqrt(res + c)
+            res = Math.floor(res * 100) / 100
+
+            return res
         }
     }
 }
