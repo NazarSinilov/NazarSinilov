@@ -1,16 +1,20 @@
-/*Вернуть массив тех значений, которые есть в первом, но нет во втором.*/
+/*Вернуть массив тех значений, которые есть в первом, но нет во втором.
+Input: ([4, 7, 2, 9, 3, 5, 6, 4, 5, 1, 4], [4, 5, 6, 7, 8])
+Output: [2, 9, 3, 1]
+*/
 
-function restNum(arr, shortArr ) {
-    let newArr = []
-    for (let i = 0; i < arr.length; i++) {
-        let flag = false
-        for (let j = 0; j < shortArr.length; j++) {
-            if (arr[i] === shortArr[j]) {
-                flag = true
-                break
-            }
+function restNum(arr, shortArr) {
+    const newArr = []
+    const obj = {}
+
+    for (let i = 0; i < shortArr.length; i++) {
+        obj[shortArr[i]] = true
+    }
+
+    for (let i = 0; i < arr.length; i++){
+        if (!obj[arr[i]]) {
+            newArr.push(arr[i])
         }
-        if (!flag) newArr.push(arr[i])
     }
 
     return newArr
