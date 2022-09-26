@@ -4,9 +4,11 @@ Output: " part 2"*/
 
 function dif(str1, str2){
     let resStr = ""
-    if (str1.length > str2.length) {
-        resStr = str1.slice(str2.length, str1.length)
-    } else resStr = str1.slice(str1.length, str2.length)
+    let lengthStr1 = str1.length
+    let lengthStr2 = str2.length
+    if (lengthStr1 > lengthStr2) {
+        resStr = str1.slice(lengthStr2, lengthStr1)
+    } else resStr = str1.slice(lengthStr1, lengthStr2)
 
     return resStr
 }
