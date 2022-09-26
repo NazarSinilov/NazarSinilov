@@ -3,7 +3,9 @@ Input: 88005553535
 Output: 8 (800) 555-35-35*/
 
 function func(str) {
-  if (str.length !== 11) return false
+  if (str.length !== 11) {
+    return false
+  }
   return `${str[0]} (${str[1]}${str[2]}${str[3]}) ${str[4]}${str[5]}${str[6]}-${str[7]}${str[8]}-${str[9]}${str[10]} `
 }
 
