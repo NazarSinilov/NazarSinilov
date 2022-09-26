@@ -1,17 +1,20 @@
-/*Заполнить двумерный массив таблицей умножения от 0 до 10 и вывести её в удобочитаемом виде.*/
+/*
+Дана строка. Написать функцию, которая определит, содержит ли строка только символы 'a', 'b', 'c' или нет.
+Input: "abcbacabcbcabcbaba"
+Output: true
+Input: "abcbacabcqbcabcbnaba"
+Output: false
+*/
 
-const tableMult = []
+const sourceCode = str => {
+    arr = str.split("")
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== "a" && arr[i] !== "b" && arr[i] !== "c") {
+            return false
+        }
+    }
 
-for (let i = 0; i < 11; i++) {
-  const row = []
-
-  for (let j = 0; j < 11; j++) {
-    row.push(`${j} * ${i} = ${j*i}`)
-  }
-
-  tableMult.push(row)
-
+    return true
 }
 
-console.table(tableMult)
-
+console.log(sourceCode( "abcbacabcbcabcbaba"));

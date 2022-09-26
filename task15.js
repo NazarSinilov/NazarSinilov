@@ -1,14 +1,17 @@
-/*Написать функцию, принимающую на вход массив чисел, функцию фильтрации и функцию преобразования,
-которая фильтрует массив, преобразует данные, а затем выводит их.
-Input: [1, 2, 3, 4], (el) => el %2 == 0, (el) => el * 2
-Output:
-4
-8*/
+/*
+Напишите функцию, которая заполнит массив следующим образом: в первый элемент запишите 'x', во второй 'xx', в третий 'xxx' и так далее. Функция параметром принимает длину массива.
+Input: 7
+Output: [ x, xx, xxx, xxxx, xxxxx, xxxxxx, xxxxxxx ]
+*/
 
-const array = [1, 2, 3, 4]
-
-function func(array, fltr, conv ) {
-  return array.filter(fltr).map(conv)
+const createArrayX = num => {
+    let arr = []
+    let x = ""
+    for (let i = 0; i < num; i++) {
+        x += "x"
+        arr.push(x)
+    }
+    return arr
 }
 
-console.log(func(array, (el) => el % 2 === 0, (el) => el * 2));
+console.log(createArrayX(7));

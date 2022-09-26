@@ -1,16 +1,33 @@
-/*Имеется массив пользователей вида [{ name: “Ivan”, age: 24 }]. Вывести суммарный возраст всех пользователей.
-Input: [{ name: “Ivan”, age: 24 }, { name: “Oleg”, age: 16}, { name: “Igor”, age: 24}]
-Output: 64*/
+/*Реализовать функцию, которая отсортирует коллекцию по конкретному свойству объекта и переданному параметру (asc, desc).
+Если параметр (asc, desc) не передан, по умолчанию сортировка asc.
+asc - это сортировка по возрастанию, desc -  сортировка по убыванию.
+func (arr, "age", asc);
+Input: const arr = [
+  {name: "test", age: 34, country: "RF"},
+  {name: "test2", age: 12, country: "RF"},
+  {name: "test1", age: 54, country: "RF"}
+]
+Output: [
+   {name: "test2", age: 12, country: "RF"},
+   {name: "test", age: 34, country: "RF"},
+   {name: "test1", age: 54, country: "RF"}
+]*/
 
-const people = [{ name: "Ivan", age: 24 }, { name: "Oleg", age: 16}, { name: "Igor", age: 24}]
+const arr = [
+    {name: "test", age: 34, country: "RF"},
+    {name: "test2", age: 12, country: "RF"},
+    {name: "test1", age: 54, country: "RF"}
+]
 
-function trans(people) {
-  let sum = 0
-  for(let i = 0; i < people.length; i++) {
-    sum += people[i].age
-  }
+const filterArray = (arr, field, filter) => {
+    if (filter === "asc") {
+        arr.sort((a,b) => typeof a[field] === "number"? a[field] - b[field] : a[field] > b[field])
+    } else if (filter === "desc") {
+        arr.sort((a,b) =>  typeof a[field] === "number"? b[field] - a[field] : a[field] < b[field])
+    }
 
-  return sum
+    return arr
 }
 
-console.log(trans(people)); 
+console.log(filterArray (arr, "name", "desc"));
+

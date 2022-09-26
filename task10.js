@@ -1,25 +1,24 @@
-/*Имеется массив с финансовыми переводами вида: [ { from: ‘Ivan’, to: ‘Oleg’, amount: 2500}, ...].
-Вычислить среднюю сумму всех переводов и рассчитать для каждого объекта отклонение от среднего и записать в поле diff.
-Например, при средней сумме перевода в 2000 отклонение для перевода
-{ from: ‘Ivan’, to: ‘Oleg’, amount: 2500} будет составлять diff = 2500 - 2000 = 1000;
-Input: [{ from: ‘Ivan’, to: ‘Oleg’, amount: 2500}, { from: ‘Ivan’, to: ‘Igor’, amount: 2000}, { from: ‘Oleg’, to: ‘Igor’, amount: 1500}]
-Output: 2000, [{ from: ‘Ivan’, to: ‘Oleg’, amount: 2500, diff: 500},
-{ from: ‘Ivan’, to: ‘Igor’, amount: 2000, diff: 0}, { from: ‘Oleg’, to: ‘Igor’, amount: 1500, diff: -500}]*/
+/*
+Реализуйте функцию, которая параметром принимает строку вида '__|----|_|-|____|--'. Где '_' - это 0, а '-' - это 1.
+Нужно вернуть строку вида '00111101000011', где символы заменены на их обозначение. Длина строки может быть любой.
+Повторение одного символа тоже может быть различное количество раз.
+Input: "__|----|_|-|____|--"
+Output: "00111101000011"
+Input: "--|_|-|___|--"
+Output: "110100011"
+*/
 
-const people =  [{ from: "Ivan", to: "Oleg", amount: 2500}, { from: "Ivan", to: "Igor", amount: 2000}, { from: "Oleg", to: "Igor", amount: 1500}]
-
-function trans(people) {
-  let sum = 0;
-
-  for(let i = 0; i < people.length; i++) {
-    sum += people[i].amount
-  }
-
-  let average = sum/people.length
-  people = people.map(el => ({from: el.from, to: el.to,amount: el.amount ,diff: el.amount - average }))
-  people.unshift(average)
-
-  return people
+const sourceCode = str => {
+    let newArr = []
+    let arr =  str.split("")
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === "_") {
+            newArr.push(0)
+        } else if (arr[i] === "-") {
+            newArr.push(1)
+        }
+    }
+    return newArr.join("")
 }
 
-console.log(trans(people)); 
+console.log(sourceCode( "--|_|-|___|--"));

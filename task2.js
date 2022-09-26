@@ -1,13 +1,19 @@
-/*Имеется массив, заполненный целочисленными числами. Написать функцию,
-принимающую этот массив и выводящую элементы только с четным индексом, не используя условный или тернарный оператор.
-Input: [14, 53, 23, 53, 13, 55, 7, 34, 3, 6]
-Output: [14, 23, 13, 7, 3]
-*/
+/*Дана строка. Вывести первые три символа и последние три символа, если длина строки больше 5. Иначе вывести первый символ столько раз, какова длина строки.
+Input: "test education part 2"
+Output: "test 2"
+Input: "text"
+Output: "tttt"*/
 
-const arrayOfNumbers = [14, 53, 23, 53, 13, 55, 7, 34, 3, 6];
-
-function honestArray(array){
-  return array.filter((el,i) => i % 2 === 0)
+const getThreeLit = str => {
+    if (str.length > 5) {
+        return str.slice(0, 3) + str.slice(str.length - 3, str.length)
+    } else {
+        let resStr = ""
+        for (let i = 0; i < str.length; i++) {
+            resStr += str[0]
+        }
+        return resStr
+    }
 }
 
-console.log(honestArray(arrayOfNumbers))
+console.log(getThreeLit("text"))

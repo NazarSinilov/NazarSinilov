@@ -1,27 +1,36 @@
-/*Имеется, заполненный значениями разных типов данных. Написать функцию,
-принимающую этот массив и выводящую на экран в для каждого элемента “Это строка” если выражение строкового типа,
-“Это число” для чисел и “Это булево значение” для значений типа boolean. Для остальных значений вывести “Неизвестное значение”.
-Input: [“str”, 123, “123”, true, null, {}, 2]
-Output:
-Это строка
-Это число
-Это строка
-Это булево значение
-Неизвестное значение
-Неизвестное значение
-Это строка
+/*
+Напишите функцию, которая преобразует массив вида let arr = [
+{ name: 'width', value: 300 },
+{ name: 'height', value: 100 } ];
+в объект let obj = { width: 300, height: 100 };
+Количество объектов в массиве неограниченно.
+Input: [
+  {name: "width", value: 300},
+  {name: "height", value: 100}
+];
+Output: {width: 300, height: 100}
 */
 
-const array = ["str", 123, "123", true, null, {}, 2]
-
-function typeElem(array) {
-  for (let i = 0; i < array.length; i++) {
-    let a = typeof array[i]
-    if (a === "string") console.log("Это строка")
-    else if (a === "number") console.log("Это число")
-    else if (a === "boolean") console.log("Это булево значение")
-    else console.log("Неизвестное значение")
-  }
+const combineKeys = arr => {
+    let obj = {}
+    for(let i = 0; i < arr.length; i++) {
+        let a = arr[i]
+        let flag = true
+        let count = ""
+        for (let key in a) {
+            if (flag) {
+                count = a[key]
+                flag = false
+            } else {
+                obj[count] = a[key]
+            }
+        }
+    }
+    
+    return obj
 }
 
-typeElem(array)
+console.log(combineKeys(  [
+    {name: "width", value: 300},
+    {name: "height", value: 100}
+]));

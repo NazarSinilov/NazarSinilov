@@ -1,26 +1,19 @@
-/*Имеется массив пользователей вида [{ name: “Ivan”, age: 24 }]. Рассчитать минимальный и максимальный возраст всех пользователей.
-Результат записать в объект вида { min: …, max: … }
-Input: [{ name: “Ivan”, age: 24 }, { name: “Oleg”, age: 16}, { name: “Igor”, age: 24}]
-Output: { min: 16, max: 24 }*/
+/*Написать функцию, которая принимает параметрами два массива. Вернуть массив тех значений, которые есть и в первом и во втором.
+Input: ( [5, 2, 7, 3, 6, 8, 2, 9, 1], [4, 2, 9, 4, 5, 4] )
+Output: [2, 9, 5]
+*/
 
-const people = [{ name: "Ivan", age: 24 }, { name: "Oleg", age: 16}, { name: "Igor", age: 24}]
+const generalMeaning = (arr1, arr2) => {
+    let newArr = []
+    for (let i = 0; i < arr1.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr1[i] === arr2[j]) {
+                newArr.push(arr1[i])
+            }
+        }
+    }
 
-function trans(people) {
-  const minMax = {}
-  let min = 0
-  let max = 0
-
-  for(let i = 0; i < people.length; i++) {
-    let p = people[i].age
-    if(min === 0) min = p
-    min = Math.min(min, p)
-    max = Math.max(max, p)
-  }
-
-  minMax.min = min
-  minMax.max = max
-
-  return minMax
+    return [...new Set(newArr)]
 }
 
-console.log(trans(people)); 
+console.log(generalMeaning([5, 2, 7, 3, 6, 8, 2, 9, 1], [4, 2, 9, 4, 5, 4]));

@@ -1,24 +1,9 @@
-/*Написать функцию, принимающую число N, и возвращающую массив длиной N, заполненный числами Фибоначчи.
-Числа Фибоначчи - элементы числовой последовательности, в которой первые два числа равны 0 и 1,
-а каждое последующее число равно сумме двух предыдущих чисел (пример, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233).
-Input: 7
-Output: [0, 1, 1, 2, 3, 5, 6]*/
+/*Напишите функцию, которая возвращает рандомный элемент из массива.
+Input: [4, 8, 2, 9, 4, 6, 5, 1, 7, 4]
+Output: 9*/
 
-const arrFib = [];
-
-function fib(N) {
-  let first = 0;
-  let second = 1;
-  let nextTurn;
-
-  for (let i = 0; i < N; i++) {       
-    arrFib.push(first);
-    nextTurn = first + second;
-    first = second
-    second = nextTurn
-  }
-
-  return arrFib
+const rand = arr => {
+    return arr[Math.floor(Math.random() * arr.length)]
 }
 
-console.log(fib(7));
+console.log(rand([4, 8, 2, 9, 4, 6, 5, 1, 7, 4]))

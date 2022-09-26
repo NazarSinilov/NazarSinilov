@@ -1,12 +1,16 @@
-/*Написать функцию, принимающую массив строк и выводящих их на экран, используя цикл while. Элементы из массива извлекать с помощью оператора .pop()*/
+/*Функция принимает в качестве параметра строку. Если она начинается на 'abc', то заменить их на 'www',
+иначе добавить в конец строки 'zzz'.
+Input: "abctestabctext"
+Output: "wwwtestabctext"
+Input: "testabctext"
+Output: "testabctextzzz"*/
 
-const arrayStr = ["One", "Two", "Three"];
-
-function showStr(arrayStr) {
-  while (arrayStr.length) {
-    let el = arrayStr.pop()
-    console.log(el)
-  }
+const replaceStr = str => {
+    if (str.slice(0, 3) === "abc") {
+        return "www" + str.slice(3, str.length)
+    } else {
+        return str.slice(3, str.length) + "zzz"
+    }
 }
 
-showStr(arrayStr)
+console.log(replaceStr("testabctext"))

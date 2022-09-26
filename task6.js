@@ -1,13 +1,32 @@
-/*Имеется массив пользователей вида [{ name: “Ivan”, age: 24 }]. Вывести имена тех пользователей, возраст которых больше 18 лет.
-Input: [{ name: “Ivan”, age: 24 }, { name: “Oleg”, age: 16}, { name: “Igor”, age: 24}]
-Output:
-Ivan
-Igor*/
+/*Напишите функцию, которая принимает параметром массив с объектами. Сгруппируйте объекты заказов по имени.
+Input: [
+  {name: "test", price: 200},
+  {name: "test1", price: 300},
+  {name: "test", price: 100},
+  {name: "test", price: 600}
+]
+Output: [
+  {name: "test", price: 900},
+  {name: "test1", price: 300}
+]*/
 
-const people = [{ name: "Ivan", age: 24 }, { name: "Oleg", age: 16}, { name: "Igor", age: 24}]
+const funcGroup = arr => {
+    for (let i = arr.length - 1; i >= 0; i--) {
+        for (let j = i - 1; j >= 0; j--) {
+            if (arr[i].name === arr[j].name) {
+                arr[j].price += arr[i].price
+                arr.splice(i , 1)
+                break
+            }
+        }
+    }
 
-function age(array) {
-  return array.filter(el => el.age > 18 ).forEach(el => console.log(el.name));
+    return arr
 }
 
-age(people);
+console.log(funcGroup(   [
+    {name: "test", price: 200},
+    {name: "test1", price: 300},
+    {name: "test", price: 100},
+    {name: "test", price: 100},
+]));
