@@ -6,11 +6,11 @@ Output: false*/
 
 function palindrome(str) {
     let arr = str.split("")
-    let arr1 = []
-
-    for (let i = arr.length - 1 ; i >= 0; i--) {
+    let arr1 = Object.assign([],arr)
+    arr1.reverse()
+    /*for (let i = arr.length - 1 ; i >= 0; i--) {      В условии было запрещено юзать reverse()
         arr1.push(arr[i])
-    }
+    }*/
 
     return arr.join("") === arr1.join("")
 }
