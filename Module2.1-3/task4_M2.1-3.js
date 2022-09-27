@@ -1,29 +1,12 @@
 /*
-На вход подается массив со значениями. Нужно вывести массив уникальных элементов (нет повторений в поданном массиве).
-Input: [5, 7, 6, 2, 8, 3, 5, 6, 2, 98, 13]
-Output: [7, 8, 3, 98, 13]
+Дан двухмерный массив с числами, например [[1, 2, 3], [4, 5], [6]]. Найдите сумму элементов этого массива.
+Массив, конечно же, может быть произвольным.
+Input: [ [1, 2, 3], [4, 5], [6] ]
+Output: 21
  */
 
-const unique = arr => {
-    let newArr = []
-
-    for (let i = 0; i < arr.length; i++) {
-        let flag = true
-        for (let j = 0; j < arr.length; j++) {
-            if (i === j){
-                continue
-            }
-            if (arr[i] === arr[j]) {
-                flag = false
-                break
-            }
-        }
-        if (flag) {
-            newArr.push(arr[i])
-        }
-    }
-
-    return newArr
+const sumArray = arr => {
+    return arr.flat(Infinity).reduce((acc , el) => acc + el )
 }
 
-console.log(unique([5, 7, 6, 2, 8, 3, 5, 6, 2, 98, 13]))
+console.log(sumArray([[1, 2, 3], [4, 5], [6]]))
