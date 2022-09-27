@@ -7,7 +7,7 @@ Output: "https://docs.google.com?id=terdh673bb8&limit=5&offset=0"
 */
 
 const sumNum = (str, obj) => {
-    let arrayParams = []
+    const arrayParams = []
     for (let key in obj) {
         arrayParams.push([key, "=", obj[key]].join(""))
         arrayParams.push("&")
