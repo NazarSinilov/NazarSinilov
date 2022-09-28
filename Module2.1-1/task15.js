@@ -7,29 +7,19 @@ Output: true
 }*/
 
 const a = { test: 8, text: 9, a : 5 };
-const b = { test: 8, text: 9, a : 5};
+const b = { test: 8, text: 7, a : 5 };
 
 function isEqual(objA, objB) {
-    let lenObjA = 0
-    let lenObjB = 0
+    const keysA = Object.keys(objA)
+    const keysB = Object.keys(objA)
 
-    for (let key in objA) {
-        if (key) lenObjA++
-    }
-
-    for (let key in objB) {
-        if (key) lenObjB++
-    }
-
-    if (lenObjA !== lenObjB) {
+    if (keysA.length !== keysB.length) {
         return false
     }
 
-    const keys = Object.keys(objA)
-
-    for (let i = 0; i < keys.length; i++) {
-        if (objB[keys[i]]) {
-            if (objA[keys[i]] !== objB[keys[i]]) {
+    for (let i = 0; i < keysA.length; i++) {
+        if (objB[keysA[i]]) {
+            if (objA[keysA[i]] !== objB[keysA[i]]) {
                 return false
             }
         }
