@@ -29,4 +29,4 @@ console.log(numFieldX2({
     age: 25,
     weight: 65,
     height: 165
-}));
+}))
