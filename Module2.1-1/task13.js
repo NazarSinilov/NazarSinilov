@@ -13,9 +13,11 @@ Output: {
 }*/
 
 function numFieldX2(obj) {
-    for (let key in obj) {
-        if (typeof obj[key] === "number") {
-            obj[key] = obj[key] * 2
+    const keys = Object.keys(obj)
+
+    for (let i = 0 ; i < keys.length; i++ ){
+        if (typeof obj[keys[i]] === "number") {
+            obj[keys[i]]  = obj[keys[i]]  * 2
         }
     }
 
