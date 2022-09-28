@@ -11,7 +11,16 @@ function removeDuplicates(arr) {
             arr[i] = arr[i].toLowerCase()
         }
     }
-    return [...new Set(arr)]
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        for (let j = i - 1; j >= 0; j--) {
+            if (arr[i] === arr[j]) {
+                arr.splice(i, 1)
+            }
+        }
+    }
+
+    return arr
 }
 
-console.log(removeDuplicates(["text", "education", "part", "Text"]));
+console.log(removeDuplicates([4, 7, 1, 9, 6, 8, 4, 6, 3, 6]));
