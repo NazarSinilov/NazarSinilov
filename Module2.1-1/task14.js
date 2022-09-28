@@ -7,8 +7,12 @@ Output: false
 
 function isShortStr(strLong, strShort) {
     for (let i = 0; i < strLong.length; i++) {
-        if (strLong.slice(i, i + strShort.length) === strShort) return true
+        let el = strLong.slice(i, i + strShort.length)
+        if (el === strShort) {
+            return true
+        }
     }
+
     return false
 }
 
