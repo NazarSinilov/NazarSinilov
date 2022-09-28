@@ -6,12 +6,10 @@ function pairArray(obj) {
     const arr = []
 
     for (let key in obj) {
-        if (obj[key]) {
             arr.push([key,obj[key]])
-        }
     }
 
     return arr
 }
 
-console.log(pairArray({ "dog": 6, "cat": 11 } ));
+console.log(pairArray({ "dog": 6, "cat": 11, age: 0 } ));
