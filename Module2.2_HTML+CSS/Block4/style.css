@@ -1,0 +1,13 @@
+.block {
+    display: flex;
+}
+.container{
+    width: 33.33%;
+    margin-right: 5px;
+}
+img{
+    min-width: 100%;
+}
+img:hover{
+    box-shadow: 0 0 10px;;
+}
