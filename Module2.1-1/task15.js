@@ -21,15 +21,20 @@ function isEqual(objA, objB) {
         if (key) lenObjB++
     }
 
-    if (lenObjA !== lenObjB) return false
+    if (lenObjA !== lenObjB) {
+        return false
+    }
 
-    for (let key in objA) {
-        if (objB[key]) {
-            if (objA[key] !== objB[key]) {
+    const keys = Object.keys(objA)
+
+    for (let i = 0; i < keys.length; i++) {
+        if (objB[keys[i]]) {
+            if (objA[keys[i]] !== objB[keys[i]]) {
                 return false
             }
         }
     }
+
     return true
 }
 
