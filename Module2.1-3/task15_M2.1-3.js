@@ -12,7 +12,23 @@ Output: [
 */
 
 const filterByValue = (arr, value) => {
-    return arr.filter(el => el.age === value)
+    for (let i = arr.length - 1; i >= 0; i--) {
+        const keys = Object.keys(arr[i])
+        let flag = true
+
+        for (let j = 0; j < keys.length; j++) {
+            if (arr[i][keys[j]] === value) {
+               flag = false
+                break
+            }
+        }
+
+        if (flag){
+            arr.splice(i , 1)
+        }
+    }
+
+    return arr
 }
 
 console.log(filterByValue(    [
