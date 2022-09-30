@@ -17,7 +17,7 @@ const haveField = arr => {
     for (let i = arr.length - 1; i >= 0; i--) {
         let flag = false
         for (let key in arr[i]) {
-            if (arr[i][key] !== "" && arr[i][key] !== null) {
+            if (arr[i][key]) {
                 flag = true
             }
         }
