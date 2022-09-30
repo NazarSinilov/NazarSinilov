@@ -8,4 +8,4 @@ const sortStrLength = arr => {
     return arr.sort( (a, b) => a.length - b.length)
 }
 
-console.log(sortStrLength(    ["test", "education", "part", "2", "exceed.team"]));
+console.log(sortStrLength(["test", "education", "part", "2", "exceed.team"]));

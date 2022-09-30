@@ -24,4 +24,4 @@ const filterFunc = (arr, minValue, maxValue) => {
     return arr
 }
 
-console.log(filterFunc(    [-4, 6, 7, 2, -5, 8],  3, null));
+console.log(filterFunc([-4, 6, 7, 2, -5, 8],  3, null));

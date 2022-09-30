@@ -24,7 +24,7 @@ const funcGroup = arr => {
     return arr
 }
 
-console.log(funcGroup(   [
+console.log(funcGroup([
     {name: "test", price: 200},
     {name: "test1", price: 300},
     {name: "test", price: 100},

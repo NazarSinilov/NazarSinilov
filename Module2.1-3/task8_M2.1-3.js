@@ -17,4 +17,4 @@ const sumNum = (str, obj) => {
     return str + "?" + arrayParams.join("")
 }
 
-console.log(sumNum(    "https://docs.google.com", { id: "terdh673bb8", limit: 5, offset: 0 }));
+console.log(sumNum("https://docs.google.com", { id: "terdh673bb8", limit: 5, offset: 0 }));

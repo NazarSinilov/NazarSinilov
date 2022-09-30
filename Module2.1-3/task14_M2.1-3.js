@@ -23,4 +23,4 @@ const isValueArr1FromArr2 = (arr1, arr2) => {
     return true
 }
 
-console.log(isValueArr1FromArr2(    [4, 8, 1, 9, -3, 7, 2, 8, 4, -6, 3, 8, 4, 6, 1, 9, -4], [3, 7, -6] ));
+console.log(isValueArr1FromArr2([4, 8, 1, 9, -3, 7, 2, 8, 4, -6, 3, 8, 4, 6, 1, 9, -4], [3, 7, -6] ));

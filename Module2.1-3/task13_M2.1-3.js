@@ -18,4 +18,4 @@ const groupValues = arr => {
     return obj
 }
 
-console.log(groupValues(    [0, 0, 0, 1, 1, 0 , 1, 1, 1, 0, 0, 1, 1, 0, 1]));
+console.log(groupValues([0, 0, 0, 1, 1, 0 , 1, 1, 1, 0, 0, 1, 1, 0, 1]));

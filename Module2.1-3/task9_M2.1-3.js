@@ -17,4 +17,4 @@ const removeValueFromArr1 = (arr1, arr2) => {
     return arr1
 }
 
-console.log(removeValueFromArr1(    [5, 7, 2, -1, 7, 8, 3, 6, 2, 9, 4, -7], [2, -1, 9]));
+console.log(removeValueFromArr1([5, 7, 2, -1, 7, 8, 3, 6, 2, 9, 4, -7], [2, -1, 9]));

@@ -19,4 +19,4 @@ const sumNum = num => {
     return resNum
 }
 
-console.log(sumNum(   345));
+console.log(sumNum(345));
