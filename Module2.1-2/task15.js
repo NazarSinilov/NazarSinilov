@@ -5,7 +5,7 @@ Output: [ x, xx, xxx, xxxx, xxxxx, xxxxxx, xxxxxxx ]
 */
 
 const createArrayX = num => {
-    let arr = []
+    const arr = []
     let x = ""
     for (let i = 0; i < num; i++) {
         x += "x"
