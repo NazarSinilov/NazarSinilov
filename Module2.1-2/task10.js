@@ -9,8 +9,8 @@ Output: "110100011"
 */
 
 const sourceCode = str => {
-    let newArr = []
-    let arr =  str.split("")
+    const newArr = []
+    const arr =  str.split("")
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === "_") {
             newArr.push(0)
