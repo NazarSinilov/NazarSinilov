@@ -21,9 +21,9 @@ const arr = [
 
 const filterArray = (arr, field, filter) => {
     if (filter === "asc") {
-        arr.sort((a,b) => typeof a[field] === "number"? a[field] - b[field] : a[field] > b[field])
+        arr.sort((a,b) => typeof a[field] === "number"? a[field] - b[field] : a[field] > b[field]? 1 : -1)
     } else if (filter === "desc") {
-        arr.sort((a,b) =>  typeof a[field] === "number"? b[field] - a[field] : a[field] < b[field])
+        arr.sort((a,b) =>  typeof a[field] === "number"? b[field] - a[field] : a[field] < b[field]? 1 : -1)
     }
 
     return arr
