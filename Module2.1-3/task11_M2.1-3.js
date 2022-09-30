@@ -15,7 +15,7 @@ Input: ([-4, 6, 7, 2, -5, 8], -1, 5)
 Output: [2]
 */
 
-const filterFunc = (arr, minValue, maxValue) => {
+const filterFunc = (arr, minValue = null, maxValue = null) => {
     minValue = !minValue ? Math.min(...arr) - 1: minValue
     maxValue = !maxValue ? Math.max(...arr) + 1: maxValue
 
@@ -24,4 +24,4 @@ const filterFunc = (arr, minValue, maxValue) => {
     return arr
 }
 
-console.log(filterFunc([-4, 6, 7, 2, -5, 8],  3, null));
+console.log(filterFunc([-4, 6, 7, 2, -5, 8], 3, null));
