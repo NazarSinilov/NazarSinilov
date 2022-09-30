@@ -16,8 +16,8 @@ Output: [2]
 */
 
 const filterFunc = (arr, minValue, maxValue) => {
-    minValue = minValue === null ? Math.min(...arr) - 1: minValue
-    maxValue = maxValue === null ? Math.max(...arr) + 1: maxValue
+    minValue = !minValue ? Math.min(...arr) - 1: minValue
+    maxValue = !maxValue ? Math.max(...arr) + 1: maxValue
 
     arr = arr.filter(el => el > minValue && el < maxValue)
 
