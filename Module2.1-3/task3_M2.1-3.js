@@ -5,7 +5,7 @@ Output: [7, 8, 3, 98, 13]
  */
 
 const unique = arr => {
-    let newArr = []
+    const newArr = []
 
     for (let i = 0; i < arr.length; i++) {
         let flag = true
