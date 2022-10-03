@@ -128,7 +128,7 @@ a.header-page1 {
     margin-top: 40px;
 
 }
-.content-title p {
+.content-title h1 {
     font-size: 72px;
     font-family: Merriweather, serif !important;
     font-weight: bold;
@@ -140,13 +140,13 @@ a.header-page1 {
     margin-top: 40px;
 }
 .content-image img {
-    height: 854px;
-    width: 854px;
+/*    height: 854px;
+    width: 854px;*/
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
 
 }
-
-
 
 .content-cards{
     margin-top: -239px;
@@ -155,15 +155,15 @@ a.header-page1 {
 .cards-column {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 82px;
 }
 
 .cards-item {
-    width: 280px;
-    height: 360px;
+    flex: 0 0 30%;
     background: white;
-    margin: 25px;
     display: flex;
+    margin-bottom: 51px;
 }
 .item-wrap {
     padding: 20px;
@@ -222,66 +222,74 @@ footer {
 
 
 /*-------MEDIA------*/
+@media (max-width: 1199px) {
+    .container {
+        max-width: 940px;
+    }
+    .cards-column {
+        margin: 0;
+    }
+
+}
+
+
+
 @media (max-width: 991px) {
+    .container {
+        max-width: 720px;
+    }
+    .cards-item {
+        flex: 0 0 46%;
+    }
+
     .header-page {
         display: none;
     }
     .header-burger{
         display: block;
     }
-    .content-image img {
+/*    .content-image img {
         height: 714px;
         width: 714px;
+    }*/
+    .content-cards{
+        margin-top: -90px;
     }
-    .cards-item {
-        width: 335px;
-        height: 332px;
+    .content-title h1{
+        word-break: break-word;
+        font-size: 48px;
     }
 
 }
 
 @media  (max-width: 767px) {
-    .content-title p{
-        word-break: break-word;
-        font-size: 50px;
-    }
-    .content-image img {
-        height: 531px;
-        width: 531px;
-    }
-    .cards-item {
-        width: 245px;
-        height: 415px;
+    .container {
+        max-width: 540px;
     }
 
-    .content-footer__text p{
-        font-size: 20px;
-    }
-    .footer__text p {
-        font-size: 18px;
-    }
-    .content-cards{
-        margin-top: -90px;
-    }
 }
 
 @media  (max-width: 575px) {
-    .content-title p{
-        font-size: 36px;
-        margin: 0 0 20px 0;
+    .container {
+        max-width: 340px;
     }
     .content-image {
         margin: 0;
-    }
-    .content-image img {
-        height: 379px;
-        width: 379px;
     }
     .content-cards{
         margin-top: -60px;
     }
     .cards-item {
-        width: 340px;
-        height: 335px;
+        flex: 0 0 100%;
     }
+    .content-title h1{
+        font-size: 36px;
+    }
+}
+
+@media  (max-width: 280px) {
+    .container {
+        max-width: 240px;
+    }
+
 }
