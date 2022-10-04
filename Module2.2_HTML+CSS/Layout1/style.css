@@ -259,8 +259,16 @@ footer {
         word-break: break-word;
         font-size: 48px;
     }
-
 }
+
+@media (max-width: 912px) and (min-height: 900px) {
+    .item-text p,
+    .content-footer__text p,
+    .footer__text p {
+        font-size: 24px;
+    }
+}
+
 
 @media  (max-width: 767px) {
     .container {
