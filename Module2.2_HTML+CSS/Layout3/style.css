@@ -335,3 +335,9 @@ footer {
         margin-top: -783px;
     }
 }
+
+@media  (max-width: 280px) {
+    .container {
+        max-width: 240px;
+    }
+}
