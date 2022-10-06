@@ -3,17 +3,25 @@
     margin-top: 300px;
     justify-content: center;
 }
-
-button {
-    background: white;
+.block {
     width: 200px;
-    height: 50px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    border: 1px solid black;
+    text-align: center;
+    height: fit-content;
+    padding: 10px 0;
+}
+.block a {
+    text-decoration: none;
+    color: black;
 }
 
-button:hover {
+.block a:hover {
+    color: red;
+}
+
+.block:hover {
     color: red;
     background: linear-gradient(to top, wheat, white);
-    cursor: pointer;
     box-shadow: 0 0 6px black;
 }
