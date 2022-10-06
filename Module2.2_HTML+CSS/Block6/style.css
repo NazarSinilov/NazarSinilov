@@ -17,13 +17,13 @@
 .element:last-child{
     margin-right: 0;
 }
-.el1{
+.completed {
     background: #b9d359;
 }
-.el4{
+.active{
     background: #9e4997;
 }
-.el5{
+.locked{
     background: #cccccc;
 }
 .band_container{
@@ -40,7 +40,7 @@
 }
 div.text{
     font-size: 3rem;
-    color: #000000;
+    color: black;
 }
 .text5{
     color: black;
