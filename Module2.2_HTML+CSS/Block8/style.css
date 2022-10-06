@@ -1,115 +1,74 @@
- 
-/*Обнуление*/
-*{
-	padding: 0;
-	margin: 0;
-	border: 0;
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
 }
-*,*:before,*:after{
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-
-nav,footer,header,aside{display: block;}
-
-html,body{
-	height: 100%;
-	width: 100%;
-	font-size: 100%;
-	line-height: 1;
-	font-size: 24px;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
-input,button,textarea{font-family:inherit;}
-
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-/*--------------------*/
-
-
 
 body {
-	background: hsl(254, 90%, 21%);
+    background: hsl(254, 90%, 21%);
 }
 
 .container {
-	max-width: 1024px;
-	min-height: 100%;
-	margin: 0 auto;
+    max-width: 1024px;
+    min-height: 100%;
+    margin: 0 auto;
 }
 
 .hosts {
-	margin: 100px;
+    margin: 100px;
 }
 
 .hosts__row {
-	display: flex;
-	flex-wrap: wrap;
-	background-color: white;
-	border-radius: 20px;
-	box-shadow: 0 0 50px 0 black;
-}
-
-.hosts__column {
-	width: 33.333%;
-	padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 50px 0 black;
 }
 
 .hosts__item {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border-right: 1px solid rgb(185, 185, 185);
+    width: 33.333%;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid rgb(185, 185, 185);
 }
 
-.item{
-	border-right: none;
-	
+.item {
+    border-right: none;
+
 }
 
 .hosts__icon {
-	margin: 10px 0 5px 0;
+    margin: 10px 0 5px 0;
 }
 
 img {
-	max-width: 100px;
-	max-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
 }
 
 .hosts__name {
-	color: chocolate;
-	font-weight: 500;
-	margin: 10px 0;
+    color: chocolate;
+    font-weight: 500;
+    margin: 10px 0;
 }
 
 .hosts__price {
-	font-size: 20px;
-	margin: 10px 0;
+    font-size: 20px;
+    margin: 10px 0;
 }
 
-.hosts__button {
-	margin: 10px 0;
+.hosts__button button{
+    margin: 10px 0;
+    height: 30px;
+    width: 130px;
+    font-size: 20px;
+    border-radius: 5px;
+    background: chocolate;
+    color: white;
 }
 
-.button {
-	height: 30px;
-	width: 130px;
-	font-size: 20px;
-	border-radius: 5px;
-	background: chocolate;
-	color: white;
-	margin: 10px 0;
-}
