@@ -4,15 +4,24 @@ let valueInput = ""
 let allTasks = JSON.parse(localStorage.getItem("todo-list"))  || []
 let editInputValue = null
 
+window.onload = async function init () {
+    const resp = await fetch("http://localhost:8000/allTasks", {
+        method: "GET"
+    })
+    let result = await resp.json();
+    allTasks = result.data
+    render()
+}
+
 const getInputValue = () => {
     valueInput = document.querySelector("#inputText").value
 }
 
 const render = () => {
     let task = ""
-    allTasks =  _.sortBy(allTasks, "completed");
+    allTasks =  _.sortBy(allTasks, "isCheck");
     allTasks.forEach((el, id) => {
-        let isCompleted = el.completed ? "checked" : ""
+        let isCompleted = el.isCheck ? "checked" : ""
         task += `<div class="task ${isCompleted ? "completed" : ""}">
                     <input type="checkbox"  id="input-${id}" onclick="completedTask(this, ${id})" ${isCompleted}>
                     <div class="text ${isCompleted}" id="text-${id}">${el.text}</div>
@@ -51,7 +60,7 @@ const cancelEdit = (taskText, id) => {
 
 }
 
-const saveEdit = (id) => {
+const saveEdit = async id => {
     let hideBlock = document.querySelector(`#hideBlock-${id}`)
     let showText = document.querySelector(`#text-${id}`)
     let showControlBlock = document.querySelector(`#controlBlock-${id}`)
@@ -64,6 +73,22 @@ const saveEdit = (id) => {
     showCheckbox.classList.remove("hide")
 
     allTasks[id].text = inputText.value
+
+    const resp = await fetch("http://localhost:8000/updateTask", {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : "application/json;charset=utf-8",
+            "Access-Control-Allow-Origin" : "*"
+        },
+        body : JSON.stringify( {
+            text: inputText.value,
+            isCheck: false,
+            id : allTasks[id].id
+        })
+    })
+
+    let result = await resp.json();
+    allTasks = result.data
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
@@ -82,7 +107,6 @@ const editTask = id => {
 
     editInputValue = document.querySelector(`#editInput-${id}`)
     editInputValue.value = allTasks[id].text
-    //console.log(typeof taskText)
     editInputValue.focus()
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
@@ -95,32 +119,64 @@ const completedTask = (selectedTask , id) => {
     if (selectedTask.checked) {
         textElement.classList.add("checked")
         editElement.classList.add("hide")
-        allTasks[id].completed = true
+        allTasks[id].isCheck = true
 
     } else {
         textElement.classList.remove("checked")
         editElement.classList.remove("hide")
-        allTasks[id].completed = false
+        allTasks[id].isCheck = false
     }
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
 
-const addTask = () => {
+const  addTask = async () => {
     if (valueInput.trim()) {
         allTasks.unshift({
             text: valueInput,
-            completed: false
+            isCheck: false
         })
     }
+
+
+    const resp = await fetch("http://localhost:8000/createTask", {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json;charset=utf-8",
+            "Access-Control-Allow-Origin" : "*"
+        },
+        body : JSON.stringify( {
+            text: valueInput,
+            isCheck: false
+        })
+    })
+
+    let result = await resp.json();
+    allTasks = result.data
     valueInput = ""
     input.value = ""
     localStorage.setItem("todo-list" , JSON.stringify(allTasks))
     render()
 }
 
-const removeTask = (id) => {
+const removeTask = async id => {
     allTasks.splice(id , 1)
+
+    const resp = await fetch(`http://localhost:8000/deleteTask?id=${allTasks[id].id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type" : "application/json;charset=utf-8",
+            "Access-Control-Allow-Origin" : "*"
+        },
+        body : JSON.stringify( {
+            text: allTasks[id].text,
+            isCheck: false,
+            id : allTasks[id].id
+        })
+    })
+
+    let result = await resp.json();
+    allTasks = result.data
     render()
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
@@ -130,7 +186,7 @@ input.addEventListener("keyup", e => {
     if (e.key === "Enter" && inputText) {
         allTasks.unshift({
             text: inputText,
-            completed: false
+            isCheck: false
         })
         input.value = ""
         localStorage.setItem("todo-list" , JSON.stringify(allTasks))
