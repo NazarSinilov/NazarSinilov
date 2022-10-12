@@ -55,7 +55,11 @@ img {
     width: 600px;
     margin-bottom: 20px;
     border-radius: 40px;
-    background: #c45a5a;
+    background: #9d0091;
+    box-shadow: 10px 10px 22px 0 rgba(0, 0, 0, 0.5);
+}
+.completed {
+    background: #50004a;
 }
 .task input {
     height: 20px;
@@ -65,6 +69,7 @@ img {
 .task p {
     font-size: 20px;
 }
+
 .checked {
     opacity: 50%;
     text-decoration: line-through;
@@ -80,15 +85,17 @@ img {
     width: 80%;
 }
 .hide-block input {
-    width: 60%;
     height: 24px;
+    margin-left: 22%;
+    margin-right: 15%;
+    width: 90%;
 }
 .control-block {
     width: 20%;
 }
 .active {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
 }
 .hide-block__control {
     width: 20%;

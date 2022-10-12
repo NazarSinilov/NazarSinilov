@@ -13,8 +13,8 @@ const render = () => {
     allTasks =  _.sortBy(allTasks, "completed");
     allTasks.forEach((el, id) => {
         let isCompleted = el.completed ? "checked" : ""
-        task += `<div class="task">
-                    <input type="checkbox" id="input-${id}" onclick="completedTask(this, ${id})" ${isCompleted}>
+        task += `<div class="task ${isCompleted ? "completed" : ""}">
+                    <input type="checkbox"  id="input-${id}" onclick="completedTask(this, ${id})" ${isCompleted}>
                     <div class="text ${isCompleted}" id="text-${id}">${el.text}</div>
                     <div class="hide-block" id="hideBlock-${id}">
                         <input type="text" class="editInput" value="${el.text}" id="editInput-${id}">
@@ -24,8 +24,8 @@ const render = () => {
                         </div>
                     </div>
                     <div class="control-block" id="controlBlock-${id}">
-                        <img src="img/icon-edit.svg" alt="#" id="edit-${id}" class="${isCompleted? "hide" : ""}" onclick="editTask(${id}, ${el.text})">
-                        <img src="img/icon-delete.svg" alt="#" id="delete-${id}"   onclick="removeTask(${id})"> 
+                        <img src="img/icon-edit.svg" alt="#" id="edit-${id}" class="${isCompleted? "hide" : ""}" onclick="editTask(${id})">
+                        <img src="img/icon-delete.svg" alt="#" id="delete-${id}" onclick="removeTask(${id})"> 
                     </div>
                     
                  </div>`
@@ -56,28 +56,33 @@ const saveEdit = (id) => {
     let showText = document.querySelector(`#text-${id}`)
     let showControlBlock = document.querySelector(`#controlBlock-${id}`)
     let inputText = document.querySelector(`#editInput-${id}`)
+    let showCheckbox = document.querySelector(`#input-${id}`)
 
     showText.classList.remove("hide")
     hideBlock.classList.remove("active")
     showControlBlock.classList.remove("hide")
+    showCheckbox.classList.remove("hide")
 
     allTasks[id].text = inputText.value
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
 
-const editTask = ( id, taskText) => {
+const editTask = id => {
     render()
     let showBlock = document.querySelector(`#hideBlock-${id}`)
     let hideText = document.querySelector(`#text-${id}`)
     let hideControlBlock = document.querySelector(`#controlBlock-${id}`)
+    let hideCheckbox = document.querySelector(`#input-${id}`)
 
     showBlock.classList.add("active")
     hideText.classList.add("hide")
     hideControlBlock.classList.add("hide")
+    hideCheckbox.classList.add("hide")
 
     editInputValue = document.querySelector(`#editInput-${id}`)
-    editInputValue.value = taskText
+    editInputValue.value = allTasks[id].text
+    //console.log(typeof taskText)
     editInputValue.focus()
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
@@ -130,7 +135,6 @@ input.addEventListener("keyup", e => {
         input.value = ""
         localStorage.setItem("todo-list" , JSON.stringify(allTasks))
         render()
-
     }
 })
 
