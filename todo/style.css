@@ -1,11 +1,21 @@
+body {
+    background: black;
+}
 .container {
+    background: #8700d5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 720px;
+    margin: 50px auto;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 44px 24px rgba(123, 0, 195, 0.49);
 }
 h1 {
     margin: 30px 0;
+    color: white;
 }
 input {
     height: 30px;
@@ -15,20 +25,71 @@ input {
 button {
     height: 36px;
     font-size: 14px;
+    color: white;
+    background: darkmagenta;
+    border-radius: 15px;
+}
+.block {
+    margin-bottom: 20px;
 }
 img {
-    margin: 0 20px;
     cursor: pointer;
 }
 .tasks input {
     margin: 0 20px;
 }
 .text {
+    color: white;
     margin: 0 20px;
+    word-break: break-word;
+    width: 60%;
+
 }
 
 .task {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 600px;
+    margin-bottom: 20px;
+    border-radius: 40px;
+    background: #c45a5a;
+}
+.task input {
+    height: 20px;
+    width: 20%;
+
+}
+.task p {
+    font-size: 20px;
+}
+.checked {
+    opacity: 50%;
+    text-decoration: line-through;
+}
+
+
+.hide {
+    display: none;
+}
+
+.hide-block {
+    display: none;
+    width: 80%;
+}
+.hide-block input {
+    width: 60%;
+    height: 24px;
+}
+.control-block {
+    width: 20%;
+}
+.active {
+    display: flex;
+    justify-content: space-around;
+}
+.hide-block__control {
+    width: 20%;
 }
