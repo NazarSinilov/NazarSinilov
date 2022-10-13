@@ -1,8 +1,6 @@
-body {
-    background: black;
-}
+
 .container {
-    background: #8700d5;
+    background: #f3e3b3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,23 +9,23 @@ body {
     margin: 50px auto;
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 0 44px 24px rgba(123, 0, 195, 0.49);
 }
 h1 {
     margin: 30px 0;
-    color: white;
 }
-input {
+.block input {
+    width: 520px;
     height: 30px;
     font-size: 14px;
     margin: 0;
+    border-radius: 10px;
+    border: none;
 }
 button {
     height: 36px;
     font-size: 14px;
-    color: white;
-    background: darkmagenta;
     border-radius: 15px;
+    border: none;
 }
 .block {
     margin-bottom: 20px;
@@ -39,11 +37,10 @@ img {
     margin: 0 20px;
 }
 .text {
-    color: white;
     margin: 0 20px;
     word-break: break-word;
     width: 60%;
-
+    color: black;
 }
 
 .task {
@@ -55,12 +52,13 @@ img {
     width: 600px;
     margin-bottom: 20px;
     border-radius: 40px;
-    background: #9d0091;
+    background: #d2d4d6;
     box-shadow: 10px 10px 22px 0 rgba(0, 0, 0, 0.5);
 }
 .completed {
-    background: #50004a;
+    background: #949494;
 }
+
 .task input {
     height: 20px;
     width: 20%;

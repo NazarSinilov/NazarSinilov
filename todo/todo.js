@@ -10,6 +10,7 @@ window.onload = async function init () {
     })
     let result = await resp.json();
     allTasks = result.data
+    console.log(result.data)
     render()
 }
 
@@ -19,6 +20,7 @@ const getInputValue = () => {
 
 const render = () => {
     let task = ""
+    allTasks =  _.sortBy(allTasks, "id");
     allTasks =  _.sortBy(allTasks, "isCheck");
     allTasks.forEach((el, id) => {
         let isCompleted = el.isCheck ? "checked" : ""
@@ -131,13 +133,12 @@ const completedTask = (selectedTask , id) => {
 }
 
 const  addTask = async () => {
-    if (valueInput.trim()) {
+ /*   if (valueInput.trim()) {
         allTasks.unshift({
             text: valueInput,
             isCheck: false
         })
-    }
-
+    }*/
 
     const resp = await fetch("http://localhost:8000/createTask", {
         method: "POST",
@@ -160,8 +161,8 @@ const  addTask = async () => {
 }
 
 const removeTask = async id => {
-    allTasks.splice(id , 1)
 
+    console.log(id)
     const resp = await fetch(`http://localhost:8000/deleteTask?id=${allTasks[id].id}`, {
         method: "DELETE",
         headers: {
@@ -174,9 +175,10 @@ const removeTask = async id => {
             id : allTasks[id].id
         })
     })
-
+    allTasks.splice(id , 1)
     let result = await resp.json();
     allTasks = result.data
+    console.log(result.data)
     render()
     localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
@@ -184,13 +186,7 @@ const removeTask = async id => {
 input.addEventListener("keyup", e => {
     let inputText = input.value.trim()
     if (e.key === "Enter" && inputText) {
-        allTasks.unshift({
-            text: inputText,
-            isCheck: false
-        })
-        input.value = ""
-        localStorage.setItem("todo-list" , JSON.stringify(allTasks))
-        render()
+        addTask()
     }
 })
 
