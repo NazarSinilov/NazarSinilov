@@ -15,17 +15,18 @@ h1 {
 }
 .block input {
     width: 520px;
-    height: 30px;
+    height: 32px;
     font-size: 14px;
     margin: 0;
     border-radius: 10px;
-    border: none;
+    border: 1px solid black;
+    outline: none;
 }
 button {
     height: 36px;
     font-size: 14px;
     border-radius: 15px;
-    border: none;
+    border: 1px solid black;
 }
 .block {
     margin-bottom: 20px;

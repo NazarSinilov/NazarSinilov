@@ -1,7 +1,8 @@
 let element = document.querySelector(".tasks")
 let input = document.querySelector("input")
 let valueInput = ""
-let allTasks = JSON.parse(localStorage.getItem("todo-list"))  || []
+//let allTasks = JSON.parse(localStorage.getItem("todo-list"))  || []
+let allTasks = []
 let editInputValue = null
 
 window.onload = async function init () {
@@ -10,7 +11,6 @@ window.onload = async function init () {
     })
     let result = await resp.json();
     allTasks = result.data
-    console.log(result.data)
     render()
 }
 
@@ -57,7 +57,7 @@ const cancelEdit = (taskText, id) => {
 
     allTasks[id].text = taskText
 
-    localStorage.setItem("todo-list", JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 
 }
@@ -91,7 +91,7 @@ const saveEdit = async id => {
 
     let result = await resp.json();
     allTasks = result.data
-    localStorage.setItem("todo-list", JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
 
@@ -110,7 +110,7 @@ const editTask = id => {
     editInputValue = document.querySelector(`#editInput-${id}`)
     editInputValue.value = allTasks[id].text
     editInputValue.focus()
-    localStorage.setItem("todo-list", JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
 
 const completedTask = (selectedTask , id) => {
@@ -128,18 +128,11 @@ const completedTask = (selectedTask , id) => {
         editElement.classList.remove("hide")
         allTasks[id].isCheck = false
     }
-    localStorage.setItem("todo-list", JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
 
-const  addTask = async () => {
- /*   if (valueInput.trim()) {
-        allTasks.unshift({
-            text: valueInput,
-            isCheck: false
-        })
-    }*/
-
+const addTask = async () => {
     const resp = await fetch("http://localhost:8000/createTask", {
         method: "POST",
         headers: {
@@ -147,22 +140,20 @@ const  addTask = async () => {
             "Access-Control-Allow-Origin" : "*"
         },
         body : JSON.stringify( {
-            text: valueInput,
+            text: valueInput.trim(),
             isCheck: false
         })
     })
-
     let result = await resp.json();
-    allTasks = result.data
+    console.log(result)
+    //allTasks = result.data
     valueInput = ""
     input.value = ""
-    localStorage.setItem("todo-list" , JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list" , JSON.stringify(allTasks))
     render()
 }
 
 const removeTask = async id => {
-
-    console.log(id)
     const resp = await fetch(`http://localhost:8000/deleteTask?id=${allTasks[id].id}`, {
         method: "DELETE",
         headers: {
@@ -175,18 +166,17 @@ const removeTask = async id => {
             id : allTasks[id].id
         })
     })
-    allTasks.splice(id , 1)
+    //allTasks.splice(id , 1)
     let result = await resp.json();
     allTasks = result.data
-    console.log(result.data)
     render()
-    localStorage.setItem("todo-list", JSON.stringify(allTasks))
+    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
 
 input.addEventListener("keyup", e => {
     let inputText = input.value.trim()
     if (e.key === "Enter" && inputText) {
-        addTask()
+        //addTask()
     }
 })
 
