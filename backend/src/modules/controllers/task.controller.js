@@ -14,14 +14,13 @@ module.exports.createNewTask = (req, res, next) => {
 }
 
 module.exports.changeTaskInfo = (req, res, next) => {
-    Task.updateOne({_id : req.body.id},req.body).then( result =>
-        Task.find({_id : req.body._id})).then(result => {
-        res.send("task changed")
+    Task.updateOne({_id : req.body.id},req.body).then(result => {
+        res.send(req.body)
     })
 }
 
 module.exports.deleteTask = (req, res, next) => {
     Task.deleteOne({_id: req.query._id }).then(result => {
-        res.send("task delete")
+        res.send({_id: req.query._id })
     })
 }
