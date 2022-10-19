@@ -211,7 +211,7 @@ footer {
 
 @media  (max-width: 575px) {
     .container {
-        max-width: 340px;
+        max-width: 310px;
     }
     .content-image {
         margin: 0;
@@ -226,6 +226,12 @@ footer {
         font-size: 36px;
     }
 }
+@media  (max-width: 320px) {
+    .container {
+        max-width: 280px;
+    }
+}
+
 
 @media  (max-width: 280px) {
     .container {
