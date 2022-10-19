@@ -23,7 +23,7 @@
     justify-content: space-between;
     height: 80px;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .header-logo img {
@@ -211,10 +211,13 @@ footer {
 
 @media  (max-width: 575px) {
     .container {
-        max-width: 310px;
+        max-width: 340px;
     }
     .content-image {
-        margin: 0;
+        height: 379px;
+        width: 379px;
+        margin-left: -20px;
+        margin-right: -20px;
     }
     .content-cards{
         margin-top: -60px;
@@ -230,12 +233,18 @@ footer {
     .container {
         max-width: 280px;
     }
+    .content-image {
+        height: 319px;
+        width: 319px;
+    }
 }
-
 
 @media  (max-width: 280px) {
     .container {
         max-width: 240px;
     }
-
+    .content-image {
+        height: 279px;
+        width: 279px;
+    }
 }
