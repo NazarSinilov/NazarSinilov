@@ -81,6 +81,7 @@ a.page1{
     font-size: 20px;
     font-weight: bold;
     margin-top: 20px;
+    word-break: break-word;
 }
 .cards__item__text {
     color: white;
@@ -95,6 +96,7 @@ a.page1{
     height: 46px;
     margin-top: 20px;
     border: 2px solid #fba633;
+    cursor: pointer;
 }
 
 
@@ -173,7 +175,7 @@ footer {
 
 @media  (max-width: 575px) {
     .container {
-        width: 340px;
+        width: 80%;
     }
     .cards__item {
         flex: 0 0 100%;
@@ -187,3 +189,4 @@ footer {
         flex: 0 0 100%;
     }
 }
+
