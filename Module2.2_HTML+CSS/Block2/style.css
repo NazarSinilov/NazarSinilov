@@ -1,0 +1,22 @@
+.container{
+    max-width: 375px;
+    margin: 0 auto;
+}
+.block{
+    width: 100%;
+    height: 20px;
+    border: 1px solid #505050;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #151515, #8d8d8d);
+    display: flex;
+    align-items: center;
+
+}
+.indicator{
+    width: 20%;
+    height: 18px;
+    background: linear-gradient(180deg, #009dff 20%, #006fff, #009dff 80%);
+    border: 1px solid #0068f1;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 5px 0 #000000;
+}

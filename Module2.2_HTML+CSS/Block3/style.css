@@ -1,0 +1,17 @@
+.circle {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 40px solid #71a264;
+    background: #dbfdcd;
+    border-right: 40px solid #b8d7ab;
+    font-size: 60px;
+    align-items: center;
+    justify-content: center;
+
+}
+span{
+    font-size: 30px;
+
+}

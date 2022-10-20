@@ -1,0 +1,47 @@
+.container{
+    margin: 100px;
+    width: 900px;
+}
+.block{
+    display: flex;
+}
+.element {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+}
+.element:last-child{
+    margin-right: 0;
+}
+.completed {
+    background: #b9d359;
+}
+.active{
+    background: #9e4997;
+}
+.locked{
+    background: #cccccc;
+}
+.band_container{
+    position: relative;
+}
+.band{
+    position: absolute;
+    height: 10px;
+    width: 800px;
+    background: #cccccc;
+    z-index: -1;
+    top: 50px;
+    left: 50px;
+}
+div.text{
+    font-size: 3rem;
+    color: black;
+}
+.text5{
+    color: black;
+}
