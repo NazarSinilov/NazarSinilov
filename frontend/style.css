@@ -1,0 +1,135 @@
+div {
+    font-size: 24px;
+}
+* {
+    box-sizing: border-box;
+}
+.container {
+    max-width: 720px;
+    margin: 50px auto;
+    background: #e1f2fe;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+}
+
+header {
+    font-style: italic;
+    font-size: 60px;
+}
+
+.expenses {
+    display: flex;
+    column-gap: 5%;
+    width: 100%;
+}
+.expenses__place {
+    width: 45%;
+}
+.expenses__place p {
+    font-size: 14px;
+}
+
+.expenses__place input,
+.inputPlace_hidden,
+.inputCost_hidden,
+.inputDate_hidden{
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.inputPlace_hidden {
+    flex: 0 0 25%;
+}
+.inputCost_hidden {
+    flex: 0 0 25%;
+}
+.inputDate_hidden {
+    flex: 0 0 25%;
+}
+.control-block_hidden {
+    flex: 0 0 10%;
+}
+img {
+    height: 26px;
+}
+.expenses__cost p {
+    font-size: 14px;
+}
+
+.expenses__cost input{
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.expenses button {
+    height: 36px;
+    flex: 0 0 20%;
+    margin-top: auto;
+    border-radius: 5px;
+    border: 1px solid black;
+    background: #7acbaa;
+    font-size: 16px;
+}
+
+.total-price {
+    margin-left: auto;
+}
+
+
+
+input {
+    padding-left: 20px;
+}
+
+.purchases {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.purchase {
+    display: flex;
+    column-gap: 5%;
+    width: 100%;
+}
+
+
+.block-place {
+    display: flex;
+    flex: 1 1 40% ;
+}
+.block-cost {
+    display: flex;
+    flex: 0 0 40%;
+}
+.block-control {
+    flex: 0 0 10%;
+}
+
+
+.purchase__place {
+    margin-left: 10px;
+    word-break: break-word;
+}
+
+.purchase__cost {
+    word-break: break-word;
+}
+
+.purchase__date {
+    margin-right: 40px;
+}
+.purchase-block {
+    width: 45%;
+}
+
+
