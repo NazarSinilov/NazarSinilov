@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Expenses</title>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script defer src="expenses.js"></script>
@@ -10,7 +11,6 @@
 <body>
 <div class="container">
     <header>Учет моих расходов</header>
-
     <div class="expenses">
         <div class="expenses__place">
             <p>Куда было потрачено:</p>
@@ -22,43 +22,9 @@
         </div>
         <button onclick="addExpense()">Добавить</button>
     </div>
-
     <div class="total-price">Итого: 0 p.</div>
-
-
-
-
     <div class="purchases">
-
-       <!-- <div class="purchase-place">    !!
-            <div class="purchase__index">1)</div>
-            <div class="purchase__place">pyatyorochka</div>
-        </div>
-
-        <div class="purchase-cost">     !!
-            <div class="purchase__date">2.12.2022</div>
-            <div class="purchase__cost">3223p.</div>
-        </div>
-
-        <div class="purchase__control">  !!
-             <img src="img/icon-edit.svg" alt="#">
-             <img src="img/icon-delete.svg" alt="#">
-        </div>
-
-        -->
-
-        <!--<div class="expense-hidden visible">
-            <input type="text" class="hiddenPlaceInput">
-            <input type="text" class="hiddenCostInput">
-            <input type="text" class="hiddenDateInput">
-            <div class="control-hidden">
-                <img src="img/icon-complete.svg" alt="#">
-                <img src="img/icon-close.svg" alt="#">
-            </div>
-        </div>-->
     </div>
-
-
 </div>
 </body>
 </html>

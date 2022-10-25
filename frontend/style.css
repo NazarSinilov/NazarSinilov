@@ -19,16 +19,21 @@ div {
 
 header {
     font-style: italic;
-    font-size: 60px;
+    font-size: 40px;
 }
 
 .expenses {
     display: flex;
     column-gap: 5%;
     width: 100%;
+    flex-wrap: wrap;
+
 }
 .expenses__place {
-    width: 45%;
+    flex: 0 0 40%;
+}
+.expenses__cost {
+    flex: 0 0 30%;
 }
 .expenses__place p {
     font-size: 14px;
@@ -57,6 +62,10 @@ header {
 }
 img {
     height: 26px;
+    cursor: pointer;
+}
+button {
+    cursor: pointer;
 }
 .expenses__cost p {
     font-size: 14px;
@@ -127,9 +136,34 @@ input {
 
 .purchase__date {
     margin-right: 40px;
+    width: 45%;
 }
 .purchase-block {
     width: 45%;
+}
+
+
+
+@media (max-width: 620px) {
+    .expenses__place,
+    .expenses__cost,
+    .expenses button{
+        flex: 100%;
+    }
+    .expenses {
+        row-gap: 20px;
+    }
+    .expenses__cost p,
+    .expenses__place p{
+        margin: 0 0 10px 0;
+    }
+    .block-place {
+        flex: 1 1 50%;
+    }
+    .block-cost {
+        display: block;
+        flex: 0 0 30%;
+    }
 }
 
 
