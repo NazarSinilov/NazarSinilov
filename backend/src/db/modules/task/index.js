@@ -7,4 +7,4 @@ const expensesScheme = new Schema({
     date : {type : Date, default : Date.now}
 })
 
-module.exports = Task = mongoose.model("expenses", expensesScheme)
+module.exports = Expense = mongoose.model("expenses", expensesScheme)

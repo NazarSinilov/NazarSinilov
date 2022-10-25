@@ -1,26 +1,46 @@
-const Task = require("../../db/modules/task/index")
+const Expense = require("../../db/modules/task/index")
 
-module.exports.getAllTasks = (req, res, next) => {
-    Task.find().then(result => {
-        res.send({data:result})
-    })
+module.exports.getAllExpenses = async (req, res, next) => {
+    try {
+        const expenses = await Expense.find()
+        res.send({data: expenses})
+    }
+    catch (err) {
+        next(err)
+        res.status(500).send({massage: err.massage})
+    }
 }
 
-module.exports.createNewTask = (req, res, next) => {
-    const task = new Task(req.body)
-    task.save().then(result => {
-        res.send(result)
-    }).catch(err => console.log(err))
+module.exports.createNewExpense = async (req, res, next) => {
+    try {
+        const expense = await Expense.create({text: req.body.text, price: req.body.price })
+        res.send({data: expense})
+    }
+    catch (err) {
+        next(err)
+        res.status(500).send({massage: err.massage})
+    }
 }
 
-module.exports.changeTaskInfo = (req, res, next) => {
-    Task.updateOne({_id : req.body.id},req.body).then(result => {
+module.exports.changeExpenseInfo = async (req, res, next) => {
+    const {text,price,date} = req.body
+    try {
+        await Expense.updateOne({_id : req.body.id}, {text, price, date })
         res.send(req.body)
-    })
+    }
+    catch (err) {
+        next(err)
+        res.status(500).send({massage: err.massage})
+    }
 }
 
-module.exports.deleteTask = (req, res, next) => {
-    Task.deleteOne({_id: req.query._id }).then(result => {
-        res.send({_id: req.query._id })
-    })
+module.exports.deleteExpense = async (req, res, next) => {
+    try {
+        await Expense.deleteOne({_id: req.query._id })
+        res.status(200).send({message:"Expense delete"})
+    }
+    catch (err) {
+        next(err)
+        res.status(500).send({massage: err.massage})
+    }
 }
