@@ -4,36 +4,53 @@ let allExpenses = []
 let placeInput = null
 let costInput = null
 let isEdit = true
+const HEADER = {
+    "Content-Type": "application/json;charset=utf-8",
+    "Access-Control-Allow-Origin": "*"
+}
+const URL = "http://localhost:8000/"
 
-window.onload = function () {
+window.onload = async function init() {
     placeInput = document.querySelector("#placeInput")
     costInput = document.querySelector("#costInput")
     placeInput.addEventListener("change", updatePlaceInput)
-    costInput.addEventListener("change" , updateCostInput)
+    costInput.addEventListener("change", updateCostInput)
+    try {
+        const resp = await fetch(`${URL}all/expenses`, {
+            method: "GET"
+        })
+        let result = await resp.json();
+        allExpenses = result.data
+        render()
+        if (resp.status === 500) {
+            throw new Error
+        }
+    }
+    catch (err) {
+        alert("Internal Server Error 500")
+    }
+
 }
 
 const updatePlaceInput = (event) => {
-    valuePlaceInput = event.target.value
+    valuePlaceInput = event.target.value.trim()
 }
 
 const updateCostInput = (event) => {
-    valueCostInput = event.target.value
+    valueCostInput = event.target.value.trim()
+    if (valueCostInput <= 0) {
+        valueCostInput = ""
+        costInput.value = ""
+    }
 }
 
-
-
-/*const getInputValue = () => {
-    valuePlaceInput = document.querySelector("#placeInput").value
-    console.log(valuePlaceInput)
-    valuePlaceInput = ""
-}*/
 
 const render = () => {
     const purchases = document.querySelector(".purchases")
     const totalCost = document.querySelector(".total-price")
     purchases.innerHTML = ""
     let totalPrice = 0
-
+    isEdit = true
     allExpenses.forEach((item, index) => {
         const purchase = document.createElement("div")
         purchase.classList.add("purchase")
@@ -58,7 +75,7 @@ const render = () => {
         purchase.appendChild(purchaseCostBlock)
 
         const purchaseDate = document.createElement("div");
-        purchaseDate.innerText = item.date.toLocaleDateString();
+        purchaseDate.innerText = new Date(item.date).toLocaleDateString();
         purchaseDate.classList.add("purchase__date")
         purchaseCostBlock.appendChild(purchaseDate);
 
@@ -66,7 +83,7 @@ const render = () => {
         purchaseCost.innerText = `${item.price} p.`;
         purchaseCost.classList.add("purchase__cost")
         purchaseCostBlock.appendChild(purchaseCost);
-        
+
 
         const purchaseControlBlock = document.createElement("div");
         purchaseControlBlock.classList.add("block-control")
@@ -75,7 +92,7 @@ const render = () => {
         const imageEdit = document.createElement("img");
         imageEdit.src = "img/icon-edit.svg"
         purchaseControlBlock.appendChild(imageEdit);
-        imageEdit.addEventListener("click", (event) => editExpense(event, index, purchase, item ))
+        imageEdit.addEventListener("click", (event) => editExpense(event, index, purchase, item))
 
 
         const imageDelete = document.createElement("img");
@@ -91,78 +108,131 @@ const render = () => {
 }
 
 const editExpense = (event, id, element, item) => {
-
-
-    const editFunc = () => {
-        isEdit = !isEdit
-        element.innerHTML = ""
-
-        const inputPlace = document.createElement("input")
-        inputPlace.classList.add("inputPlace_hidden")
-        inputPlace.value = item.text
-        element.appendChild(inputPlace)
-        inputPlace.focus()
-
-
-        const inputDate = document.createElement("input")
-        inputDate.classList.add("inputDate_hidden")
-        inputDate.type = "date"
-        inputDate.valueAsDate = new Date(item.date)
-        element.appendChild(inputDate)
-
-        const inputCost = document.createElement("input")
-        inputCost.type = "Number"
-        inputCost.classList.add("inputCost_hidden")
-        inputCost.value = item.price
-        element.appendChild(inputCost)
-
-        const hiddenControlBlock = document.createElement("div")
-        hiddenControlBlock.classList.add("control-block_hidden")
-        element.appendChild(hiddenControlBlock)
-
-        const hiddenSave = document.createElement("img")
-        hiddenSave.src = "img/icon-complete.svg"
-        hiddenControlBlock.appendChild(hiddenSave)
-        hiddenControlBlock.addEventListener("click", (event) => {
-            allExpenses[id].text = inputPlace.value
-            allExpenses[id].date = inputDate.valueAsDate
-            allExpenses[id].price = inputCost.value
-            render()
-        })
-
-        const hiddenClose = document.createElement("img")
-        hiddenClose.src = "img/icon-close.svg"
-        hiddenClose.addEventListener("click", () => {
-            render()
-        })
-        hiddenControlBlock.appendChild(hiddenClose)
+    if (!isEdit) {
+        return
     }
 
-    if (isEdit) {
-        editFunc()
-        isEdit = !isEdit
-    }
+    isEdit = false
+    element.innerHTML = ""
+
+    const inputPlace = document.createElement("input")
+    inputPlace.classList.add("inputPlace_hidden")
+    inputPlace.value = item.text
+    element.appendChild(inputPlace)
+    inputPlace.focus()
+
+
+    const inputDate = document.createElement("input")
+    inputDate.classList.add("inputDate_hidden")
+    inputDate.type = "date"
+    inputDate.valueAsDate = new Date(item.date)
+    element.appendChild(inputDate)
+
+    const inputCost = document.createElement("input")
+    inputCost.type = "Number"
+    inputCost.classList.add("inputCost_hidden")
+    inputCost.value = item.price
+    element.appendChild(inputCost)
+
+    const hiddenControlBlock = document.createElement("div")
+    hiddenControlBlock.classList.add("control-block_hidden")
+    element.appendChild(hiddenControlBlock)
+
+    const hiddenSave = document.createElement("img")
+    hiddenSave.src = "img/icon-complete.svg"
+    hiddenControlBlock.appendChild(hiddenSave)
+    hiddenControlBlock.addEventListener("click", async (event) => {
+        try {
+            if (inputPlace.value && inputDate.valueAsDate && inputCost.value > 0) {
+                const resp = await fetch(`${URL}expense`, {
+                    method: "PUT",
+                    headers: HEADER,
+                    body: JSON.stringify({
+                        text: inputPlace.value,
+                        price: inputCost.value,
+                        date: inputDate.valueAsDate,
+                        id: allExpenses[id]._id
+                    })
+                })
+                allExpenses[id].text = inputPlace.value.trim()
+                allExpenses[id].date = inputDate.valueAsDate
+                allExpenses[id].price = inputCost.value
+                isEdit = true
+                render()
+                if (resp.status === 500) {
+                    throw new Error
+                }
+            }
+        }
+        catch (err) {
+            alert("Internal Server Error 500")
+        }
+
+    })
+
+    const hiddenClose = document.createElement("img")
+    hiddenClose.src = "img/icon-close.svg"
+    hiddenClose.addEventListener("click", () => {
+        isEdit = true
+        render()
+    })
+    hiddenControlBlock.appendChild(hiddenClose)
+
 }
 
-const deleteExpense = (event, id) => {
-    allExpenses.splice(id, 1)
-    render()
-}
-
-
-const addExpense = () => {
-    if (valuePlaceInput && valueCostInput) {
-        allExpenses.push({
-            text: valuePlaceInput,
-            price: valueCostInput,
-            date: new Date()
+const deleteExpense = async (event, id) => {
+    try {
+        const resp = await fetch(`${URL}expense?_id=${allExpenses[id]._id}`, {
+            method: "DELETE",
+            headers: HEADER
         })
+        allExpenses.splice(id, 1)
+        render()
+        let result = await resp.json();
+        alert(result.message)
+        if (resp.status === 500) {
+            throw new Error
+        }
+    }
+    catch (err) {
+        alert("Internal Server Error 500")
+    }
+
+}
+
+
+const addExpense = async () => {
+    if (!valuePlaceInput && !valueCostInput) {
+        return
+    }
+    try {
+        const resp = await fetch(`${URL}expense`, {
+            method: "POST",
+            headers: HEADER,
+            body: JSON.stringify({
+                text: valuePlaceInput,
+                price: valueCostInput,
+                date: new Date()
+            })
+        })
+
+        let result = await resp.json()
+        allExpenses.push(result.data)
+
         valuePlaceInput = ""
         valueCostInput = ""
         placeInput.value = ""
         costInput.value = ""
         render()
+        if (resp.status === 500) {
+            throw new Error
+        }
     }
+    catch (err) {
+        alert("Internal Server Error 500")
+    }
+
+
 }
 
 
