@@ -141,7 +141,15 @@ input {
 .purchase-block {
     width: 45%;
 }
-
+.preloader {
+    display: flex;
+    justify-content: center;
+}
+.preloader img {
+    width: 20%;
+    height: 20%;
+    margin: 0 auto;
+}
 
 
 @media (max-width: 620px) {

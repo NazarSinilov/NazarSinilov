@@ -22,6 +22,9 @@ window.onload = async function init() {
         let result = await resp.json();
         allExpenses = result.data
         render()
+        if  (result) {
+            getPreloader()
+        }
         if (resp.status === 500) {
             throw new Error
         }
@@ -29,7 +32,11 @@ window.onload = async function init() {
     catch (err) {
         alert("Internal Server Error 500")
     }
+}
 
+const getPreloader = () => {
+    let preloader = document.querySelector(".preloader")
+    preloader.style.display = "none"
 }
 
 const updatePlaceInput = (event) => {
@@ -94,11 +101,10 @@ const render = () => {
         purchaseControlBlock.appendChild(imageEdit);
         imageEdit.addEventListener("click", (event) => editExpense(event, index, purchase, item))
 
-
         const imageDelete = document.createElement("img");
         imageDelete.src = "img/icon-delete.svg"
         purchaseControlBlock.appendChild(imageDelete);
-        imageDelete.addEventListener("click", (event) => deleteExpense(event, index))
+        imageDelete.addEventListener("click", (event) => deleteExpense(event, item._id))
 
 
         purchases.appendChild(purchase)
@@ -167,7 +173,6 @@ const editExpense = (event, id, element, item) => {
         catch (err) {
             alert("Internal Server Error 500")
         }
-
     })
 
     const hiddenClose = document.createElement("img")
@@ -182,7 +187,7 @@ const editExpense = (event, id, element, item) => {
 
 const deleteExpense = async (event, id) => {
     try {
-        const resp = await fetch(`${URL}expense?_id=${allExpenses[id]._id}`, {
+        const resp = await fetch(`${URL}expense?_id=${id}`, {
             method: "DELETE",
             headers: HEADER
         })
@@ -218,7 +223,6 @@ const addExpense = async () => {
 
         let result = await resp.json()
         allExpenses.push(result.data)
-
         valuePlaceInput = ""
         valueCostInput = ""
         placeInput.value = ""
@@ -231,7 +235,6 @@ const addExpense = async () => {
     catch (err) {
         alert("Internal Server Error 500")
     }
-
 
 }
 
