@@ -6,8 +6,7 @@ module.exports.getAllExpenses = async (req, res, next) => {
         res.send({data: expenses})
     }
     catch (err) {
-        next(err)
-        res.status(500).send({massage: err.massage})
+        res.status(500).send({message: err.message})
     }
 }
 
@@ -15,10 +14,10 @@ module.exports.createNewExpense = async (req, res, next) => {
     try {
         const expense = await Expense.create({text: req.body.text, price: req.body.price })
         res.send({data: expense})
+
     }
     catch (err) {
-        next(err)
-        res.status(500).send({massage: err.massage})
+        res.status(500).send({message: err.message})
     }
 }
 
@@ -29,8 +28,7 @@ module.exports.changeExpenseInfo = async (req, res, next) => {
         res.send(req.body)
     }
     catch (err) {
-        next(err)
-        res.status(500).send({massage: err.massage})
+        res.status(500).send({message: err.message})
     }
 }
 
@@ -40,7 +38,6 @@ module.exports.deleteExpense = async (req, res, next) => {
         res.status(200).send({message:"Expense delete"})
     }
     catch (err) {
-        next(err)
-        res.status(500).send({massage: err.massage})
+        res.status(500).send({message: err.message})
     }
 }
