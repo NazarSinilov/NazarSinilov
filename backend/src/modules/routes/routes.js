@@ -8,9 +8,9 @@ const {
     deleteTask
 } = require("../controllers/task.controller")
 
-router.get("/allTasks", getAllTasks)
-router.post("/createTask", createNewTask)
-router.patch("/updateTask", changeTaskInfo)
-router.delete("/deleteTask", deleteTask)
+router.get("/all/tasks", getAllTasks)
+router.post("/task", createNewTask)
+router.put("/task", changeTaskInfo)
+router.delete("/task", deleteTask)
 
 module.exports = router
