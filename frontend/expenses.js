@@ -104,7 +104,7 @@ const render = () => {
         const imageDelete = document.createElement("img");
         imageDelete.src = "img/icon-delete.svg"
         purchaseControlBlock.appendChild(imageDelete);
-        imageDelete.addEventListener("click", (event) => deleteExpense(event, item._id))
+        imageDelete.addEventListener("click", (event) => deleteExpense(event, index))
 
 
         purchases.appendChild(purchase)
@@ -187,17 +187,18 @@ const editExpense = (event, id, element, item) => {
 
 const deleteExpense = async (event, id) => {
     try {
-        const resp = await fetch(`${URL}expense?_id=${id}`, {
+        const resp = await fetch(`${URL}expense?_id=${allExpenses[id]._id}`, {
             method: "DELETE",
             headers: HEADER
         })
         allExpenses.splice(id, 1)
-        render()
         let result = await resp.json();
         alert(result.message)
         if (resp.status === 500) {
             throw new Error
         }
+        render()
+
     }
     catch (err) {
         alert("Internal Server Error 500")
