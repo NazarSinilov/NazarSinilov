@@ -1,17 +1,37 @@
 let element = document.querySelector(".tasks")
 let input = document.querySelector("input")
 let valueInput = ""
-//let allTasks = JSON.parse(localStorage.getItem("todo-list"))  || []
 let allTasks = []
 let editInputValue = null
 
-window.onload = async function init () {
-    const resp = await fetch("http://localhost:8000/allTasks", {
-        method: "GET"
-    })
-    let result = await resp.json();
-    allTasks = result.data
-    render()
+const URL = "http://localhost:8000/"
+const HEADER = {
+    "Content-Type": "application/json;charset=utf-8",
+    "Access-Control-Allow-Origin": "*"
+}
+
+window.onload = async function init() {
+    try {
+        const resp = await fetch(`${URL}all/tasks`, {
+            method: "GET"
+        })
+        let result = await resp.json();
+        allTasks = result.data
+        render()
+        if (result) {
+            getPreloader()
+        }
+        if (resp.status === 500) {
+            throw new Error
+        }
+    } catch (err) {
+        alert("Internal Server Error 500")
+    }
+
+}
+const getPreloader = () => {
+    let preloader = document.querySelector(".preloader")
+    preloader.style.display = "none"
 }
 
 const getInputValue = () => {
@@ -20,8 +40,8 @@ const getInputValue = () => {
 
 const render = () => {
     let task = ""
-    allTasks =  _.sortBy(allTasks, "id");
-    allTasks =  _.sortBy(allTasks, "isCheck");
+    allTasks = _.sortBy(allTasks, "id");
+    allTasks = _.sortBy(allTasks, "isCheck");
     allTasks.forEach((el, id) => {
         let isCompleted = el.isCheck ? "checked" : ""
         task += `<div class="task ${isCompleted ? "completed" : ""}">
@@ -35,7 +55,7 @@ const render = () => {
                         </div>
                     </div>
                     <div class="control-block" id="controlBlock-${id}">
-                        <img src="img/icon-edit.svg" alt="#" id="edit-${id}" class="${isCompleted? "hide" : ""}" onclick="editTask(${id})">
+                        <img src="img/icon-edit.svg" alt="#" id="edit-${id}" class="${isCompleted ? "hide" : ""}" onclick="editTask(${id})">
                         <img src="img/icon-delete.svg" alt="#" id="delete-${id}" onclick="removeTask(${id})"> 
                     </div>
                     
@@ -56,10 +76,7 @@ const cancelEdit = (taskText, id) => {
     showControlBlock.classList.add("hide")
 
     allTasks[id].text = taskText
-
-    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
-
 }
 
 const saveEdit = async id => {
@@ -80,23 +97,25 @@ const saveEdit = async id => {
         return
     }
 
-    await fetch("http://localhost:8000/updateTask", {
-        method: "PATCH",
-        headers: {
-            "Content-Type" : "application/json;charset=utf-8",
-            "Access-Control-Allow-Origin" : "*"
-        },
-        body : JSON.stringify( {
-            text: inputText.value,
-            isCheck: false,
-            id : allTasks[id]._id
+    try {
+        const resp = await fetch(`${URL}task`, {
+            method: "PUT",
+            headers: HEADER,
+            body: JSON.stringify({
+                text: inputText.value,
+                id: allTasks[id]._id
+            })
         })
-    })
-    allTasks[id].text = inputText.value
-
-    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
-    render()
-
+        let result = await resp.json();
+        allTasks[id].text = result.text
+        render()
+        if (resp.status === 500) {
+            throw new Error
+        }
+    } catch (err) {
+        console.log(err)
+        alert("Internal Server Error 500")
+    }
 }
 
 const editTask = id => {
@@ -114,12 +133,26 @@ const editTask = id => {
     editInputValue = document.querySelector(`#editInput-${id}`)
     editInputValue.value = allTasks[id].text
     editInputValue.focus()
-    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
 }
 
-const completedTask = (selectedTask , id) => {
+const completedTask = async (selectedTask, id) => {
     let textElement = document.querySelector(`#text-${id}`)
     let editElement = document.querySelector(`#edit-${id}`)
+    try {
+        const resp = await fetch(`${URL}task`, {
+            method: "PUT",
+            headers: HEADER,
+            body: JSON.stringify({
+                isCheck: !allTasks[id].isCheck,
+                id: allTasks[id]._id
+            })
+        })
+        if (resp.status === 500) {
+            throw new Error
+        }
+    } catch (err) {
+        alert("Internal Server Error 500")
+    }
 
     if (selectedTask.checked) {
         textElement.classList.add("checked")
@@ -131,7 +164,6 @@ const completedTask = (selectedTask , id) => {
         editElement.classList.remove("hide")
         allTasks[id].isCheck = false
     }
-    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
     render()
 }
 
@@ -145,41 +177,47 @@ const addTask = async () => {
         input.value = ""
     }
 
-    const resp = await fetch("http://localhost:8000/createTask", {
-        method: "POST",
-        headers: {
-            "Content-Type" : "application/json;charset=utf-8",
-            "Access-Control-Allow-Origin" : "*"
-        },
-        body : JSON.stringify( {
-            text: valueInput,
-            isCheck: false
+    try {
+        const resp = await fetch(`${URL}task`, {
+            method: "POST",
+            headers: HEADER,
+            body: JSON.stringify({
+                text: valueInput,
+                isCheck: false
+            })
         })
-    })
+        if (resp.status === 500) {
+            throw new Error
+        }
 
-    let result = await resp.json();
-    allTasks.push({
-        text: result.text,
-        isCheck: result.isCheck
-    })
+        let result = await resp.json();
+        allTasks.push(result.data)
 
-    valueInput = ""
-    input.value = ""
-    //localStorage.setItem("todo-list" , JSON.stringify(allTasks))
-    render()
+        valueInput = ""
+        input.value = ""
+        render()
+    } catch (err) {
+        alert("Internal Server Error 500")
+    }
+
 }
 
 const removeTask = async id => {
-    await fetch(`http://localhost:8000/deleteTask?_id=${allTasks[id]._id}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type" : "application/json;charset=utf-8",
-            "Access-Control-Allow-Origin" : "*"
+    try {
+        const resp = await fetch(`${URL}task?_id=${allTasks[id]._id}`, {
+            method: "DELETE",
+            headers: HEADER
+        })
+        if (resp.status === 500) {
+            throw new Error
         }
-    })
-    allTasks.splice(id , 1)
-    render()
-    //localStorage.setItem("todo-list", JSON.stringify(allTasks))
+        let result = await resp.json();
+        alert(result.message)
+        allTasks.splice(id, 1)
+        render()
+    } catch (err) {
+        alert("Internal Server Error 500")
+    }
 }
 
 input.addEventListener("keyup", e => {
