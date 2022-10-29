@@ -107,13 +107,14 @@ const saveEdit = async id => {
             })
         })
         let result = await resp.json();
+        alert(result.message)
         allTasks[id].text = result.text
         render()
         if (resp.status === 500) {
             throw new Error
         }
+
     } catch (err) {
-        console.log(err)
         alert("Internal Server Error 500")
     }
 }
