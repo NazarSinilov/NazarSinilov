@@ -20,7 +20,6 @@ window.onload = async function init() {
             method: "GET"
         })
         let result = await resp.json();
-        console.log(result)
         allExpenses = result.data
         render()
         if  (result) {
@@ -227,10 +226,7 @@ const addExpense = async () => {
 
             let result = await resp.json()
             allExpenses.push(result.data)
-            valuePlaceInput = ""
-            valueCostInput = ""
-            placeInput.value = ""
-            costInput.value = ""
+            clearValue()
             render()
             if (resp.status === 500) {
                 throw new Error
@@ -241,6 +237,12 @@ const addExpense = async () => {
     }
 }
 
+const clearValue = () => {
+    valuePlaceInput = ""
+    valueCostInput = ""
+    placeInput.value = ""
+    costInput.value = ""
+}
 
 
 
