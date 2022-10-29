@@ -35,7 +35,7 @@ const getPreloader = () => {
 }
 
 const getInputValue = () => {
-    valueInput = document.querySelector("#inputText").value
+    return document.querySelector("#inputText").value
 }
 
 const render = () => {
@@ -108,7 +108,7 @@ const saveEdit = async id => {
         })
         let result = await resp.json();
         alert(result.message)
-        allTasks[id].text = result.text
+        allTasks[id].text = inputText.value
         render()
         if (resp.status === 500) {
             throw new Error
@@ -169,8 +169,9 @@ const completedTask = async (selectedTask, id) => {
 }
 
 const addTask = async () => {
-    let isValue = valueInput.trim()
+    valueInput = getInputValue()
     valueInput = valueInput.trim()
+    let isValue = valueInput.trim()
 
     if (!isValue) {
         return
