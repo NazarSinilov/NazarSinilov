@@ -12,7 +12,7 @@
 h1 {
     margin: 30px 0;
 }
-.block input {
+.add-task input {
     width: 520px;
     height: 32px;
     font-size: 14px;
@@ -28,7 +28,7 @@ button {
     border-radius: 15px;
     border: 1px solid black;
 }
-.block {
+.add-task {
     margin-bottom: 20px;
 }
 img {
