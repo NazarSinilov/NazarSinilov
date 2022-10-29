@@ -22,10 +22,10 @@ module.exports.createNewExpense = async (req, res, next) => {
 }
 
 module.exports.changeExpenseInfo = async (req, res, next) => {
-    const {text,price,date} = req.body
+    const {text,price,date,id} = req.body
     try {
-        await Expense.updateOne({_id : req.body.id}, {text, price, date })
-        res.send(req.body)
+        await Expense.updateOne({_id : id}, {text, price, date })
+        res.status(200).send({message:"Expense edite"})
     }
     catch (err) {
         res.status(500).send({message: err.message})
