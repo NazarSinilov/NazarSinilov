@@ -20,6 +20,7 @@ window.onload = async function init() {
             method: "GET"
         })
         let result = await resp.json();
+        console.log(result)
         allExpenses = result.data
         render()
         if  (result) {
@@ -44,8 +45,8 @@ const updatePlaceInput = (event) => {
 }
 
 const updateCostInput = (event) => {
-    valueCostInput = event.target.value.trim()
-    if (valueCostInput <= 0) {
+    valueCostInput = +event.target.value.trim()
+    if (valueCostInput < 0.01) {
         valueCostInput = ""
         costInput.value = ""
     }
@@ -99,7 +100,7 @@ const render = () => {
         const imageEdit = document.createElement("img");
         imageEdit.src = "img/icon-edit.svg"
         purchaseControlBlock.appendChild(imageEdit);
-        imageEdit.addEventListener("click", (event) => editExpense(event, index, purchase, item))
+        imageEdit.addEventListener("click", () => editExpense( index, purchase, item))
 
         const imageDelete = document.createElement("img");
         imageDelete.src = "img/icon-delete.svg"
@@ -109,11 +110,12 @@ const render = () => {
 
         purchases.appendChild(purchase)
         totalPrice += +item.price
+        totalPrice = Math.round(totalPrice * 100) / 100
     })
     totalCost.innerText = `Итого: ${totalPrice} p.`
 }
 
-const editExpense = (event, id, element, item) => {
+const editExpense = (id, element, item) => {
     if (!isEdit) {
         return
     }
@@ -164,6 +166,8 @@ const editExpense = (event, id, element, item) => {
                 allExpenses[id].date = inputDate.valueAsDate
                 allExpenses[id].price = inputCost.value
                 isEdit = true
+                const result = await resp.json()
+                alert(result.message)
                 render()
                 if (resp.status === 500) {
                     throw new Error
@@ -193,7 +197,7 @@ const deleteExpense = async (event, id) => {
         })
         allExpenses.splice(id, 1)
         let result = await resp.json();
-        alert(result.message)
+        //alert(result.message)
         if (resp.status === 500) {
             throw new Error
         }
@@ -208,35 +212,33 @@ const deleteExpense = async (event, id) => {
 
 
 const addExpense = async () => {
-    if (!valuePlaceInput && !valueCostInput) {
-        return
-    }
-    try {
-        const resp = await fetch(`${URL}expense`, {
-            method: "POST",
-            headers: HEADER,
-            body: JSON.stringify({
-                text: valuePlaceInput,
-                price: valueCostInput,
-                date: new Date()
+    if (valuePlaceInput && valueCostInput) {
+        valueCostInput = Math.round(valueCostInput * 100) / 100
+        try {
+            const resp = await fetch(`${URL}expense`, {
+                method: "POST",
+                headers: HEADER,
+                body: JSON.stringify({
+                    text: valuePlaceInput,
+                    price: valueCostInput,
+                    date: new Date()
+                })
             })
-        })
 
-        let result = await resp.json()
-        allExpenses.push(result.data)
-        valuePlaceInput = ""
-        valueCostInput = ""
-        placeInput.value = ""
-        costInput.value = ""
-        render()
-        if (resp.status === 500) {
-            throw new Error
+            let result = await resp.json()
+            allExpenses.push(result.data)
+            valuePlaceInput = ""
+            valueCostInput = ""
+            placeInput.value = ""
+            costInput.value = ""
+            render()
+            if (resp.status === 500) {
+                throw new Error
+            }
+        } catch (err) {
+            alert("Internal Server Error 500")
         }
     }
-    catch (err) {
-        alert("Internal Server Error 500")
-    }
-
 }
 
 
