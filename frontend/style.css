@@ -173,5 +173,31 @@ input {
         flex: 0 0 30%;
     }
 }
+@media (max-width: 390px) {
 
+    .purchase {
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+    .block-place {
+        flex: 100%;
+    }
+    .block-control {
+        flex: 20%;
+    }
+    .block-cost {
+        flex: 75%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .inputPlace_hidden,
+    .inputCost_hidden,
+    .inputDate_hidden {
+        flex: 100%;
+    }
+    .control-block_hidden {
+        display: flex;
+    }
+}
 
