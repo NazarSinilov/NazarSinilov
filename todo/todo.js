@@ -25,7 +25,7 @@ window.onload = async function init() {
             throw new Error
         }
     } catch (err) {
-        alert("Internal Server Error 500")
+        toastr.error("Internal Server Error 500")
     }
 
 }
@@ -93,29 +93,28 @@ const saveEdit = async id => {
 
     let isValue = inputText.value.trim()
     inputText.value = inputText.value.trim()
-    if (!isValue) {
-        return
-    }
-
-    try {
-        const resp = await fetch(`${URL}task`, {
-            method: "PUT",
-            headers: HEADER,
-            body: JSON.stringify({
-                text: inputText.value,
-                id: allTasks[id]._id
+    if (isValue) {
+        try {
+            const resp = await fetch(`${URL}task`, {
+                method: "PUT",
+                headers: HEADER,
+                body: JSON.stringify({
+                    text: inputText.value,
+                    isCheck : allTasks[id].isCheck,
+                    id: allTasks[id]._id
+                })
             })
-        })
-        let result = await resp.json();
-        alert(result.message)
-        allTasks[id].text = inputText.value
-        render()
-        if (resp.status === 500) {
-            throw new Error
-        }
+            let result = await resp.json();
+            toastr.info(result.message)
+            allTasks[id].text = inputText.value
+            render()
+            if (resp.status === 500) {
+                throw new Error
+            }
 
-    } catch (err) {
-        alert("Internal Server Error 500")
+        } catch (err) {
+            toastr.error("Internal Server Error 500")
+        }
     }
 }
 
@@ -144,6 +143,7 @@ const completedTask = async (selectedTask, id) => {
             method: "PUT",
             headers: HEADER,
             body: JSON.stringify({
+                text: allTasks[id].text,
                 isCheck: !allTasks[id].isCheck,
                 id: allTasks[id]._id
             })
@@ -152,7 +152,7 @@ const completedTask = async (selectedTask, id) => {
             throw new Error
         }
     } catch (err) {
-        alert("Internal Server Error 500")
+        toastr.error("Internal Server Error 500")
     }
 
     if (selectedTask.checked) {
@@ -172,36 +172,31 @@ const addTask = async () => {
     valueInput = getInputValue()
     valueInput = valueInput.trim()
     let isValue = valueInput.trim()
-
-    if (!isValue) {
-        return
-    } else {
-        input.value = ""
-    }
-
-    try {
-        const resp = await fetch(`${URL}task`, {
-            method: "POST",
-            headers: HEADER,
-            body: JSON.stringify({
-                text: valueInput,
-                isCheck: false
+    if (isValue) {
+        try {
+            const resp = await fetch(`${URL}task`, {
+                method: "POST",
+                headers: HEADER,
+                body: JSON.stringify({
+                    text: valueInput,
+                    isCheck: false
+                })
             })
-        })
-        if (resp.status === 500) {
-            throw new Error
+            if (resp.status === 500) {
+                throw new Error
+            }
+
+            let result = await resp.json();
+            toastr.success("Tasks added")
+            allTasks.push(result.data)
+
+            valueInput = ""
+            input.value = ""
+            render()
+        } catch (err) {
+           toastr.error("Internal Server Error 500")
         }
-
-        let result = await resp.json();
-        allTasks.push(result.data)
-
-        valueInput = ""
-        input.value = ""
-        render()
-    } catch (err) {
-        alert("Internal Server Error 500")
     }
-
 }
 
 const removeTask = async id => {
@@ -214,11 +209,11 @@ const removeTask = async id => {
             throw new Error
         }
         let result = await resp.json();
-        alert(result.message)
+        toastr.success(result.message)
         allTasks.splice(id, 1)
         render()
     } catch (err) {
-        alert("Internal Server Error 500")
+        toastr.error("Internal Server Error 500")
     }
 }
 
