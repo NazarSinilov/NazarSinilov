@@ -13,8 +13,12 @@ module.exports.getAllExpenses = async (req, res) => {
 module.exports.createNewExpense = async (req, res) => {
     const {text, price} = req.body
     try {
-        const expense = await Expense.create({text, price})
-        res.send({data: expense})
+        if (text && price >= 0.01) {
+            const expense = await Expense.create({text, price})
+            res.send({data: expense})
+        } else {
+            throw new Error("Enter a valid value")
+        }
 
     }
     catch (err) {
@@ -25,8 +29,12 @@ module.exports.createNewExpense = async (req, res) => {
 module.exports.changeExpenseInfo = async (req, res) => {
     const {text,price,date,id} = req.body
     try {
-        await Expense.updateOne({_id : id}, {text, price, date })
-        res.status(200).send({message:"Expense edite"})
+        if (text && price >= 0.01  && date) {
+            await Expense.updateOne({_id: id}, {text, price, date})
+            res.status(200).send({message: "Expense edite"})
+        } else {
+            throw new Error("Enter a valid value")
+        }
     }
     catch (err) {
         res.status(500).send({message: err.message})
