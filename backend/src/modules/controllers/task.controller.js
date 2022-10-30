@@ -42,7 +42,8 @@ module.exports.changeTaskInfo = async (req, res) => {
 
 module.exports.deleteTask = async (req, res) => {
     try {
-        await Task.deleteOne({_id: req.query._id })
+        const {_id} = req.query
+        await Task.deleteOne({_id})
         res.status(200).send({message:"Task delete"})
     }
     catch (err) {
