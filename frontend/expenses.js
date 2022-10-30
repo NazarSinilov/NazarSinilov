@@ -30,7 +30,7 @@ window.onload = async function init() {
         }
     }
     catch (err) {
-        alert("Internal Server Error 500")
+        toastr.error("Internal Server Error 500")
     }
 }
 
@@ -166,7 +166,7 @@ const editExpense = (id, element, item) => {
                 allExpenses[id].price = inputCost.value
                 isEdit = true
                 const result = await resp.json()
-                alert(result.message)
+                toastr.success(result.message)
                 render()
                 if (resp.status === 500) {
                     throw new Error
@@ -174,7 +174,7 @@ const editExpense = (id, element, item) => {
             }
         }
         catch (err) {
-            alert("Internal Server Error 500")
+            toastr.error("Internal Server Error 500")
         }
     })
 
@@ -196,7 +196,7 @@ const deleteExpense = async (event, id) => {
         })
         allExpenses.splice(id, 1)
         let result = await resp.json();
-        //alert(result.message)
+        toastr.success(result.message)
         if (resp.status === 500) {
             throw new Error
         }
@@ -204,7 +204,7 @@ const deleteExpense = async (event, id) => {
 
     }
     catch (err) {
-        alert("Internal Server Error 500")
+        toastr.error("Internal Server Error 500")
     }
 
 }
@@ -226,13 +226,14 @@ const addExpense = async () => {
 
             let result = await resp.json()
             allExpenses.push(result.data)
+            toastr.success("Expense added")
             clearValue()
             render()
             if (resp.status === 500) {
                 throw new Error
             }
         } catch (err) {
-            alert("Internal Server Error 500")
+            toastr.error("Internal Server Error 500")
         }
     }
 }
