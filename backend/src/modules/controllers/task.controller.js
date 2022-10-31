@@ -31,7 +31,7 @@ module.exports.changeExpenseInfo = async (req, res) => {
         if (!await Expense.findOne({_id:id})){
             res.status(404).send({message: "Not found"})
         }
-        if (text && price >= 0.01  && date) {
+        if (text && price >= 0.01  && new Date(date) > new Date(1970) && new Date(date) <= new Date()) {
             await Expense.updateOne({_id: id}, {text, price, date})
             res.send({message: "Expense edite"})
         } else {
