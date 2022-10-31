@@ -61,6 +61,7 @@ header {
     flex: 0 0 25%;
 }
 .control-block_hidden {
+    text-align: right;
     flex: 0 0 10%;
 }
 img {
