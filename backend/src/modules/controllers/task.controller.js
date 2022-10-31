@@ -24,7 +24,8 @@ module.exports.createNewExpense = async (req, res, next) => {
 module.exports.changeExpenseInfo = async (req, res, next) => {
     const {text,price,date} = req.body
     try {
-        await Expense.updateOne({_id : req.body.id}, {text, price, date })
+        const a = await Expense.updateOne({_id : req.body.id}, {text, price, date })
+        console.log(a)
         res.send(req.body)
     }
     catch (err) {
