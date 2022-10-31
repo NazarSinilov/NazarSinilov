@@ -5,7 +5,7 @@ div {
     box-sizing: border-box;
 }
 .container {
-    max-width: 720px;
+    max-width: 80%;
     margin: 50px auto;
     background: #e1f2fe;
     border-radius: 20px;
@@ -30,6 +30,8 @@ header {
 
 }
 .expenses__place {
+    display: flex;
+    flex-direction: column;
     flex: 0 0 40%;
 }
 .expenses__cost {
@@ -37,6 +39,7 @@ header {
 }
 .expenses__place p {
     font-size: 14px;
+    flex: 1 1 auto;
 }
 
 .expenses__place input,
@@ -93,8 +96,6 @@ button {
     margin-left: auto;
 }
 
-
-
 input {
     padding-left: 20px;
 }
@@ -112,17 +113,18 @@ input {
     width: 100%;
 }
 
-
 .block-place {
     display: flex;
     flex: 1 1 40% ;
 }
 .block-cost {
     display: flex;
+
     flex: 0 0 40%;
 }
 .block-control {
     flex: 0 0 10%;
+    text-align: right;
 }
 
 
@@ -130,15 +132,14 @@ input {
     margin-left: 10px;
     word-break: break-word;
 }
-
+.purchase__date {
+    margin-right: 20px;
+}
 .purchase__cost {
     word-break: break-word;
+    margin: 0 auto;
 }
 
-.purchase__date {
-    margin-right: 40px;
-    width: 45%;
-}
 .purchase-block {
     width: 45%;
 }
@@ -153,7 +154,7 @@ input {
 }
 
 
-@media (max-width: 620px) {
+@media (max-width: 646px) {
     .expenses__place,
     .expenses__cost,
     .expenses button{
@@ -174,5 +175,34 @@ input {
         flex: 0 0 30%;
     }
 }
+@media (max-width: 390px) {
 
+    .purchase {
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+    .block-place {
+        flex: 100%;
+    }
+    .block-control {
+        flex: 20%;
+    }
+    .block-cost {
+        flex: 75%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .inputPlace_hidden,
+    .inputCost_hidden,
+    .inputDate_hidden {
+        flex: 100%;
+    }
+    .control-block_hidden {
+        display: flex;
+    }
+    .purchase__cost {
+        margin: 0;
+    }
+}
 
