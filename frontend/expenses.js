@@ -116,7 +116,7 @@ const render = () => {
 
 const editExpense = (id, element, item) => {
     if (!isEdit) {
-        return
+        return render()
     }
 
     isEdit = false
@@ -150,7 +150,11 @@ const editExpense = (id, element, item) => {
     hiddenControlBlock.appendChild(hiddenSave)
     hiddenControlBlock.addEventListener("click", async (event) => {
         try {
-            if (inputPlace.value && inputDate.valueAsDate && inputCost.value > 0) {
+            if (inputPlace.value
+                && inputDate.valueAsDate
+                && inputCost.value > 0
+                && new Date(inputDate.valueAsDate) > new Date(1970)
+                && new Date(inputDate.valueAsDate) <= new Date()) {
                 const resp = await fetch(`${URL}expense`, {
                     method: "PUT",
                     headers: HEADER,
@@ -171,6 +175,8 @@ const editExpense = (id, element, item) => {
                 if (resp.status === 500) {
                     throw new Error
                 }
+            } else {
+                toastr.error("Enter a valid value")
             }
         }
         catch (err) {
