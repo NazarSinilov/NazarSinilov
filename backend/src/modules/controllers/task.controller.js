@@ -1,4 +1,4 @@
-const Expense = require("../../db/modules/task/index")
+const Expense = require("../../db/modules/task/schema")
 
 module.exports.getAllExpenses = async (_, res) => {
     try {
@@ -28,12 +28,16 @@ module.exports.createNewExpense = async (req, res) => {
 module.exports.changeExpenseInfo = async (req, res) => {
     try {
         const {text,price,date,id} = req.body
+        let lastWeek = new Date(date)
+        lastWeek.setDate(new Date(date).getDate() - 7)
+        const nextWeek = new Date(date)
+        nextWeek.setDate(new Date(date).getDate() + 7)
         if (!await Expense.findOne({_id:id})){
             res.status(404).send({message: "Not found"})
         }
-        if (text && price >= 0.01  && new Date(date) > new Date(1970) && new Date(date) <= new Date()) {
+        if (text && price >= 0.01) {
             await Expense.updateOne({_id: id}, {text, price, date})
-            res.send({message: "Expense edite"})
+            res.send({message: "Expense edit"})
         } else {
             res.status(400).send({message: "Validation error"})
         }

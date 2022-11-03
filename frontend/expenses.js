@@ -106,7 +106,6 @@ const render = () => {
         purchaseControlBlock.appendChild(imageDelete);
         imageDelete.addEventListener("click", (event) => deleteExpense(event, index))
 
-
         purchases.appendChild(purchase)
         totalPrice += +item.price
         totalPrice = Math.round(totalPrice * 100) / 100
@@ -128,7 +127,6 @@ const editExpense = (id, element, item) => {
     element.appendChild(inputPlace)
     inputPlace.focus()
 
-
     const inputDate = document.createElement("input")
     inputDate.classList.add("inputDate_hidden")
     inputDate.type = "date"
@@ -148,52 +146,63 @@ const editExpense = (id, element, item) => {
     const hiddenSave = document.createElement("img")
     hiddenSave.src = "img/icon-complete.svg"
     hiddenControlBlock.appendChild(hiddenSave)
-    hiddenControlBlock.addEventListener("click", async (event) => {
-        try {
-            if (inputPlace.value
-                && inputDate.valueAsDate
-                && inputCost.value > 0
-                && new Date(inputDate.valueAsDate) > new Date(1970)
-                && new Date(inputDate.valueAsDate) <= new Date()) {
-                const resp = await fetch(`${URL}expense`, {
-                    method: "PUT",
-                    headers: HEADER,
-                    body: JSON.stringify({
-                        text: inputPlace.value,
-                        price: inputCost.value,
-                        date: inputDate.valueAsDate,
-                        id: allExpenses[id]._id
-                    })
-                })
-                allExpenses[id].text = inputPlace.value.trim()
-                allExpenses[id].date = inputDate.valueAsDate
-                allExpenses[id].price = inputCost.value
-                isEdit = true
-                const result = await resp.json()
-                toastr.success(result.message)
-                render()
-                if (resp.status === 500) {
-                    throw new Error
-                }
-            } else {
-                toastr.error("Enter a valid value")
-            }
-        }
-        catch (err) {
-            toastr.error("Internal Server Error 500")
-        }
+    hiddenSave.addEventListener("click", async (event) => {
+        await saveExpense(inputPlace, inputDate, inputCost, id, item)
     })
 
     const hiddenClose = document.createElement("img")
     hiddenClose.src = "img/icon-close.svg"
     hiddenClose.addEventListener("click", () => {
         isEdit = true
+        toastr.info("Edit closed")
         render()
     })
     hiddenControlBlock.appendChild(hiddenClose)
-
 }
 
+const saveExpense = async (inputPlace,inputDate,inputCost, id, item) => {
+    try {
+        let lastWeek = new Date(item.date)
+        lastWeek = lastWeek.setDate(new Date(item.date).getDate() - 7)
+        let nextWeek = new Date(item.date)
+        nextWeek.setDate(new Date(item.date).getDate() + 7)
+        let valueDate = inputDate.valueAsDate
+        if (inputPlace
+            && inputCost.value > 0
+            && valueDate <= nextWeek
+            && valueDate >= lastWeek) {
+            const resp = await fetch(`${URL}expense`, {
+                method: "PUT",
+                headers: HEADER,
+                body: JSON.stringify({
+                    text: inputPlace.value,
+                    price: inputCost.value,
+                    date: valueDate,
+                    id: allExpenses[id]._id
+                })
+            })
+            allExpenses[id].text = inputPlace.value.trim()
+            allExpenses[id].date = valueDate
+            allExpenses[id].price = inputCost.value
+            isEdit = true
+            const result = await resp.json()
+            if (resp.ok) {
+                toastr.success(result.message)
+            }
+
+            render()
+            if (resp.status === 500) {
+                throw new Error
+            }
+        } else {
+            render()
+            toastr.error("Enter a valid value")
+        }
+    }
+    catch (err) {
+        toastr.error("Internal Server Error 500")
+    }
+}
 const deleteExpense = async (event, id) => {
     try {
         const resp = await fetch(`${URL}expense?_id=${allExpenses[id]._id}`, {
