@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expenses</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+</head>
+<body>
+<div class="container">
+    <header>Учет моих расходов</header>
+    <div class="expenses">
+        <div class="expenses__place">
+            <p>Куда было потрачено:</p>
+            <input placeholder="Куда было потрачено" id="placeInput">
+        </div>
+        <div class="expenses__cost">
+            <p>Сколько было потрачено:</p>
+            <input type="number" placeholder="Сколько было потрачено" id="costInput">
+        </div>
+        <button onclick="addExpense()">Добавить</button>
+    </div>
+    <div class="total-price">Итого: 0 p.</div>
+    <div class="preloader">
+        <img src="img/preloader.gif" alt="#">
+    </div>
+    <div class="purchases">
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="expenses.js"></script>
+</body>
+</html>
