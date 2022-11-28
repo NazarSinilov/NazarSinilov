@@ -1,27 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import Card, {CardVariant} from "./components/Card";
-import UserList from "./components/UserList";
-import {IUser} from "./types/types";
-import axios from "axios";
+import Header from "./components/Header/Header";
+import Content from "./components/Content/Content";
+import "./App.scss"
+import {IProduct} from "./components/models/IProduct";
+import axios, { AxiosError} from "axios";
 
 const App = () => {
-    const [users, setUsers] = useState<IUser[]>([])
-    useEffect(() => {
 
+    const [products, setProducts] = useState<IProduct[]>([])
+
+    useEffect(() => {
+        fetchProducts()
     }, [])
-    async function fetchUsers() {
+
+    const fetchProducts = async (): Promise<void> => {
         try {
-            const resp = await axios.get("https://jsonplaceholder.typicode.com/users")
+            const response = await axios.get<IProduct[]>("https://api.escuelajs.co/api/v1/products?offset=0&limit=12")
+            const newArr = response.data
+            setProducts(newArr)
         } catch (e) {
-            alert(e)
+            throw e as AxiosError
         }
     }
+
     return (
-        <div>
-            <Card  variant={CardVariant.outlined} width="400px" height="400px">
-                <button>Button</button>
-            </Card>
-            <UserList users={users}/>
+        <div className="shop">
+            <Header />
+            <Content products={products} setProducts={setProducts}/>
         </div>
     );
 };

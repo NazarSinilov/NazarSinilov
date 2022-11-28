@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  Button {
+    height: 56px;
+    width: 150px;
+  }
+  div {
+    font-size: 22px;
+  }
+}

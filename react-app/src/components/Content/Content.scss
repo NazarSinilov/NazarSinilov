@@ -1,0 +1,29 @@
+* {
+  font-size: 18px;
+}
+
+p {
+  text-align: center;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.price-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.count-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-size: 24px;
+  }
+}
