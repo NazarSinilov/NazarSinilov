@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import Header from "./components/Header/Header";
 import Content from "./components/Content/Content";
 import "./App.scss"
 import {IProduct} from "./components/models/IProduct";
 import axios, {AxiosError} from "axios";
+import { Alert } from '@mui/material';
 
 const App = () => {
 
     const [totalPrice, setTotalPrice] = useState(0)
-
     const [products, setProducts] = useState<IProduct[]>([])
     const [error, setError] = useState("")
     const [searchValue, setSearchValue] = useState("")
@@ -37,12 +37,14 @@ const App = () => {
         }
     }
 
-    const productsProps: IProduct[] = products.filter(el => el.title.toLowerCase().includes(searchValue.toLowerCase()))
+    const productsMemo: IProduct[] = useMemo(() => products.filter((el, index) =>
+        el.title.toLowerCase().includes(searchValue.toLowerCase())), [products, searchValue]);
 
     return (
         <div className="shop">
-            <Header getSearchValue={getSearchValue} totalPrice={totalPrice}/>
-            <Content products={productsProps} setProducts={setProducts} getPrice={getPrice}/>
+            <Header getSearchValue={getSearchValue} totalPrice={totalPrice} />
+            <Content products={productsMemo} setProducts={setProducts} getPrice={getPrice}/>
+            {error && <Alert severity="error">{error}</Alert>}
         </div>
 
     );

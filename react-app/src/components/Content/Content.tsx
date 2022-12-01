@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useCallback} from 'react';
 import {Fab, Grid} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,7 +14,7 @@ interface ContentProps {
 const Content = (props: ContentProps) => {
     const {products, setProducts, getPrice} = props
 
-    const addPrice = (id: number, e : React.MouseEvent) => {
+    const addPrice = useCallback((id: number, e : React.MouseEvent) => {
         e.stopPropagation()
         const newProd: IProduct[] = products.map((el, index) => {
             if (id === index) {
@@ -30,9 +30,9 @@ const Content = (props: ContentProps) => {
             return el;
         })
         setProducts(newProd)
-    }
+    }, [products ,getPrice, setProducts])
 
-    const removePrice = (id: number, e: React.MouseEvent) => {
+    const removePrice = useCallback((id: number, e: React.MouseEvent) => {
         e.stopPropagation()
         const newProd: IProduct[] = products.map((el, index) => {
             if (id === index) {
@@ -48,9 +48,9 @@ const Content = (props: ContentProps) => {
             return el;
         })
         setProducts(newProd)
-    }
+    }, [products ,getPrice, setProducts])
 
-    const toggleSelect = (price: number, count: number, id: number) => {
+    const toggleSelect = useCallback((price: number, count: number, id: number) => {
         const newProd : IProduct[] = products.map((el, index) => {
             if (index === id && count === 0) {
                 el.countProducts = el.countProducts + 1;
@@ -66,12 +66,12 @@ const Content = (props: ContentProps) => {
             return el
         })
         setProducts(newProd)
-    }
+    }, [products ,getPrice, setProducts])
 
     return (
         <Grid container spacing={2}>
             {products.map((product: IProduct, index: number) =>
-                <Grid onClick={(e) => toggleSelect(product.price, product.countProducts, index)}
+                <Grid onClick={() => toggleSelect(product.price, product.countProducts, index)}
                       key={`item-${index}`} item xs={3} sx={{padding: "20px"}}
                       className={product.countProducts ? "green" : ""}>
                     <img src={product.images[0]} alt="seaImage"/>
@@ -89,10 +89,8 @@ const Content = (props: ContentProps) => {
                             <AddIcon/>
                         </Fab>
                     </div>
-
                 </Grid>
             )}
-
         </Grid>
     );
 };
