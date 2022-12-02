@@ -36,4 +36,4 @@ const ProductList = ({product, toggleSelect, addPrice, removePrice}: ProductList
     );
 };
 
-export default ProductList;
+export default React.memo(ProductList);

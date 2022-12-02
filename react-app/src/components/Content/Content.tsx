@@ -74,9 +74,9 @@ const Content = (props: ContentProps) => {
 
     return (
         <Grid container spacing={2}>
-            {products.map((product: IProduct, index: number) =>
+            {products.map((product: IProduct) =>
                 <ProductList
-                    key={`product-${index}`}
+                    key={`product-${product.id}`}
                     product={product}
                     toggleSelect = {toggleSelect}
                     addPrice={addPrice}
@@ -87,5 +87,5 @@ const Content = (props: ContentProps) => {
     );
 };
 
-export default Content;
+export default React.memo(Content);
 

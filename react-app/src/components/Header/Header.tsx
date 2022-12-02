@@ -1,5 +1,5 @@
 import TextField from '@mui/material/TextField/TextField';
-import React, {ChangeEvent, useCallback, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import "./Header.scss"
 import Basket from "../Basket/Basket";
 import {Button} from "@mui/material";
@@ -17,24 +17,24 @@ const Header = ({getSearchValue, totalPrice} :HeaderProps) => {
         setInputValue(e.target.value)
     }
 
-    const getButtonValue = useCallback(() => {
+    const getButtonValue = () => {
         getSearchValue(inputValue)
         setInputValue("")
-    }, [inputValue, getSearchValue])
+    }
 
     return (
         <div className="header">
             <TextField
-                onChange={(e) => getInputValue(e)}
+                onChange={getInputValue}
                 id="filled-basic"
                 label="Filled"
                 variant="filled"
                 value={inputValue}
             />
-            <Button onClick={() => getButtonValue()} variant="contained" >Поиск</Button>
+            <Button onClick={getButtonValue} variant="contained" >Поиск</Button>
             <Basket totalPrice={totalPrice}/>
         </div>
     );
 };
 
-export default Header;
+export default React.memo(Header);
