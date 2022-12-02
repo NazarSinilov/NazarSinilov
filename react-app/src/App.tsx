@@ -22,6 +22,7 @@ const App = () => {
     }, [])
 
     const getSearchValue = (value: string) : void => {
+
         setSearchValue(value)
     }
 
@@ -37,9 +38,8 @@ const App = () => {
         }
     }
 
-    const productsMemo: IProduct[] = useMemo(() => products.filter((el, index) =>
+    const productsMemo: IProduct[] = useMemo(() => products.filter((el) =>
         el.title.toLowerCase().includes(searchValue.toLowerCase())), [products, searchValue]);
-
     return (
         <div className="shop">
             <Header getSearchValue={getSearchValue} totalPrice={totalPrice} />

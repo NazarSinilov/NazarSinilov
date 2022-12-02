@@ -4,12 +4,10 @@ interface BasketProps {
     totalPrice: number
 }
 
-const Basket = ({totalPrice} : BasketProps) => {
+const Basket = ({totalPrice}: BasketProps) => {
 
     return (
-        <>
-            <div>{`Общая стоимость выбранных товаров: ${totalPrice} р`}</div>
-        </>
+        <div>{`Общая стоимость выбранных товаров: ${totalPrice} р`}</div>
     );
 };
 

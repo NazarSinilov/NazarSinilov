@@ -1,5 +1,5 @@
 import TextField from '@mui/material/TextField/TextField';
-import React, { useState} from 'react';
+import React, {ChangeEvent, useCallback, useState} from 'react';
 import "./Header.scss"
 import Basket from "../Basket/Basket";
 import {Button} from "@mui/material";
@@ -13,10 +13,25 @@ const Header = ({getSearchValue, totalPrice} :HeaderProps) => {
 
     const [inputValue, setInputValue] = useState("")
 
+    const getInputValue = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setInputValue(e.target.value)
+    }
+
+    const getButtonValue = useCallback(() => {
+        getSearchValue(inputValue)
+        setInputValue("")
+    }, [inputValue, getSearchValue])
+
     return (
         <div className="header">
-            <TextField onChange={(e) => setInputValue(e.target.value)} id="filled-basic" label="Filled" variant="filled" />
-            <Button onClick={() => getSearchValue(inputValue)} variant="contained" >Поиск</Button>
+            <TextField
+                onChange={(e) => getInputValue(e)}
+                id="filled-basic"
+                label="Filled"
+                variant="filled"
+                value={inputValue}
+            />
+            <Button onClick={() => getButtonValue()} variant="contained" >Поиск</Button>
             <Basket totalPrice={totalPrice}/>
         </div>
     );
