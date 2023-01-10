@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {IExpense} from "../../../interface/interface";
 import ArrowBottom from "../../../../assets/ArrowDown.svg"
@@ -12,10 +12,11 @@ import {getDate} from "../../../utils/getDate";
 interface ExpenseItemProps {
     item: IExpense
     deleteExpense: (id: number) => void
+    editExpense: (item: IExpense) => void
 }
 
-const ExpenseItem = ({item, deleteExpense}: ExpenseItemProps) => {
-
+const ExpenseItem = (props: ExpenseItemProps) => {
+    const {item, deleteExpense, editExpense} = props
     return (
         <View style={styles.container}>
             <View style={[styles.arrowBlock, item.isSpent
@@ -36,11 +37,15 @@ const ExpenseItem = ({item, deleteExpense}: ExpenseItemProps) => {
                 {item.title.length > 16 && <ArrowRight />}
             </TouchableOpacity>
 
-            <View >
+            <View style={styles.rightSide}>
                 <Text style={styles.date}>{getDate(item.date)}</Text>
                 <View style={styles.controlButton}>
-                    <Edit width={20} height={20}/>
-                    <Trash onPress={() => deleteExpense(item.id)} width={20} height={20}/>
+                    <TouchableOpacity onPress={() => editExpense(item)} style={styles.svgBlock}>
+                        <Edit width={25} height={25}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => deleteExpense(item.id)} style={styles.svgBlock}>
+                        <Trash  width={25} height={25}/>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -99,7 +104,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around"
     },
-
+    rightSide : {
+        alignItems: "center"
+    },
+    svgBlock : {
+        padding: 5
+    }
 
 })
 export default ExpenseItem;

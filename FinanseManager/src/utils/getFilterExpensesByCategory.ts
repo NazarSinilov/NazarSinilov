@@ -6,6 +6,6 @@ export const getFilterExpensesByCategory = (allExpense: IExpense[], category: nu
             return el
         }
 
-        el.categoryId === category
+        return el.categoryId === category
     } )
 }

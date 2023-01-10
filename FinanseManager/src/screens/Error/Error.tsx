@@ -8,7 +8,7 @@ import {RootStackParamList} from "../../navigation/RootStackParamList";
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Error">
 
 const Error = ({route} : ErrorProps) => {
-        const {errorMessage} = route.params
+    const {errorMessage} = route.params
 
     return (
         <View style={styles.container}>

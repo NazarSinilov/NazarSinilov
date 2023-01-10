@@ -47,12 +47,12 @@ function GoogleSignIn({navigation} : NativeStackNavigatorProps) {
         <View style={styles.container}>
             <Text style={styles.loginTitle}>Вход</Text>
 
-                <TouchableOpacity
-                    style={styles.ButtonLogin}
-                    onPress={() => onGoogleButtonPress()}
-                >
-                    <Text style={styles.loginText}>Войти с помощью гугл аккаунта</Text>
-                </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.ButtonLogin}
+                onPress={() => onGoogleButtonPress()}
+            >
+                <Text style={styles.loginText}>Войти с помощью гугл аккаунта</Text>
+            </TouchableOpacity>
         </View>
     );
 }

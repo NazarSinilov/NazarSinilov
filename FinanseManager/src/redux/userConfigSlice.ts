@@ -28,7 +28,7 @@ const configSlice = createSlice({
             state.config.notificationTime = action.payload.currentDate
         },
         getSynchronizationTime(state, action) {
-            state.config.synchronizationTime = action.payload.synchronizationTime
+            state.config.synchronizationTime = action.payload.synchronizationDate
         }
     }
 })

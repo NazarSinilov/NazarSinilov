@@ -4,11 +4,11 @@ import {colors} from "../../constans/colors";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import {useRoute} from "@react-navigation/native";
 import Trash from "../../../assets/Trash.svg"
-import {addCategoryRequest, getCategories, removeCategory} from "../../api/API";
+import {addCategoryRequest, batchUpdateExpensesRequest, getCategories, removeCategory} from "../../api/API";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../Redux/store";
+import {RootState} from "../../redux/store";
 import {ICategories} from "../../interface/interface";
-import {removeCategoryAction, saveAllCategories} from "../../Redux/expensesSlice";
+import {removeCategoryAction, saveAllCategories} from "../../redux/expensesSlice";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import Loader from "../../components/Loader/Loader";
 
@@ -29,7 +29,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
         try {
             setIsLoading(true)
             const response = await getCategories()
-            const allCategories = response.map((el : string[], index: number): ICategories => ({
+            const allCategories = !response ? [] : response.map((el : string[], index: number): ICategories => ({
                 name: el[0],
                 id: index + 1
             }))
@@ -44,15 +44,15 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
             setIsLoading(false)
         }
     }
-
+    console.log(allCategories)
     const addCategory = async () => {
         const trimValue = inputValue.trim()
         if (!trimValue) {
             return
         }
         try {
-            await addCategoryRequest(trimValue)
             setIsModalAddCategories(prevState => !prevState)
+            await addCategoryRequest(trimValue)
             fetchAllCategory()
             setInputValue("")
         } catch (err) {
@@ -67,7 +67,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
         try {
             dispatch(removeCategoryAction({id}))
             await removeCategory(id)
-
+            await batchUpdateExpensesRequest(id)
         } catch (err) {
             dispatch(removeCategoryAction(backup))
             if (err instanceof Error) {
@@ -94,7 +94,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
             <Text style={styles.headerText}>Мои категории</Text>
 
 
-            <FlatList
+            {allCategories.length !== 0 ? <FlatList
                 data={allCategories}
                 style={{width: "100%"}}
                 refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchAllCategory}/>}
@@ -108,7 +108,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
                             </TouchableOpacity>
                         </View>
                     </View>}
-            />
+            /> : <Text style={styles.shadowText}>Добавьте категорию</Text>}
 
             {isModalAddCategories && <View style={styles.modalContainer}>
                 <TextInput
@@ -191,6 +191,9 @@ const styles = StyleSheet.create({
     buttonText: {
         color: colors.BLACK,
         fontSize: 16
+    },
+    shadowText: {
+        fontSize: 18
     }
 
 })

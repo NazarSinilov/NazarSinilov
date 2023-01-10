@@ -12,11 +12,15 @@ import Bitmap from "../../../assets/Bitmap.svg"
 import Triangle from "../../../assets/Triangle.svg"
 import {DateTimePickerAndroid} from "@react-native-community/datetimepicker";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../Redux/store";
-import {getNotificationTime, toggleIsNotification, toggleIsRest} from "../../Redux/userConfigSlice";
+import {RootState} from "../../redux/store";
+import {
+    getNotificationTime,
+    getSynchronizationTime,
+    toggleIsNotification,
+    toggleIsRest
+} from "../../redux/userConfigSlice";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import {getTime} from "../../utils/getTime";
-
 
 
 const Profile = ({navigation}: NativeStackNavigatorProps) => {
@@ -64,6 +68,10 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
         return () => subscriber
     }, [user]))
 
+    const setSynchTime = () => {
+        const synchronizationDate = new Date()
+        dispatch(getSynchronizationTime({synchronizationDate}))
+    }
 
     const route = useRoute()
     return (
@@ -102,7 +110,7 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
                     <View style={config.isNotification ? styles.timeBlock : [styles.timeBlock, styles.disableTime]}>
                         <Text style={styles.timeText}>Время напоминания </Text>
                         <View style={styles.backgroundInput}>
-                            <Text onPress={() => config.isNotification && showMode() } style={styles.inputTime}>
+                            <Text onPress={() => config.isNotification && showMode()} style={styles.inputTime}>
                                 {time}
                             </Text>
                         </View>
@@ -126,15 +134,11 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
                 </View>
 
 
-
-
-                <TouchableOpacity onPress={()=> navigation.navigate("Categories")} style={styles.categoryBlock}>
+                <TouchableOpacity onPress={() => navigation.navigate("Categories")} style={styles.categoryBlock}>
                     <Category width={20} height={20}/>
                     <Text style={styles.categoryText}>Мои категории</Text>
                     <ArrowRight/>
                 </TouchableOpacity>
-
-
 
 
                 <View style={styles.synchronizationBlock}>
@@ -143,13 +147,12 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
                     </View>
                     <View style={styles.synchTextBlock}>
                         <Text style={styles.synchTitle}>Синхронизация</Text>
-                        <Text style={styles.synchSubtitle}>Последняя 8 PM </Text>
+                        <Text style={styles.synchSubtitle}>Последняя {getTime(new Date(synchronizationTime))} </Text>
                     </View>
-                    <TouchableOpacity style={styles.synchButton}>
+                    <TouchableOpacity onPress={setSynchTime} style={styles.synchButton}>
                         <Triangle/>
                     </TouchableOpacity>
                 </View>
-
 
 
             </ScrollView>
@@ -233,7 +236,7 @@ const styles = StyleSheet.create({
         paddingBottom: 23,
     },
     disableTime: {
-         opacity: 0.5
+        opacity: 0.5
     },
     timeText: {
         color: "white",

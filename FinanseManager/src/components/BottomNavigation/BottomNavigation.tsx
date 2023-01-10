@@ -29,19 +29,19 @@ const BottomNavigation = ({route, isButton, buttonHandler, isAdd}: BottomNavigat
 
             {isAdd
                 ? <TouchableOpacity
-                onPress={buttonHandler}
-                disabled={!isButton}
-                style={isButton ? [styles.buttonRed] : [styles.buttonRed, {opacity: 0}]}
-            >
-                <Cancel style={styles.sizeSVG}/>
-            </TouchableOpacity>
+                    onPress={buttonHandler}
+                    disabled={!isButton}
+                    style={isButton ? [styles.buttonRed] : [styles.buttonRed, {opacity: 0}]}
+                >
+                    <Cancel style={styles.sizeSVG}/>
+                </TouchableOpacity>
                 : <TouchableOpacity
-                onPress={buttonHandler}
-                disabled={!isButton}
-                style={isButton ? [styles.button] : [styles.button, {opacity: 0}]}
-            >
-                <Plus style={styles.sizeSVG}/>
-            </TouchableOpacity>}
+                    onPress={buttonHandler}
+                    disabled={!isButton}
+                    style={isButton ? [styles.button] : [styles.button, {opacity: 0}]}
+                >
+                    <Plus style={styles.sizeSVG}/>
+                </TouchableOpacity>}
 
 
             <TouchableOpacity onPress={() => route !== "Profile" && navigation.navigate("Profile")} style={styles.SvgBlock}>

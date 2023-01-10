@@ -9,20 +9,20 @@
 9        android:targetSdkVersion="33" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:5:5-77
-11-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:5:22-75
+11-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:5:5-77
+11-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:4:5-67
+12-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 13-->[com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/4579d77217e00b3eb1409e4f5131b607/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
 13-->[com.facebook.flipper:flipper:0.125.0] /home/user/.gradle/caches/transforms-3/4579d77217e00b3eb1409e4f5131b607/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
 14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[:react-native-firebase_auth] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
-14-->[:react-native-firebase_auth] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+14-->[:react-native-firebase_auth] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
+14-->[:react-native-firebase_auth] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:react-native-firebase_auth] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
-15-->[:react-native-firebase_auth] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
+15-->[:react-native-firebase_auth] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
+15-->[:react-native-firebase_auth] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 16-->[androidx.work:work-runtime:2.7.1] /home/user/.gradle/caches/transforms-3/866b54962e236f0b145431e9902f2e45/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:5-81
 16-->[androidx.work:work-runtime:2.7.1] /home/user/.gradle/caches/transforms-3/866b54962e236f0b145431e9902f2e45/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:22-78
@@ -111,145 +111,145 @@
 49-->[me.leolin:ShortcutBadger:1.1.22] /home/user/.gradle/caches/transforms-3/1c163e92ced1b1a0ae51c5fa7f536359/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
 50
 51    <application
-51-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:6:5-26:19
+51-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:6:5-26:19
 52        android:name="com.expense.MainApplication"
-52-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:7:7-38
+52-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:7:7-38
 53        android:allowBackup="false"
-53-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:11:7-34
+53-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:11:7-34
 54        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 54-->[androidx.core:core:1.7.0] /home/user/.gradle/caches/transforms-3/0647204d58c048d1dd06350cd74722f3/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 55        android:debuggable="true"
 56        android:icon="@mipmap/ic_launcher"
-56-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:9:7-41
+56-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:9:7-41
 57        android:label="@string/app_name"
-57-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:8:7-39
+57-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:8:7-39
 58        android:roundIcon="@mipmap/ic_launcher_round"
-58-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:10:7-52
+58-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:10:7-52
 59        android:theme="@style/AppTheme"
-59-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:12:7-38
+59-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:12:7-38
 60        android:usesCleartextTraffic="true" >
-60-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:8:9-44
+60-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:8:9-44
 61        <activity
-61-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:11:9-111
+61-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:11:9-111
 62            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-62-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:11:19-83
+62-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:11:19-83
 63            android:exported="false" />
-63-->/home/user/Documents/MyPr/Expense/android/app/src/debug/AndroidManifest.xml:11:84-108
+63-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/debug/AndroidManifest.xml:11:84-108
 64        <activity
-64-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:13:7-25:18
+64-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:13:7-25:18
 65            android:name="com.expense.MainActivity"
-65-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:14:9-37
+65-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:14:9-37
 66            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-66-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:16:9-118
+66-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:16:9-118
 67            android:exported="true"
-67-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:19:9-32
+67-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:19:9-32
 68            android:label="@string/app_name"
-68-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:15:9-41
+68-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:15:9-41
 69            android:launchMode="singleTask"
-69-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:17:9-40
+69-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:17:9-40
 70            android:windowSoftInputMode="adjustResize" >
-70-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:18:9-51
+70-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:18:9-51
 71            <intent-filter>
-71-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:20:9-24:25
+71-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:20:9-24:25
 72                <action android:name="android.intent.action.MAIN" />
-72-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:21:13-65
-72-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:21:21-62
+72-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:21:13-65
+72-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:21:21-62
 73                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-73-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:13-74
-73-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:21-71
+73-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:13-74
+73-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:21-71
 74
 75                <category android:name="android.intent.category.LAUNCHER" />
-75-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:23:13-73
-75-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:23:23-70
+75-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:23:13-73
+75-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:23:23-70
 76            </intent-filter>
 77        </activity>
 78
 79        <provider
-79-->[:notifee_react-native] /home/user/Documents/MyPr/Expense/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:40
+79-->[:notifee_react-native] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:40
 80            android:name="io.invertase.notifee.NotifeeInitProvider"
-80-->[:notifee_react-native] /home/user/Documents/MyPr/Expense/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-68
+80-->[:notifee_react-native] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-68
 81            android:authorities="com.expense.notifee-init-provider"
-81-->[:notifee_react-native] /home/user/Documents/MyPr/Expense/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-73
+81-->[:notifee_react-native] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-73
 82            android:exported="false"
-82-->[:notifee_react-native] /home/user/Documents/MyPr/Expense/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+82-->[:notifee_react-native] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
 83            android:initOrder="-100" />
-83-->[:notifee_react-native] /home/user/Documents/MyPr/Expense/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+83-->[:notifee_react-native] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
 84
 85        <service
-85-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:40
+85-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:40
 86            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
-86-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-103
+86-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-103
 87            android:exported="false" />
-87-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+87-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
 88        <service
-88-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-23:19
+88-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-23:19
 89            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
-89-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-95
+89-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-95
 90            android:exported="false" >
-90-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
+90-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
 91            <intent-filter>
-91-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
+91-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
 92                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-92-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:13-74
-92-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:21-71
+92-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:13-74
+92-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:21-71
 93            </intent-filter>
 94        </service>
 95
 96        <receiver
-96-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-32:20
+96-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-32:20
 97            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
-97-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-96
+97-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-96
 98            android:exported="true"
-98-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-36
+98-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-36
 99            android:permission="com.google.android.c2dm.permission.SEND" >
-99-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-73
+99-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-73
 100            <intent-filter>
-100-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
+100-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
 101                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-101-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
-101-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
+101-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
+101-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
 102            </intent-filter>
 103        </receiver>
 104
 105        <meta-data
-105-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:9-36:36
+105-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:9-36:36
 106            android:name="firebase_messaging_auto_init_enabled"
-106-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-64
+106-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-64
 107            android:value="true" />
-107-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-33
+107-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-33
 108        <meta-data
-108-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:9-39:32
+108-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:9-39:32
 109            android:name="com.google.firebase.messaging.default_notification_channel_id"
-109-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-89
+109-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-89
 110            android:value="" />
-110-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-29
+110-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-29
 111        <meta-data
-111-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:9-42:47
+111-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:9-42:47
 112            android:name="com.google.firebase.messaging.default_notification_color"
-112-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-84
+112-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-84
 113            android:resource="@color/white" />
-113-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-44
+113-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-44
 114        <meta-data
-114-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-13:36
+114-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-13:36
 115            android:name="app_data_collection_default_enabled"
-115-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-63
+115-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-63
 116            android:value="true" />
-116-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-33
+116-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-33
 117
 118        <service
-118-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:19
+118-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:19
 119            android:name="com.google.firebase.components.ComponentDiscoveryService"
-119-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-84
+119-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-84
 120            android:directBootAware="true"
-120-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-43
+120-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-43
 121            android:exported="false" >
-121-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+121-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
 122            <meta-data
-122-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:85
+122-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:85
 123                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-123-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-120
+123-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-120
 124                android:value="com.google.firebase.components.ComponentRegistrar" />
-124-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-82
+124-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-82
 125            <meta-data
 125-->[com.google.firebase:firebase-messaging:23.1.1] /home/user/.gradle/caches/transforms-3/49caeea695f7c01261b547db803e51cf/transformed/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:55:13-57:85
 126                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
@@ -277,15 +277,15 @@
 137        </service>
 138
 139        <provider
-139-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-29:38
+139-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-29:38
 140            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-140-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
+140-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
 141            android:authorities="com.expense.reactnativefirebaseappinitprovider"
-141-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-86
+141-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-86
 142            android:exported="false"
-142-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-37
+142-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-37
 143            android:initOrder="99" />
-143-->[:react-native-firebase_app] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
+143-->[:react-native-firebase_app] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
 144        <provider
 144-->[androidx.work:work-runtime:2.7.1] /home/user/.gradle/caches/transforms-3/866b54962e236f0b145431e9902f2e45/transformed/work-runtime-2.7.1/AndroidManifest.xml:31:9-39:20
 145            android:name="androidx.startup.InitializationProvider"
@@ -512,10 +512,10 @@
 259            android:permission="com.google.android.c2dm.permission.SEND" >
 259-->[com.google.firebase:firebase-messaging:23.1.1] /home/user/.gradle/caches/transforms-3/49caeea695f7c01261b547db803e51cf/transformed/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:34:13-73
 260            <intent-filter>
-260-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
+260-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
 261                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-261-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
-261-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
+261-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
+261-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
 262            </intent-filter>
 263        </receiver>
 264        <!--
@@ -531,10 +531,10 @@
 271            android:exported="false" >
 271-->[com.google.firebase:firebase-messaging:23.1.1] /home/user/.gradle/caches/transforms-3/49caeea695f7c01261b547db803e51cf/transformed/jetified-firebase-messaging-23.1.1/AndroidManifest.xml:47:13-37
 272            <intent-filter android:priority="-500" >
-272-->[:react-native-firebase_messaging] /home/user/Documents/MyPr/Expense/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
+272-->[:react-native-firebase_messaging] /home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
 273                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-273-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:13-74
-273-->/home/user/Documents/MyPr/Expense/android/app/src/main/AndroidManifest.xml:22:21-71
+273-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:13-74
+273-->/home/user/Documents/FinanceExpenses/NazarSinilov/FinanseManager/android/app/src/main/AndroidManifest.xml:22:21-71
 274            </intent-filter>
 275        </service>
 276        <service

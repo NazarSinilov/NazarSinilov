@@ -2,7 +2,6 @@ import {createSlice} from "@reduxjs/toolkit";
 import {ICategories, IExpense, IExpenses} from "../interface/interface";
 
 
-
 const expenses: IExpenses = {
     allExpenses: [],
     categories: [],
@@ -27,14 +26,25 @@ const expensesSlice = createSlice({
             state.categories.push(action.payload.category)
         },
         removeCategoryAction(state, action) {
-            state.categories = state.categories.filter((el : ICategories) => el.id !== action.payload.id && el.name)
+            state.categories = state.categories.filter((el: ICategories) => el.id !== action.payload.id && el.name)
         },
         removeExpenseAction(state, action) {
             state.allExpenses = state.allExpenses.filter((el: IExpense) => el.id !== action.payload.id && el.title)
+        },
+        editExpenseAction(state, action) {
+            const replaceIndex = state.allExpenses.findIndex((el: IExpense) => el.id === action.payload.newExpense.id )
+            state.allExpenses.splice(replaceIndex, 1, action.payload.newExpense)
         }
     }
 })
 
-export const {saveTableId, saveAllExpenses, saveAllCategories, removeCategoryAction, removeExpenseAction} = expensesSlice.actions;
+export const {
+    saveTableId,
+    saveAllExpenses,
+    saveAllCategories,
+    removeCategoryAction,
+    removeExpenseAction,
+    editExpenseAction
+} = expensesSlice.actions;
 
 export default expensesSlice.reducer

@@ -3,7 +3,7 @@ import React from "react";
 import {Colors} from "react-native/Libraries/NewAppScreen";
 import Navigate from "./src/navigation/Navigate";
 import {Provider} from "react-redux";
-import {persistor, store} from "./src/Redux/store";
+import {persistor, store} from "./src/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 

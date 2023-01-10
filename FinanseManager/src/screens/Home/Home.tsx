@@ -3,7 +3,8 @@ import {
     RefreshControl,
     StyleSheet,
     Text,
-    TextInput, ToastAndroid,
+    TextInput,
+    ToastAndroid,
     TouchableOpacity,
     View
 } from "react-native";
@@ -20,22 +21,24 @@ import RedEllipse from "../../../assets/redEllipse.svg"
 import {ALL_MONTHS} from "../../constans/allMonths"
 import Calendar from "../../components/Calendar/Calendar";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
-import { IExpense} from "../../interface/interface";
+import {IExpense} from "../../interface/interface";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
 import Loader from "../../components/Loader/Loader";
 import {
     addExpenseRequest,
-    createGoogleTable,
+    createGoogleTable, editExpenseRequest,
     getExpensesRequest,
-    googleDriveInfo, removeExpenseRequest,
+    googleDriveInfo,
+    removeExpenseRequest,
 } from "../../api/API";
 import {useDispatch, useSelector} from "react-redux";
-import {removeExpenseAction, saveAllExpenses, saveTableId} from "../../Redux/expensesSlice";
-import {RootState} from "../../Redux/store";
+import {editExpenseAction, removeExpenseAction, saveAllExpenses, saveTableId} from "../../redux/expensesSlice";
+import {RootState} from "../../redux/store";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {sortExpensesByDate} from "../../utils/sortExpensesByDate";
 import {getFilterExpensesByDate} from "../../utils/getFilterExpensesByDate";
 import {getFilterExpensesByCategory} from "../../utils/getFilterExpensesByCategory";
+import {getSynchronizationTime} from "../../redux/userConfigSlice";
 /*
 import notifee from '@notifee/react-native';
 */
@@ -51,6 +54,8 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     const [valueTitle, setValueTitle] = useState("")
     const [valuePrice, setValuePrice] = useState("")
     const [completeMessage, setCompleteMessage] = useState("")
+    const [isEdit, setIsEdit] = useState(false)
+    const [modifiableItem, setModifiableItem] = useState<IExpense>()
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(0);
@@ -62,6 +67,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     const [items, setItems] = useState(defaultCategory);
     const [itemsCategories, setItemsCategories] = useState(defaultCategoryForFilter);
+
     const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
     const categories = useSelector((state: RootState) => state.expenses.categories)
     const dispatch = useDispatch()
@@ -73,6 +79,9 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     useEffect(() => {
         tableValidation()
+    }, [])
+
+    useEffect(() => {
         setCategories()
     }, [categories])
 
@@ -82,6 +91,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         setItems(newCategories)
         setItemsCategories(filterCategories)
     }
+
 
     const deleteExpense = async (id: number) => {
         const backup = [...allExpenses]
@@ -96,12 +106,13 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         }
     }
 
-
-    const fetchCategories = async () => {
+    const fetchExpenses = async () => {
         try {
             setIsLoading(true)
             const response = await getExpensesRequest()
             transformData(response)
+            const synchronizationDate = new Date()
+            dispatch(getSynchronizationTime({synchronizationDate}))
         } catch (err) {
             if (err instanceof Error) {
                 navigation.navigate("Error", {errorMessage: err.message})
@@ -125,14 +136,13 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     }
 
 
-
     const tableValidation = async () => {
         const tableId = await checkGoogleDrive()
         dispatch(saveTableId({tableId}))
         if (!tableId) {
             await createTable()
         } else {
-            await fetchCategories()
+            await fetchExpenses()
         }
     }
 
@@ -140,7 +150,6 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         try {
             const result = await googleDriveInfo()
             return result[0].id
-
         } catch (err) {
             if (err instanceof Error) {
                 navigation.navigate("Error", {errorMessage: err.message})
@@ -212,7 +221,10 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     const buttonHandler = () => {
         setIsModalAddExpense(prevState => !prevState)
+        setIsEdit(false)
+        clearForm()
     }
+
 
     const successMessage = (message: string) => {
         setCompleteMessage(message)
@@ -230,33 +242,79 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         ToastAndroid.showWithGravity("Введите сумму трнзакции!", ToastAndroid.SHORT, ToastAndroid.TOP);
     }
 
-    const addExpense = async () => {
-        const valueTitleTrim = valueTitle.trim()
-        if (!valueTitleTrim) {
-            showToastrText()
-            setIsModalAddExpense(false)
-            return
-        }
-        if (!valuePrice) {
-            showToastrPrice()
-            setIsModalAddExpense(false)
-            return
-        }
-        if (+valuePrice <= 0) {
-            showToastrPositivePrice()
-            setIsModalAddExpense(false)
+    const editExpense = async (item: IExpense) => {
+        buttonHandler()
+        setIsEdit(true)
+        setValueTitle(item.title)
+        setValuePrice(item.price.toString())
+        setValue(item.categoryId)
+        setIsSpent(item.isSpent)
+        setModifiableItem(item)
+    }
+
+
+    const saveEditExpense = async () => {
+        if (!modifiableItem) {
             return
         }
         const backup = [...allExpenses]
         try {
+            const date = modifiableItem.date.getTime()
+            const newExpenseByTable = [valueTitle.trim(), valuePrice, isSpent, date, value]
+            const newExpense: IExpense = {
+                title: valueTitle.trim(),
+                price: +valuePrice,
+                date: modifiableItem.date,
+                isSpent,
+                id: modifiableItem.id,
+                categoryId: modifiableItem.categoryId
+            }
+            dispatch(editExpenseAction({newExpense}))
+            setIsModalAddExpense(false)
+            successMessage("Транзакция изменена")
+            await editExpenseRequest(newExpenseByTable, modifiableItem.id)
+        } catch (err) {
+            dispatch(saveAllExpenses({backup}))
+            if (err instanceof Error) {
+                navigation.navigate("Error", {errorMessage: err.message})
+            }
+        } finally {
+            setIsEdit(false)
+            clearForm()
+        }
+    }
+
+    const validationForm = (): boolean => {
+        const valueTitleTrim = valueTitle.trim()
+        if (!valueTitleTrim) {
+            showToastrText()
+            setIsModalAddExpense(false)
+            return false
+        }
+        if (!valuePrice) {
+            showToastrPrice()
+            setIsModalAddExpense(false)
+            return false
+        }
+        if (+valuePrice <= 0) {
+            showToastrPositivePrice()
+            setIsModalAddExpense(false)
+            return false
+        }
+        return true
+    }
+
+    const addExpense = async () => {
+        if (!validationForm()) return
+        setIsEdit(false)
+        const backup = [...allExpenses]
+        try {
             const date = new Date().getTime()
-            const newExpense = [valueTitle, valuePrice, isSpent, date, value]
+            const newExpense = [valueTitle.trim(), valuePrice, isSpent, date, value]
             await addExpenseRequest(newExpense)
-            setValuePrice("")
-            setValueTitle("")
-            setValue(0)
+            clearForm()
             successMessage("Транзакция добавлена")
-            await fetchCategories()
+            await fetchExpenses()
         } catch (err) {
             dispatch(saveAllExpenses({backup}))
             if (err instanceof Error) {
@@ -265,6 +323,13 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         } finally {
             setIsModalAddExpense(false)
         }
+    }
+
+    const clearForm = () => {
+        setValuePrice("")
+        setValueTitle("")
+        setValue(0)
+        setIsSpent(true)
     }
 
     const route = useRoute()
@@ -277,8 +342,8 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     const filterExpensesByDate = getFilterExpensesByDate([...memoExpenses], currentDate)
 
-    const filterExpensesByCategory = getFilterExpensesByCategory([...filterExpensesByDate] , valueCategories, items)
-        
+    const filterExpensesByCategory = getFilterExpensesByCategory([...filterExpensesByDate], valueCategories, items)
+
     const totalPrice: number = memoExpenses.reduce((acc, el) => {
         if (el.isSpent) {
             return acc - el.price
@@ -378,10 +443,11 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
             <FlatList
                 data={filterExpensesByCategory}
-                refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchCategories}/>}
+                refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchExpenses}/>}
                 renderItem={({item}) => <ExpenseItem
                     item={item}
                     deleteExpense={deleteExpense}
+                    editExpense={editExpense}
                 />}
             />
 
@@ -447,7 +513,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
                 <TouchableOpacity
                     style={styles.buttonSave}
-                    onPress={addExpense}
+                    onPress={() => isEdit ? saveEditExpense() : addExpense()}
                 >
                     <Text style={styles.buttonText}>Сохранить</Text>
                 </TouchableOpacity>
