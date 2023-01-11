@@ -1,5 +1,3 @@
-import Categories from "../screens/Categories/Categories";
-
 declare global {
     namespace ReactNavigation {
         interface RootParamList extends RootStackParamList {}
