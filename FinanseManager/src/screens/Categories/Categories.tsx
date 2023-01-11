@@ -44,7 +44,6 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
             setIsLoading(false)
         }
     }
-    console.log(allCategories)
     const addCategory = async () => {
         const trimValue = inputValue.trim()
         if (!trimValue) {
