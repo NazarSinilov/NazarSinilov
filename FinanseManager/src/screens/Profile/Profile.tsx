@@ -1,6 +1,6 @@
-import {Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View} from "react-native";
+import { Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View} from "react-native";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {colors} from "../../constans/colors";
 import auth, {FirebaseAuthTypes} from "@react-native-firebase/auth";
 import {useFocusEffect, useRoute} from "@react-navigation/native";
@@ -13,6 +13,7 @@ import Triangle from "../../../assets/Triangle.svg"
 import {DateTimePickerAndroid} from "@react-native-community/datetimepicker";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../redux/store";
+
 import {
     getNotificationTime,
     getSynchronizationTime,
@@ -21,6 +22,7 @@ import {
 } from "../../redux/userConfigSlice";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import {getTime} from "../../utils/getTime";
+import notifee, {RepeatFrequency, TimestampTrigger, TriggerType} from "@notifee/react-native";
 
 
 const Profile = ({navigation}: NativeStackNavigatorProps) => {
@@ -34,13 +36,12 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
 
     const onChange = (selectedDate: any) => {
         const currentDate = new Date(selectedDate.nativeEvent.timestamp)
-
         dispatch(getNotificationTime({currentDate}))
     };
 
     const showMode = () => {
         DateTimePickerAndroid.open({
-            value: new Date(notificationTime),
+            value: new Date(),
             onChange,
             mode: "time",
             is24Hour: true,
@@ -48,6 +49,19 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
     };
 
     const time = getTime(new Date(notificationTime))
+
+    useEffect(() => {
+        createNotification()
+    } ,[isNotification, notificationTime])
+
+    const createNotification = async () => {
+        if (isNotification) {
+            await notifee.cancelAllNotifications()
+            await onCreateTriggerNotification()
+        } else {
+            await notifee.cancelAllNotifications()
+        }
+    }
 
     const toggleSwitchNotification = () => {
         dispatch(toggleIsNotification(!isNotification))
@@ -67,6 +81,34 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
 
         return () => subscriber
     }, [user]))
+
+    async function onCreateTriggerNotification() {
+        let date = new Date(notificationTime);
+        const channelId = await notifee.createChannel({
+            id: 'default',
+            name: 'Default Channel',
+        });
+
+        if (date.getTime() < new Date().getTime()) {
+            date = new Date(date.setDate(date.getDate() + 1))
+        }
+        const trigger: TimestampTrigger = {
+            type: TriggerType.TIMESTAMP,
+            timestamp: date.getTime(),
+            repeatFrequency: RepeatFrequency.DAILY,
+        };
+
+        await notifee.createTriggerNotification(
+            {
+                title: 'Finance manager',
+                body: 'Не забудьте добавить расходы!',
+                android: {
+                    channelId: channelId,
+                },
+            },
+            trigger,
+        );
+    }
 
     const setSynchTime = () => {
         const synchronizationDate = new Date()
@@ -132,7 +174,6 @@ const Profile = ({navigation}: NativeStackNavigatorProps) => {
                         />
                     </View>
                 </View>
-
 
                 <TouchableOpacity onPress={() => navigation.navigate("Categories")} style={styles.categoryBlock}>
                     <Category width={20} height={20}/>
