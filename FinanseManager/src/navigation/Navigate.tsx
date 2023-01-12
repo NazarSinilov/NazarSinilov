@@ -8,6 +8,7 @@ import ProfileInfo from "../screens/ProfileInfo/ProfileInfo";
 import Profile from "../screens/Profile/Profile";
 import {RootStackParamList} from "./RootStackParamList";
 import Categories from "../screens/Categories/Categories";
+import Expenses from "../screens/Expenses/Expenses";
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
@@ -43,6 +44,11 @@ const Navigate = () => {
                 <Stack.Screen
                     name={"Categories"}
                     component={Categories}
+                    options={{headerShown: false}}
+                />
+                <Stack.Screen
+                    name={"Expenses"}
+                    component={Expenses}
                     options={{headerShown: false}}
                 />
             </Stack.Navigator>

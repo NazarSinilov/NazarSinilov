@@ -1,3 +1,5 @@
+import Expenses from "../screens/Expenses/Expenses";
+
 declare global {
     namespace ReactNavigation {
         interface RootParamList extends RootStackParamList {}
@@ -11,4 +13,5 @@ export type RootStackParamList = {
     Profile: undefined;
     Error: {errorMessage : string}
     Categories: undefined
+    Expenses: {id: number, categoryId: number}
 }
