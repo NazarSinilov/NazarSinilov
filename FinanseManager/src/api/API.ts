@@ -18,6 +18,7 @@ const request = async (method: string, url: string, data?: object) => {
 export const removeExpenseRequest = async (id: number) => {
     const {accessToken} = await GoogleSignin.getTokens()
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.getState().expenses.tableId}/values/${GOOGLE_SHEET_LIST_EXPENSE}!A${id}:E${id}:clear?access_token=${accessToken}`
+
     return await request("post", url)
 }
 
@@ -62,6 +63,7 @@ export const getExpensesRequest = async () => {
     const {accessToken} = await GoogleSignin.getTokens()
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.getState().expenses.tableId}/values/${GOOGLE_SHEET_LIST_EXPENSE}?access_token=${accessToken}&valueRenderOption=FORMATTED_VALUE`
     const response = await request("get", url)
+
     return response.values
 }
 
@@ -77,6 +79,7 @@ export const getCategories = async () => {
 export const removeCategory = async (id: number) => {
     const {accessToken} = await GoogleSignin.getTokens()
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${store.getState().expenses.tableId}/values/${GOOGLE_SHEET_LIST_CATEGORIES}!A${id}:clear?access_token=${accessToken}`
+
     return await request("post", url)
 }
 
@@ -90,17 +93,9 @@ export const addCategoryRequest = async (categoryName: string) => {
         ]
     }
     const result = await request("post", url, body)
+
     return result.data
 }
-
-/*export const putRequest = async () => {
-    const {accessToken} = await GoogleSignin.getTokens()
-    const result = await axios.put(`https://sheets.googleapis.com/v4/spreadsheets/1UMvnngDHwk6ePkHi7oxvMUdyftalN2JI89ZV8owS2GM/values/A1?access_token=${accessToken}&includeValuesInResponse=true&valueInputOption=RAW`,
-        {
-            "values": [["1111"]]
-        })
-    return result.data.updatedData.values
-}*/
 
 export const createGoogleTable = async () => {
     const url = "https://sheets.googleapis.com/v4/spreadsheets"
@@ -114,8 +109,8 @@ export const googleDriveInfo = async () => {
     const url = `https://www.googleapis.com/drive/v3/files?access_token=${accessToken}`
     const result = await request("get", url)
     const newArr = result.files
-    return newArr.filter((el: IGoogleDriveInfo) => GOOGLE_SHEET_NAME === el.name)
 
+    return newArr.filter((el: IGoogleDriveInfo) => GOOGLE_SHEET_NAME === el.name)
 }
 
 
