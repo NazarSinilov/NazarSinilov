@@ -9,12 +9,11 @@ import {
 import {IExpense, IGoogleDriveInfo} from "../interface/interface";
 import {store} from "../redux/store";
 
-export const request = async (method: string, url: string, data?: object) => {
+const request = async (method: string, url: string, data?: object) => {
     const result = await axios(`${url}`, {method, data})
 
     return result.data
 }
-
 
 export const removeExpenseRequest = async (id: number) => {
     const {accessToken} = await GoogleSignin.getTokens()
