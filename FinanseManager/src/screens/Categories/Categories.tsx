@@ -11,6 +11,7 @@ import {ICategories} from "../../interface/interface";
 import {removeCategoryAction, saveAllCategories} from "../../redux/expensesSlice";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import Loader from "../../components/Loader/Loader";
+import {styles} from "./stylesCategories";
 
 const Categories = ({navigation}: NativeStackNavigatorProps) => {
 
@@ -44,6 +45,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
             setIsLoading(false)
         }
     }
+
     const addCategory = async () => {
         const trimValue = inputValue.trim()
         if (!trimValue) {
@@ -79,7 +81,6 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
         setIsModalAddCategories(prevState => !prevState)
     }
 
-
     const route = useRoute()
 
     if (isLoading) {
@@ -87,12 +88,10 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
             <Loader />
         )
     }
+
     return (
         <View style={styles.container}>
-
             <Text style={styles.headerText}>Мои категории</Text>
-
-
             {allCategories.length !== 0 ? <FlatList
                 data={allCategories}
                 style={{width: "100%"}}
@@ -122,8 +121,6 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
                 </TouchableOpacity>
             </View>}
 
-
-
             <BottomNavigation
                 route={route.name}
                 isButton={true}
@@ -134,66 +131,5 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
         </View>
     );
 };
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.BACKGROUND,
-        alignItems: "center"
-    },
-    headerText: {
-        color: colors.WHITE,
-        fontSize: 24,
-        marginVertical: 40
-    },
-    itemWrapper: {
-        paddingHorizontal: 15,
-        width: "100%",
-        marginBottom: 20
-    },
-    item: {
-        backgroundColor: colors.BACKGROUND_DATA,
-        borderRadius: 25,
-        flexDirection: "row",
-        padding: 15,
-        width: "100%"
 
-    },
-    itemText: {
-        color: colors.WHITE,
-        fontSize: 20,
-        marginRight: 5
-    },
-    modalContainer: {
-        backgroundColor: colors.LIGHT_GRAY,
-        paddingVertical: 20,
-        borderRadius: 25,
-        position: "absolute",
-        bottom: 120,
-        left: 15,
-        right: 15
-    },
-    textInput: {
-        backgroundColor: colors.BACKGROUND,
-        padding: 10,
-        marginHorizontal: 22,
-        marginVertical: 10,
-        borderRadius: 12
-    },
-    buttonSave: {
-        backgroundColor: colors.LIGHT_GREEN,
-        marginVertical: 10,
-        borderRadius: 12,
-        marginHorizontal: 22,
-        paddingVertical: 14,
-        alignItems: "center"
-    },
-    buttonText: {
-        color: colors.BLACK,
-        fontSize: 16
-    },
-    shadowText: {
-        fontSize: 18
-    }
-
-})
 export default Categories;

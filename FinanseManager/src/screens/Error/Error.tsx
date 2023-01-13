@@ -1,9 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from "react-native";
-import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
-import {colors} from "../../constans/colors";
+import {Text, View} from "react-native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../../navigation/RootStackParamList";
+import {styles} from "./stylesError";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Error">
 
@@ -19,17 +18,4 @@ const Error = ({route} : ErrorProps) => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.BACKGROUND,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    textError: {
-        fontWeight: "700",
-        color: "white",
-        fontSize: 34
-    }
-})
 export default Error;

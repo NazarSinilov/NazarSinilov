@@ -1,13 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {ICategories, IExpense, IExpenses} from "../interface/interface";
 
-
 const expenses: IExpenses = {
     allExpenses: [],
     categories: [],
-    tableId: ""
+    tableId: "",
+    currentDate: new Date(),
+    isShowCalendar: false
 }
-
 
 const expensesSlice = createSlice({
     name: "expenses",
@@ -34,6 +34,12 @@ const expensesSlice = createSlice({
         editExpenseAction(state, action) {
             const replaceIndex = state.allExpenses.findIndex((el: IExpense) => el.id === action.payload.newExpense.id )
             state.allExpenses.splice(replaceIndex, 1, action.payload.newExpense)
+        },
+        saveCurrentDate(state, action) {
+            state.currentDate = action.payload.date
+        },
+        toggleIsShowCalendar(state) {
+            state.isShowCalendar = !state.isShowCalendar
         }
     }
 })
@@ -44,7 +50,9 @@ export const {
     saveAllCategories,
     removeCategoryAction,
     removeExpenseAction,
-    editExpenseAction
+    editExpenseAction,
+    saveCurrentDate,
+    toggleIsShowCalendar
 } = expensesSlice.actions;
 
 export default expensesSlice.reducer

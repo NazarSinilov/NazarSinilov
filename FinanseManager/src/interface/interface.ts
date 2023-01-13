@@ -19,15 +19,10 @@ export interface ICategories {
     id: number
 }
 
-
 export interface IExpenses {
     allExpenses: IExpense[]
     categories: ICategories[]
     tableId: string
-}
-
-
-export interface ICategoryItem {
-    label : string
-    value : number
+    currentDate: Date
+    isShowCalendar: boolean
 }

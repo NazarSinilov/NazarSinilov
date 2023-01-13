@@ -1,6 +1,6 @@
-import {ICategoryItem, IExpense} from "../interface/interface";
+import { IExpense} from "../interface/interface";
 
-export const getFilterExpensesByCategory = (allExpense: IExpense[], category: number, categories: ICategoryItem[] ) => {
+export const getFilterExpensesByCategory = (allExpense: IExpense[], category: number ) => {
     return allExpense.filter((el) => {
         if (category === -1) {
             return el

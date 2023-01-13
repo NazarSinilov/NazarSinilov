@@ -1,12 +1,10 @@
 import {
     Dimensions,
     FlatList,
-    StyleSheet,
     Text,
     TouchableOpacity,
     View,
 } from "react-native";
-import {colors} from "../../constans/colors";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import React, {useMemo, useState} from "react";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
@@ -21,7 +19,6 @@ import {getDate} from "../../utils/getDate";
 import {styles} from "./stylesExpenses";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Expenses">
-
 
 const Expenses = ({route}: ErrorProps) => {
     const {id, categoryId} = route.params

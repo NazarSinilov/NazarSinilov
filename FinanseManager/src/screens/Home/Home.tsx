@@ -1,5 +1,4 @@
 import {
-    Button,
     FlatList,
     RefreshControl,
     StyleSheet,
@@ -13,14 +12,8 @@ import {colors} from "../../constans/colors";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import {useRoute} from "@react-navigation/native";
 import React, {useEffect, useMemo, useState} from "react";
-import ArrowLeft from "../../../assets/ArrowLeft.svg"
-import ArrowRight from "../../../assets/ArrowRight.svg"
 import ArrowUp from "../../../assets/ArrowUp.svg"
 import ArrowDown from "../../../assets/ArrowDown.svg"
-import GreenEllipse from "../../../assets/greenEllipse.svg"
-import RedEllipse from "../../../assets/redEllipse.svg"
-import {ALL_MONTHS} from "../../constans/allMonths"
-import Calendar from "../../components/Calendar/Calendar";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import {IExpense} from "../../interface/interface";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
@@ -33,21 +26,26 @@ import {
     removeExpenseRequest,
 } from "../../api/API";
 import {useDispatch, useSelector} from "react-redux";
-import {editExpenseAction, removeExpenseAction, saveAllExpenses, saveTableId} from "../../redux/expensesSlice";
+import {
+    editExpenseAction,
+    removeExpenseAction,
+    saveAllExpenses,
+    saveTableId
+} from "../../redux/expensesSlice";
 import {RootState} from "../../redux/store";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {sortExpensesByDate} from "../../utils/sortExpensesByDate";
 import {getFilterExpensesByDate} from "../../utils/getFilterExpensesByDate";
 import {getFilterExpensesByCategory} from "../../utils/getFilterExpensesByCategory";
 import {getSynchronizationTime} from "../../redux/userConfigSlice";
-import { Dimensions } from "react-native";
-import {LineChart} from "react-native-chart-kit";
+import HeaderDateContainer from "./HeaderDateContainer/HeaderDateContainer";
+import MonthsList from "./MonthsList/MonthsList";
+import BalanceContainer from "./BalanceContainer/BalanceContainer";
+import Graph from "./Graph/Graph";
 let timeout: number = 0
 
 const Home = ({navigation}: NativeStackNavigatorProps) => {
 
-    const [currentDate, setCurrentDate] = useState(new Date())
-    const [isShowCalendar, setIsShowCalendar] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [isModalAddExpense, setIsModalAddExpense] = useState(false)
     const [isSpent, setIsSpent] = useState(true)
@@ -56,7 +54,6 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     const [completeMessage, setCompleteMessage] = useState("")
     const [isEdit, setIsEdit] = useState(false)
     const [modifiableItem, setModifiableItem] = useState<IExpense>()
-    const [predictBalance, setPredictBalance] = useState(0)
     const [openGraph, setOpenGraph] = useState(false)
 
     const [open, setOpen] = useState(false);
@@ -72,7 +69,9 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
     const categories = useSelector((state: RootState) => state.expenses.categories)
-    const isRest = useSelector((state: RootState) => state.config.config.isRest)
+    const currentDateString = useSelector((state: RootState) => state.expenses.currentDate)
+    const currentDate = new Date(currentDateString)
+    const isShowCalendar = useSelector((state: RootState) => state.expenses.isShowCalendar)
 
     const dispatch = useDispatch()
 
@@ -89,9 +88,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         setCategories()
     }, [categories])
 
-    useEffect(() => {
-        balanceEndMonth()
-    }, [allExpenses])
+
 
     const setCategories = () => {
         const newCategories = [...defaultCategory, ...categoriesDropDown]
@@ -174,31 +171,13 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         }
     }
 
-    const toggleCalendar = () => {
-        setIsShowCalendar(prevState => !prevState)
+
+
+    const setOpenGraphFunc = () => {
+        setOpenGraph(prevState => !prevState)
     }
 
-    const setDate = (index: number) => {
-        const date = new Date(currentDate.setMonth(index))
-        setCurrentDate(date)
-    }
 
-    const incrementYear = () => {
-        const date = new Date(currentDate.setFullYear(currentDate.getFullYear() + 1))
-        setCurrentDate(date)
-    }
-    const decrementYear = () => {
-        const date = new Date(currentDate.setFullYear(currentDate.getFullYear() - 1))
-        setCurrentDate(date)
-    }
-    const incrementMonth = () => {
-        const date = new Date(currentDate.setMonth(currentDate.getMonth() + 1))
-        setCurrentDate(date)
-    }
-    const decrementMonth = () => {
-        const date = new Date(currentDate.setMonth(currentDate.getMonth() - 1))
-        setCurrentDate(date)
-    }
 
     const buttonHandler = () => {
         setIsModalAddExpense(prevState => !prevState)
@@ -313,7 +292,6 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     }
 
     const route = useRoute()
-    const currentMonth = currentDate.getMonth()
 
     const memoExpenses: IExpense[] = useMemo(() =>
             sortExpensesByDate([...allExpenses])
@@ -322,74 +300,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
 
     const filterExpensesByDate = getFilterExpensesByDate([...memoExpenses], currentDate)
 
-    const filterExpensesByCategory = getFilterExpensesByCategory([...filterExpensesByDate], valueCategories, items)
-
-    const totalPrice: number = memoExpenses.reduce((acc, el) => {
-        if (el.isSpent) {
-            return acc - el.price
-        } else {
-            return acc + el.price
-        }
-    }, 0)
-
-    const balanceEndMonth = () => {
-        const countCurrentDays = new Date().getDate()
-        const dayInMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1 , 0).getDate()
-        const totalIncome: number = memoExpenses.reduce((acc, el) => !el.isSpent? acc + el.price: acc, 0)
-        const totalSpent: number = memoExpenses.reduce((acc, el) => el.isSpent ? acc + el.price : acc, 0)
-        const spentInDay = totalSpent / countCurrentDays
-        const predictSpent = spentInDay * dayInMonth
-        const predictBalanceEndMonth = Math.round(totalIncome - predictSpent)
-        setPredictBalance(predictBalanceEndMonth)
-    }
-
-    const screenWidth = Dimensions.get("window").width;
-
-    const getArrSpent = () => {
-        const arrSpent = Array(new Date().getDate()).fill(0)
-
-        for (let i = 0; i < filterExpensesByDate.length; i++) {
-            if (filterExpensesByDate[i].isSpent) {
-                const spentDay = new Date(filterExpensesByDate[i].date).getDate() - 1
-                arrSpent[spentDay] = arrSpent[spentDay] + filterExpensesByDate[i].price
-            }
-        }
-        return arrSpent
-    }
-    const arrDays = getArrSpent()
-
-    const getLabelsData = () => {
-        const days = new Date().getDate()
-        const arrDays = []
-        for (let i = 1; i < days + 1; i++) {
-            arrDays.push(i.toString())
-        }
-        return arrDays
-    }
-
-    const labelsData = getLabelsData()
-
-    const data = {
-        labels: labelsData,
-        datasets: [
-            {
-                data: arrDays,
-                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-                strokeWidth: 2 // optional
-            }
-        ],
-        legend: ["Расходы за текущий месяц"] // optional
-    };
-    const chartConfig = {
-        backgroundGradientFrom: "#1E2923",
-        backgroundGradientFromOpacity: 0,
-        backgroundGradientTo: "#08130D",
-        backgroundGradientToOpacity: 0.5,
-        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-        strokeWidth: 2, // optional, default 3
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false // optional
-    };
+    const filterExpensesByCategory = getFilterExpensesByCategory([...filterExpensesByDate], valueCategories)
 
     if (isLoading) {
         return (
@@ -397,82 +308,18 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
         )
     }
 
-
     return (
         <View style={styles.container}>
-            <View style={styles.headerDate}>
-                <TouchableOpacity
-                    style={styles.svgArrowSize}
-                    onPress={() => isShowCalendar ? decrementYear() : decrementMonth()}
-                >
-                    <ArrowLeft/>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={toggleCalendar}>
-                    {isShowCalendar
-                        ? <Text style={styles.textHeaderDate}>{currentDate.getFullYear()}</Text>
-                        : <Text style={styles.textHeaderDate}>{ALL_MONTHS[currentDate.getMonth()]}</Text>
-                    }
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.svgArrowSize}
-                    onPress={() => isShowCalendar ? incrementYear() : incrementMonth()}
-                >
-                    <ArrowRight/>
-                </TouchableOpacity>
-            </View>
+            <HeaderDateContainer />
+            {isShowCalendar && <MonthsList />}
 
-            {isShowCalendar &&<View style={styles.monthsListContainer}>
-                 <FlatList
-                    data={ALL_MONTHS}
-                    numColumns={3}
-                    style={styles.monthsList}
-                    renderItem={({item, index}) =>
-                        <Calendar
-                            item={item}
-                            index={index}
-                            setDate={setDate}
-                            currentMonth={currentMonth}
-                        />
-                    }
-                />
-            </View>}
-
-            {!isShowCalendar
-                && <View style={styles.balanceContainer}>
-                    <View style={[styles.balanceBlock, styles.currentBalance]}>
-                        {totalPrice > 0
-                            ? <GreenEllipse/>
-                            : <RedEllipse/>
-                        }
-                        <Text style={styles.currentBalanceText}>Текущий баланс</Text>
-                        <Text style={styles.balancePrice}>
-                            {(+totalPrice.toFixed(2)).toLocaleString()} P
-                        </Text>
-                    </View>
-
-
-                    {isRest && <TouchableOpacity
-                        onPress={() => setOpenGraph(prevState => !prevState)}
-                        style={[styles.balanceBlock, styles.predictionBalance]}
-                    >
-                        <Text style={styles.predictionBalanceText}>
-                            Прогноз баланса на конец месяца
-                        </Text>
-                        <Text style={styles.balancePrice}>
-                            {predictBalance} P
-                        </Text>
-                        <Text style={styles.predictionOpenGraph}>
-                            Кликните чтобы {openGraph ? "закрыть" : "открыть"} график
-                        </Text>
-                    </TouchableOpacity>}
-                </View>
-            }
-            {openGraph && <LineChart
-                data={data}
-                width={screenWidth}
-                height={220}
-                chartConfig={chartConfig}
+            {!isShowCalendar && <BalanceContainer
+                memoExpenses={memoExpenses}
+                setOpenGraphFunc={setOpenGraphFunc}
+                openGraph={openGraph}
             />}
+
+            {openGraph && <Graph filterExpensesByDate={filterExpensesByDate}/>}
 
             <View style={{marginHorizontal: 15, marginVertical: 10}}>
                 <DropDownPicker
@@ -597,66 +444,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.BACKGROUND,
         paddingBottom: 100
     },
-    headerDate: {
-        padding: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
-    textHeaderDate: {
-        fontSize: 16,
-        color: "white"
-    },
-    monthsListContainer: {
-        backgroundColor: colors.LIGHT_GRAY,
-        borderBottomRightRadius: 24,
-        borderBottomLeftRadius: 24,
-        marginBottom: 10
-    },
-    monthsList: {
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-    },
-    svgArrowSize: {
-        padding: 10
-    },
-    balanceContainer: {
-        marginHorizontal: 15,
-        marginVertical: 10
-    },
-    balanceBlock: {
-        backgroundColor: "#333333",
-        borderRadius: 50,
-        paddingVertical: 8,
-        paddingHorizontal: 20
-    },
-    currentBalance: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 12
-    },
-    currentBalanceText: {
-        color: "#FCFCFC",
-        fontSize: 16,
-        flex: 1,
-        marginLeft: 5
-    },
-    balancePrice: {
-        fontWeight: "700",
-        fontSize: 20,
-        color: "white"
-    },
-    predictionBalance: {
-        alignItems: "center",
-    },
-    predictionBalanceText: {
-        fontSize: 14,
-        color: "#FCFCFC"
-    },
-    predictionOpenGraph: {
-        fontSize: 12,
-        color: "#ababab"
-    },
+
     modalContainer: {
         backgroundColor: colors.LIGHT_GRAY,
         paddingVertical: 10,

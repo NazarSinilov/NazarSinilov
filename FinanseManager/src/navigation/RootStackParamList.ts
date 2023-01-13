@@ -1,5 +1,3 @@
-import Expenses from "../screens/Expenses/Expenses";
-
 declare global {
     namespace ReactNavigation {
         interface RootParamList extends RootStackParamList {}

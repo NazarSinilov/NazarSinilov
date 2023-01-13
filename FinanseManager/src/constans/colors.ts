@@ -3,6 +3,7 @@ export const colors = {
     BACKGROUND_DATA : "#30444E",
     LIGHT_GREEN: "#3DD598",
     LIGHT_GRAY: "#475E69",
+    GRAY: "#5c6b6f",
     WHITE: "#FFFFFF",
     RED: "#FF565E",
     BLACK: "#000000"

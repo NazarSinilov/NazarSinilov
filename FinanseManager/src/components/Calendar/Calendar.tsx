@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from "react-native";
-import {colors} from "../../constans/colors";
+import React from 'react';
+import {Text, TouchableOpacity} from "react-native";
+import {styles} from "./stylesCalendar";
 
 interface CalendarProps {
     item: string
@@ -10,7 +10,6 @@ interface CalendarProps {
 }
 
 const Calendar = ( props: CalendarProps) => {
-
     const {item, index, setDate, currentMonth} = props
 
     return (
@@ -24,20 +23,5 @@ const Calendar = ( props: CalendarProps) => {
         </TouchableOpacity>
     );
 };
-const styles = StyleSheet.create({
-    itemBlock: {
-        width: 100,
-        height: 45,
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-    },
-    activeItem: {
-        backgroundColor: colors.BACKGROUND_DATA
-    },
-    itemText : {
-        fontSize: 16,
-        color: "white"
-    }
-})
+
 export default Calendar;
