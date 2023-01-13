@@ -25,4 +25,5 @@ export interface IExpenses {
     tableId: string
     currentDate: Date
     isShowCalendar: boolean
+    currentCategories: number
 }

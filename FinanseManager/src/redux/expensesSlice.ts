@@ -6,7 +6,8 @@ const expenses: IExpenses = {
     categories: [],
     tableId: "",
     currentDate: new Date(),
-    isShowCalendar: false
+    isShowCalendar: false,
+    currentCategories: 0
 }
 
 const expensesSlice = createSlice({
@@ -28,6 +29,9 @@ const expensesSlice = createSlice({
         removeCategoryAction(state, action) {
             state.categories = state.categories.filter((el: ICategories) => el.id !== action.payload.id && el.name)
         },
+        addExpenseAction(state, action) {
+            state.allExpenses.push(action.payload.expense)
+        },
         removeExpenseAction(state, action) {
             state.allExpenses = state.allExpenses.filter((el: IExpense) => el.id !== action.payload.id && el.title)
         },
@@ -40,6 +44,9 @@ const expensesSlice = createSlice({
         },
         toggleIsShowCalendar(state) {
             state.isShowCalendar = !state.isShowCalendar
+        },
+        saveValueCategories(state, action) {
+            state.currentCategories = action.payload.valueCategories
         }
     }
 })
@@ -49,10 +56,12 @@ export const {
     saveAllExpenses,
     saveAllCategories,
     removeCategoryAction,
+    addExpenseAction,
     removeExpenseAction,
     editExpenseAction,
     saveCurrentDate,
-    toggleIsShowCalendar
+    toggleIsShowCalendar,
+    saveValueCategories
 } = expensesSlice.actions;
 
 export default expensesSlice.reducer
