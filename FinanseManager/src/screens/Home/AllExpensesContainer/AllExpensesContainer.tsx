@@ -9,9 +9,9 @@ import {
 } from "../../../api/API";
 import {removeExpenseAction, saveAllExpenses, saveTableId} from "../../../redux/expensesSlice";
 import {getSynchronizationTime} from "../../../redux/userConfigSlice";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {NavigationProp, useNavigation} from "@react-navigation/native";
+import {NavigationProp, useFocusEffect, useNavigation} from "@react-navigation/native";
 import {RootStackParamList} from "../../../navigation/RootStackParamList";
 import {RootState} from "../../../redux/store";
 
@@ -27,9 +27,11 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
     const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        tableValidation()
-    }, [])
+    useFocusEffect(
+        useCallback(() => {
+            tableValidation()
+        }, []),
+    );
 
     const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
     const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
