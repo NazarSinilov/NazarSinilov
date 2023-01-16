@@ -18,14 +18,17 @@ const NotificationContainer = () => {
         const currentDate = new Date(selectedDate.nativeEvent.timestamp)
         dispatch(getNotificationTime({currentDate}))
     };
+
+    const date = new Date(notificationTime)
     const showMode = () => {
         DateTimePickerAndroid.open({
-            value: new Date(),
+            value: date,
             onChange,
             mode: "time",
             is24Hour: true,
         });
     };
+
     const time = getTime(new Date(notificationTime))
     return (
         <Notification
