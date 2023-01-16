@@ -81,6 +81,7 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
         dispatch(saveTableId({tableId}))
         if (!tableId) {
             await createTable()
+            await tableValidation()
         } else {
             await fetchExpenses()
         }
@@ -89,7 +90,8 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
     const checkGoogleDrive = async () => {
         try {
             const result = await googleDriveInfo()
-            return result[0].id
+            if (result) return result[0].id
+            else return null
         } catch (err) {
             if (err instanceof Error) {
                 navigation.navigate("Error", {errorMessage: err.message})
@@ -106,8 +108,6 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
             }
         }
     }
-
-
 
     return (
         <AllExpenses

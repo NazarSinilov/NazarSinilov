@@ -98,7 +98,8 @@ export const addCategoryRequest = async (categoryName: string) => {
 }
 
 export const createGoogleTable = async () => {
-    const url = "https://sheets.googleapis.com/v4/spreadsheets"
+    const {accessToken} = await GoogleSignin.getTokens()
+    const url = `https://sheets.googleapis.com/v4/spreadsheets?access_token=${accessToken}`
     const result = await request("post", url, GOOGLE_SHEET)
 
     return result.data
