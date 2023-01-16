@@ -10,18 +10,23 @@ export const createNotification = async (isNotification: boolean, notificationTi
 }
 
 async function onCreateTriggerNotification(notificationTime: Date) {
-    let date = new Date(notificationTime);
+    const date = new Date(notificationTime);
+    const newDate = new Date()
+    newDate.setHours(date.getHours())
+    newDate.setMinutes(date.getMinutes())
+
     const channelId = await notifee.createChannel({
         id: 'default',
         name: 'Default Channel',
     });
 
-    if (date.getTime() < new Date().getTime()) {
-        date = new Date(date.setDate(date.getDate() + 1))
+    if (newDate.getTime() < new Date().getTime()) {
+        newDate.setDate(newDate.getDate() + 1)
     }
+
     const trigger: TimestampTrigger = {
         type: TriggerType.TIMESTAMP,
-        timestamp: date.getTime(),
+        timestamp: newDate.getTime(),
         repeatFrequency: RepeatFrequency.DAILY,
     };
 
