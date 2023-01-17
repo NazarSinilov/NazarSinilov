@@ -9,7 +9,7 @@ import {
 } from "../../../api/API";
 import {removeExpenseAction, saveAllExpenses, saveTableId} from "../../../redux/expensesSlice";
 import {getSynchronizationTime} from "../../../redux/userConfigSlice";
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {NavigationProp, useFocusEffect, useNavigation} from "@react-navigation/native";
 import {RootStackParamList} from "../../../navigation/RootStackParamList";

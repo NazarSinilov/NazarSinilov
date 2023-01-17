@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, RefreshControl, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {colors} from "../../constans/colors";
+import {FlatList, RefreshControl, Text, TextInput, TouchableOpacity, View} from "react-native";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import {useRoute} from "@react-navigation/native";
 import Trash from "../../../assets/Trash.svg"
