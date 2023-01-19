@@ -1,6 +1,6 @@
 import {FlatList, RefreshControl} from "react-native";
 import ExpenseItem from "../../ExpenseItem/ExpenseItem";
-import React from "react";
+import React, {useCallback} from "react";
 import {IExpense} from "../../../../interface/interface";
 import Loader from "../../../../components/Loader/Loader";
 
@@ -16,6 +16,14 @@ const AllExpenses = (props: AllExpensesProps) => {
 
   const {filterExpensesByCategory, isLoading, fetchExpenses, deleteExpense, editExpense} = props
 
+  const renderItem = useCallback((item: IExpense) =>
+      <ExpenseItem
+        item={item}
+        deleteExpense={deleteExpense}
+        editExpense={editExpense}
+      />
+    ,[filterExpensesByCategory])
+
   if (isLoading) {
     return (
       <Loader/>
@@ -26,11 +34,7 @@ const AllExpenses = (props: AllExpensesProps) => {
     <FlatList
       data={filterExpensesByCategory}
       refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchExpenses}/>}
-      renderItem={({item}) => <ExpenseItem
-        item={item}
-        deleteExpense={deleteExpense}
-        editExpense={editExpense}
-      />}
+      renderItem={({item}) => renderItem(item)}
     />
   );
 };

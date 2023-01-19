@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../../navigation/RootStackParamList";
 import {useSelector} from "react-redux";
@@ -17,10 +17,12 @@ import ArrowTop from "../../../assets/ArrowUp.svg";
 import ArrowRight from "../../../assets/ArrowRight.svg";
 import {getDate} from "../../utils/getDate";
 import {styles} from "./stylesExpenses";
+import {HEIGHT} from "../../constants/constants";
+import {IExpense} from "../../interface/interface";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Expenses">
 
-const Expenses = ({route}: ErrorProps) => {
+const Index = ({route}: ErrorProps) => {
   const {id, categoryId} = route.params
   const [isOpenExpense, setIsOpenExpense] = useState(false)
   const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
@@ -39,7 +41,37 @@ const Expenses = ({route}: ErrorProps) => {
     const currentCategory = categories.filter((el) => el.id === filterExpensesByCategory[0].categoryId)
     return currentCategory[0].name
   }
-  const HEIGHT = (Dimensions.get("window").height - 200) / 3
+
+  const renderItem = useCallback((item: IExpense) =>
+    <View style={styles.itemWrapper}>
+      <View style={styles.container}>
+        <View style={[styles.arrowBlock, item.isSpent
+          ? styles.arrowBlockRed
+          : styles.arrowBlockGreen]}
+        >
+          {item.isSpent
+            ? <ArrowBottom/>
+            : <ArrowTop/>
+          }
+        </View>
+
+        <TouchableOpacity
+          onPress={() => item.title.length > 14 && setIsOpenExpense(prevState => !prevState)}
+          style={styles.textContainer}
+        >
+          <View style={styles.textBlock}>
+            <Text numberOfLines={isOpenExpense ? undefined : 1} style={styles.title}>{item.title}</Text>
+            <Text style={item.isSpent ? styles.red : styles.green}>{item.price} ₽</Text>
+          </View>
+
+          {item.title.length > 14 && <ArrowRight style={isOpenExpense && {transform: [{rotate: "90deg"}]}}/>}
+        </TouchableOpacity>
+
+        <View style={styles.rightSide}>
+          <Text style={styles.date}>{getDate(item.date)}</Text>
+        </View>
+      </View>
+    </View>, [filterExpensesByCategory])
 
   return (
     <View style={styles.wrapper}>
@@ -64,45 +96,7 @@ const Expenses = ({route}: ErrorProps) => {
           waitForInteraction: false,
         }}
         initialScrollIndex={currentIndex}
-        renderItem={({item}) =>
-          <View style={styles.itemWrapper}>
-            <View style={styles.container}>
-              <View style={[styles.arrowBlock, item.isSpent
-                ? styles.arrowBlockRed
-                : styles.arrowBlockGreen]}
-              >
-                {item.isSpent
-                  ? <ArrowBottom/>
-                  : <ArrowTop/>
-                }
-              </View>
-
-              <TouchableOpacity
-                onPress={() => item.title.length > 14 && setIsOpenExpense(prevState => !prevState)}
-                style={styles.textContainer}
-              >
-                <View style={styles.textBlock}>
-                  {isOpenExpense
-                    ? <Text style={styles.title}>{item.title}</Text>
-                    : <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
-                  }
-                  <Text style={item.isSpent ? styles.red : styles.green}>{item.price} ₽</Text>
-                </View>
-
-                {item.title.length > 14
-                  && (isOpenExpense
-                    ? <ArrowRight style={{transform: [{rotate: "90deg"}]}}/>
-                    : <ArrowRight/>)
-                }
-              </TouchableOpacity>
-
-              <View style={styles.rightSide}>
-                <Text style={styles.date}>{getDate(item.date)}</Text>
-              </View>
-            </View>
-          </View>
-
-        }
+        renderItem={({item}) => renderItem(item)}
       />
 
       <BottomNavigation
@@ -113,4 +107,4 @@ const Expenses = ({route}: ErrorProps) => {
   );
 };
 
-export default Expenses;
+export default Index;

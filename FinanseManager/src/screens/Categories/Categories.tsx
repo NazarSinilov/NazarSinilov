@@ -115,7 +115,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
               onChangeText={(text) => setInputValue(text)}
               placeholder="Название категории"
           />
-          <TouchableOpacity onPress={() => addCategory()} style={styles.buttonSave}>
+          <TouchableOpacity onPress={addCategory} style={styles.buttonSave}>
               <Text style={styles.buttonText}>Сохранить</Text>
           </TouchableOpacity>
       </View>}
