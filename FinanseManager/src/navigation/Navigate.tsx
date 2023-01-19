@@ -12,47 +12,40 @@ import Expenses from "../screens/Expenses/Expenses";
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
 const Navigate = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
-                    name={"GoogleSignIn"}
-                    component={GoogleSignIn}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"Home"}
-                    component={Home}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"ProfileInfo"}
-                    component={ProfileInfo}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"Profile"}
-                    component={Profile}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"Error"}
-                    component={Error}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"Categories"}
-                    component={Categories}
-                    options={{headerShown: false}}
-                />
-                <Stack.Screen
-                    name={"Expenses"}
-                    component={Expenses}
-                    options={{headerShown: false}}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen
+          name={"GoogleSignIn"}
+          component={GoogleSignIn}
+        />
+        <Stack.Screen
+          name={"Home"}
+          component={Home}
+        />
+        <Stack.Screen
+          name={"ProfileInfo"}
+          component={ProfileInfo}
+        />
+        <Stack.Screen
+          name={"Profile"}
+          component={Profile}
+        />
+        <Stack.Screen
+          name={"Error"}
+          component={Error}
+        />
+        <Stack.Screen
+          name={"Categories"}
+          component={Categories}
+        />
+        <Stack.Screen
+          name={"Expenses"}
+          component={Expenses}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 };
 
 export default Navigate;

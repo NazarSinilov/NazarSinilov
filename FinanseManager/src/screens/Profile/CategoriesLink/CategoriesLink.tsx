@@ -7,15 +7,15 @@ import {NavigationProp, useNavigation} from "@react-navigation/native";
 import {RootStackParamList} from "../../../navigation/RootStackParamList";
 
 const CategoriesLink = () => {
-    const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
 
-    return (
-        <TouchableOpacity onPress={() => navigation.navigate("Categories")} style={styles.categoryBlock}>
-            <Category width={20} height={20}/>
-            <Text style={styles.categoryText}>Мои категории</Text>
-            <ArrowRight/>
-        </TouchableOpacity>
-    );
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("Categories")} style={styles.categoryBlock}>
+      <Category width={20} height={20}/>
+      <Text style={styles.categoryText}>Мои категории</Text>
+      <ArrowRight/>
+    </TouchableOpacity>
+  );
 };
 
 export default CategoriesLink;

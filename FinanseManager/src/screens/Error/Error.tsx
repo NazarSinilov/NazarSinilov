@@ -6,16 +6,16 @@ import {styles} from "./stylesError";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Error">
 
-const Error = ({route} : ErrorProps) => {
-    const {errorMessage} = route.params
+const Error = ({route}: ErrorProps) => {
+  const {errorMessage} = route.params
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.textError}>
-                {errorMessage}
-            </Text>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Text style={styles.textError}>
+        {errorMessage}
+      </Text>
+    </View>
+  );
 };
 
 export default Error;

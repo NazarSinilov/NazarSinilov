@@ -10,35 +10,35 @@ import {styles} from "./stylesProfileInfo";
 
 const ProfileInfo = () => {
 
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState<FirebaseAuthTypes.User>()
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User>()
 
-    function onAuthStateChanged(user: any) {
-        if (initializing) setInitializing(false);
-        setUser(user)
-    }
+  function onAuthStateChanged(user: any) {
+    if (initializing) setInitializing(false);
+    setUser(user)
+  }
 
-    useFocusEffect(useCallback(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return () => subscriber
-    }, [user]))
+  useFocusEffect(useCallback(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return () => subscriber
+  }, [user]))
 
-    const route = useRoute()
+  const route = useRoute()
 
-    return (
-        <View style={styles.container}>
-            {user && <>
-                <Avatar user={user}/>
-                <UserInfo user={user}/>
-                <Logout/>
-            </>
-            }
-            <BottomNavigation
-                route={route.name}
-                isButton={false}
-            />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      {user && <>
+          <Avatar user={user}/>
+          <UserInfo user={user}/>
+          <Logout/>
+      </>
+      }
+      <BottomNavigation
+        route={route.name}
+        isButton={false}
+      />
+    </View>
+  );
 };
 
 export default ProfileInfo;

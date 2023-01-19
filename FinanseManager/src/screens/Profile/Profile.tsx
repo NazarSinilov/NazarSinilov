@@ -1,4 +1,4 @@
-import { ScrollView} from "react-native";
+import {ScrollView} from "react-native";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import React, {useCallback, useEffect, useState} from "react";
 import auth, {FirebaseAuthTypes} from "@react-native-firebase/auth";
@@ -14,45 +14,45 @@ import {styles} from "./stylesProfile";
 import {createNotification} from "../../utils/createNotification";
 
 const Profile = () => {
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState<FirebaseAuthTypes.User>()
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User>()
 
-    const config = useSelector((state: RootState) => state.config.config)
-    const {isNotification,  notificationTime} = config
+  const config = useSelector((state: RootState) => state.config.config)
+  const {isNotification, notificationTime} = config
 
-    useEffect(() => {
-        createNotification(isNotification, notificationTime)
-    } ,[isNotification, notificationTime])
+  useEffect(() => {
+    createNotification(isNotification, notificationTime)
+  }, [isNotification, notificationTime])
 
-    useFocusEffect(useCallback(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  useFocusEffect(useCallback(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
 
-        return () => subscriber
-    }, [user]))
+    return () => subscriber
+  }, [user]))
 
 
+  function onAuthStateChanged(user: any) {
+    if (initializing) setInitializing(false);
+    setUser(user)
+  }
 
-    function onAuthStateChanged(user: any) {
-        if (initializing) setInitializing(false);
-        setUser(user)
-    }
-    const route = useRoute()
+  const route = useRoute()
 
-    return (
-        <>
-            <ScrollView style={styles.container}>
-                {user && <UserData user={user}/>}
-                <NotificationContainer />
-                <RestContainer />
-                <CategoriesLink />
-                <SynchronizationContainer />
-            </ScrollView>
-            <BottomNavigation
-                route={route.name}
-                isButton={false}
-            />
-        </>
-    );
+  return (
+    <>
+      <ScrollView style={styles.container}>
+        {user && <UserData user={user}/>}
+        <NotificationContainer/>
+        <RestContainer/>
+        <CategoriesLink/>
+        <SynchronizationContainer/>
+      </ScrollView>
+      <BottomNavigation
+        route={route.name}
+        isButton={false}
+      />
+    </>
+  );
 };
 
 export default Profile;

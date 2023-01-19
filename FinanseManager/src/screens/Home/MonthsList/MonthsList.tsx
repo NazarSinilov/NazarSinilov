@@ -1,5 +1,5 @@
 import {FlatList, View} from "react-native";
-import {ALL_MONTHS} from "../../../constans/allMonths";
+import {ALL_MONTHS} from "../../../constants/allMonths";
 import Calendar from "../../../components/Calendar/Calendar";
 import React from "react";
 import {styles} from "./stylesMonthsList";

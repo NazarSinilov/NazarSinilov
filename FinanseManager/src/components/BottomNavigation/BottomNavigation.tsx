@@ -8,43 +8,43 @@ import {RootStackParamList} from "../../navigation/RootStackParamList";
 import {styles} from "./stylesBottomNavigation";
 
 interface BottomNavigationProps {
-    route: string
-    isButton: boolean
-    buttonHandler?: () => void
-    isAdd?: boolean
+  route: string
+  isButton: boolean
+  buttonHandler?: () => void
+  isAdd?: boolean
 }
 
 const BottomNavigation = ({route, isButton, buttonHandler, isAdd}: BottomNavigationProps) => {
-    const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
 
-    return (
-        <View style={styles.block}>
-            <TouchableOpacity onPress={() => route !== "Home" && navigation.navigate("Home")} style={styles.SvgBlock}>
-                <HomeActive style={route === "Home" ? styles.sizeSVG : [styles.sizeSVG, styles.svgDisable]}/>
-            </TouchableOpacity>
+  return (
+    <View style={styles.block}>
+      <TouchableOpacity onPress={() => route !== "Home" && navigation.navigate("Home")} style={styles.SvgBlock}>
+        <HomeActive style={route === "Home" ? styles.sizeSVG : [styles.sizeSVG, styles.svgDisable]}/>
+      </TouchableOpacity>
 
-            {isAdd
-                ? <TouchableOpacity
-                    onPress={buttonHandler}
-                    disabled={!isButton}
-                    style={isButton ? [styles.buttonRed] : [styles.buttonRed, {opacity: 0}]}
-                >
-                    <Cancel style={styles.sizeSVG}/>
-                </TouchableOpacity>
-                : <TouchableOpacity
-                    onPress={buttonHandler}
-                    disabled={!isButton}
-                    style={isButton ? [styles.button] : [styles.button, {opacity: 0}]}
-                >
-                    <Plus style={styles.sizeSVG}/>
-                </TouchableOpacity>}
+      {isAdd
+        ? <TouchableOpacity
+          onPress={buttonHandler}
+          disabled={!isButton}
+          style={isButton ? [styles.buttonRed] : [styles.buttonRed, {opacity: 0}]}
+        >
+          <Cancel style={styles.sizeSVG}/>
+        </TouchableOpacity>
+        : <TouchableOpacity
+          onPress={buttonHandler}
+          disabled={!isButton}
+          style={isButton ? [styles.button] : [styles.button, {opacity: 0}]}
+        >
+          <Plus style={styles.sizeSVG}/>
+        </TouchableOpacity>}
 
-            <TouchableOpacity onPress={() => route !== "Profile" && navigation.navigate("Profile")} style={styles.SvgBlock}>
-                <UserActive style={route == "Profile" ? styles.sizeSVG : [styles.sizeSVG, styles.svgDisable]}/>
-            </TouchableOpacity>
+      <TouchableOpacity onPress={() => route !== "Profile" && navigation.navigate("Profile")} style={styles.SvgBlock}>
+        <UserActive style={route == "Profile" ? styles.sizeSVG : [styles.sizeSVG, styles.svgDisable]}/>
+      </TouchableOpacity>
 
-        </View>
-    );
+    </View>
+  );
 };
 
 export default BottomNavigation;

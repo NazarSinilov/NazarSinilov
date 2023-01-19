@@ -6,94 +6,92 @@ import {styles} from "./stylesModalToAdd";
 import DropDownByAdd from "./DropDownByAdd/DropDownByAdd";
 
 interface ModalToAddProps {
-    setSpentTrue: () => void
-    setSpentFalse: () => void
-    isSpent: boolean
-    setValueTitleFunc: (text: string) => void
-    setValuePriceFunc: (text: string) => void
-    saveEditExpense: () => void
-    addExpense: () => void
-    valueTitle: string
-    valuePrice: string
-    isEdit: boolean
-    value: number
-    setValue:  React.Dispatch<React.SetStateAction<number>>
+  setSpentTrue: () => void
+  setSpentFalse: () => void
+  isSpent: boolean
+  setValueTitleFunc: (text: string) => void
+  setValuePriceFunc: (text: string) => void
+  saveEditExpense: () => void
+  addExpense: () => void
+  valueTitle: string
+  valuePrice: string
+  isEdit: boolean
+  value: number
+  setValue: React.Dispatch<React.SetStateAction<number>>
 }
 
 const ModalToAdd = (props: ModalToAddProps) => {
 
-    const {
-        setSpentTrue,
-        isSpent,
-        setSpentFalse,
-        setValueTitleFunc,
-        valueTitle,
-        valuePrice,
-        setValuePriceFunc,
-        isEdit,
-        saveEditExpense,
-        addExpense,
-        value,
-        setValue
-    } = props
+  const {
+    setSpentTrue,
+    isSpent,
+    setSpentFalse,
+    setValueTitleFunc,
+    valueTitle,
+    valuePrice,
+    setValuePriceFunc,
+    isEdit,
+    saveEditExpense,
+    addExpense,
+    value,
+    setValue
+  } = props
 
 
+  return (
+    <View style={styles.modalContainer}>
+      <View style={styles.spentBlock}>
+        <TouchableOpacity
+          onPress={setSpentTrue}
+          style={[styles.expenseBlock, !isSpent && styles.disabled]}
+        >
+          <View style={[styles.expenseBackgroundIcon, styles.backgroundRed]}>
+            <ArrowDown/>
+          </View>
+          <Text style={styles.textModal}>Расход</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={setSpentFalse}
+          style={[styles.expenseBlock, isSpent && styles.disabled]}
+        >
+          <View style={[styles.expenseBackgroundIcon, styles.backgroundGreen]}>
+            <ArrowUp/>
+          </View>
+          <Text style={styles.textModal}>Приход</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.border}/>
+
+      <DropDownByAdd
+        value={value}
+        setValue={setValue}
+      />
+
+      <TextInput
+        style={styles.textInput}
+        autoFocus={true}
+        value={valueTitle}
+        onChangeText={text => setValueTitleFunc(text)}
+        placeholder="Описание"
+      />
+      <TextInput
+        style={styles.textInput}
+        value={valuePrice}
+        keyboardType="numeric"
+        onChangeText={text => setValuePriceFunc(text)}
+        placeholder="Сумма"
+      />
 
 
-    return (
-        <View style={styles.modalContainer}>
-            <View style={styles.spentBlock}>
-                <TouchableOpacity
-                    onPress={setSpentTrue}
-                    style={[styles.expenseBlock, !isSpent && styles.disabled]}
-                >
-                    <View style={[styles.expenseBackgroundIcon, styles.backgroundRed]}>
-                        <ArrowDown/>
-                    </View>
-                    <Text style={styles.textModal}>Расход</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={setSpentFalse}
-                    style={[styles.expenseBlock, isSpent && styles.disabled]}
-                >
-                    <View style={[styles.expenseBackgroundIcon, styles.backgroundGreen]}>
-                        <ArrowUp/>
-                    </View>
-                    <Text style={styles.textModal}>Приход</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.border}/>
+      <TouchableOpacity
+        style={styles.buttonSave}
+        onPress={() => isEdit ? saveEditExpense() : addExpense()}
+      >
+        <Text style={styles.buttonText}>Сохранить</Text>
+      </TouchableOpacity>
 
-            <DropDownByAdd
-                value={value}
-                setValue={setValue}
-            />
-
-            <TextInput
-                style={styles.textInput}
-                autoFocus={true}
-                value={valueTitle}
-                onChangeText={text => setValueTitleFunc(text)}
-                placeholder="Описание"
-            />
-            <TextInput
-                style={styles.textInput}
-                value={valuePrice}
-                keyboardType="numeric"
-                onChangeText={text => setValuePriceFunc(text)}
-                placeholder="Сумма"
-            />
-
-
-            <TouchableOpacity
-                style={styles.buttonSave}
-                onPress={() => isEdit ? saveEditExpense() : addExpense()}
-            >
-                <Text style={styles.buttonText}>Сохранить</Text>
-            </TouchableOpacity>
-
-        </View>
-    );
+    </View>
+  );
 };
 
 export default ModalToAdd;
