@@ -1,10 +1,10 @@
-import Category from "../../../../assets/category.svg";
+import Category from "/assets/category.svg";
 import {Text, TouchableOpacity} from "react-native";
-import ArrowRight from "../../../../assets/ArrowRight.svg";
+import ArrowRight from "/assets/ArrowRight.svg";
 import React from "react";
 import {styles} from "./stylesCategoriesLink";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
-import {RootStackParamList} from "../../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 
 const CategoriesLink = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();

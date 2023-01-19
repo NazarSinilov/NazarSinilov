@@ -1,8 +1,8 @@
 import {FlatList, RefreshControl} from "react-native";
 import ExpenseItem from "../../ExpenseItem/ExpenseItem";
 import React, {useCallback} from "react";
-import {IExpense} from "../../../../interface/interface";
-import Loader from "../../../../components/Loader/Loader";
+import {IExpense} from "/interface/interface";
+import Loader from "/components/Loader/Loader";
 
 interface AllExpensesProps {
   filterExpensesByCategory: IExpense[]

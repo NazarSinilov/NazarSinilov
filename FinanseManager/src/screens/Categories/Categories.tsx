@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, RefreshControl, Text, TextInput, TouchableOpacity, View} from "react-native";
-import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
+import BottomNavigation from "/components/BottomNavigation/BottomNavigation";
 import {useRoute} from "@react-navigation/native";
-import Trash from "../../../assets/Trash.svg"
-import {addCategoryRequest, batchUpdateExpensesRequest, getCategories, removeCategory} from "../../api/API";
+import Trash from "/assets/Trash.svg"
+import {addCategoryRequest, batchUpdateExpensesRequest, getCategories, removeCategory} from "/api/API";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
-import {ICategories} from "../../interface/interface";
-import {removeCategoryAction, saveAllCategories} from "../../redux/expensesSlice";
+import {RootState} from "/redux/store";
+import {ICategories} from "/interface/interface";
+import {removeCategoryAction, saveAllCategories} from "/redux/expensesSlice";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
-import Loader from "../../components/Loader/Loader";
+import Loader from "/components/Loader/Loader";
 import {styles} from "./stylesCategories";
 
 const Categories = ({navigation}: NativeStackNavigatorProps) => {
@@ -119,6 +119,7 @@ const Categories = ({navigation}: NativeStackNavigatorProps) => {
               <Text style={styles.buttonText}>Сохранить</Text>
           </TouchableOpacity>
       </View>}
+
 
       <BottomNavigation
         route={route.name}

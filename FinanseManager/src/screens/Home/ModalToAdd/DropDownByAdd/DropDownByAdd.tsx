@@ -1,10 +1,10 @@
 import DropDownPicker from "react-native-dropdown-picker";
-import {colors} from "../../../../constants/colors";
+import {colors} from "/constants/colors";
 import {View} from "react-native";
 import {styles} from "./stylesDropDownByAdd";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../../redux/store";
+import {RootState} from "/redux/store";
 
 interface DropDownByAddProps {
   value: number

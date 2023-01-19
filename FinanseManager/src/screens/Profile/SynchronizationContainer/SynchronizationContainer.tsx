@@ -1,7 +1,7 @@
 import Synchronization from "./Synchronization/Synchronization";
-import {getSynchronizationTime} from "../../../redux/userConfigSlice";
+import {getSynchronizationTime} from "/redux/userConfigSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "/redux/store";
 
 const SynchronizationContainer = () => {
   const dispatch = useDispatch()

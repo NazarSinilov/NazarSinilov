@@ -1,19 +1,19 @@
 import AllExpenses from "./AllExpenses/AllExpenses";
-import {getFilterExpensesByCategory} from "../../../utils/getFilterExpensesByCategory";
-import {IExpense} from "../../../interface/interface";
+import {getFilterExpensesByCategory} from "/utils/getFilterExpensesByCategory";
+import {IExpense} from "/interface/interface";
 import {
   createGoogleTable,
   getExpensesRequest,
   googleDriveInfo,
   removeExpenseRequest
-} from "../../../api/API";
-import {removeExpenseAction, saveAllExpenses, saveTableId} from "../../../redux/expensesSlice";
-import {getSynchronizationTime} from "../../../redux/userConfigSlice";
+} from "/api/API";
+import {removeExpenseAction, saveAllExpenses, saveTableId} from "/redux/expensesSlice";
+import {getSynchronizationTime} from "/redux/userConfigSlice";
 import {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {NavigationProp, useFocusEffect, useNavigation} from "@react-navigation/native";
-import {RootStackParamList} from "../../../navigation/RootStackParamList";
-import {RootState} from "../../../redux/store";
+import {RootStackParamList} from "/navigation/RootStackParamList";
+import {RootState} from "/redux/store";
 
 interface AllExpensesContainerProps {
   filterExpensesByDate: IExpense[]

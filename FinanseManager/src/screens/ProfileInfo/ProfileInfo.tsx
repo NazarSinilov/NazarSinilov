@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import auth, {FirebaseAuthTypes} from "@react-native-firebase/auth";
 import {useFocusEffect, useRoute} from "@react-navigation/native";
 import {View} from "react-native";
-import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
+import BottomNavigation from "/components/BottomNavigation/BottomNavigation";
 import Avatar from "./Avatar/Avatar";
 import UserInfo from "./UserInfo/UserInfo";
 import Logout from "./Logout/Logout";

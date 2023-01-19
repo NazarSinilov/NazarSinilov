@@ -1,7 +1,7 @@
 import Rest from "./Rest/Rest";
-import {toggleIsRest} from "../../../redux/userConfigSlice";
+import {toggleIsRest} from "/redux/userConfigSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "/redux/store";
 
 const RestContainer = () => {
   const dispatch = useDispatch()

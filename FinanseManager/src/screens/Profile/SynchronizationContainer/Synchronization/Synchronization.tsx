@@ -1,7 +1,7 @@
 import {Text, TouchableOpacity, View} from "react-native";
-import Bitmap from "../../../../../assets/Bitmap.svg";
-import {getTime} from "../../../../utils/getTime";
-import Triangle from "../../../../../assets/Triangle.svg";
+import Bitmap from "/assets/Bitmap.svg";
+import {getTime} from "/utils/getTime";
+import Triangle from "/assets/Triangle.svg";
 import React from "react";
 import {styles} from "./stylesSynchronization";
 

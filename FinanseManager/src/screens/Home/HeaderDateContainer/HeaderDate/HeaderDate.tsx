@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from "react-native";
-import ArrowLeft from "../../../../../assets/ArrowLeft.svg";
-import {ALL_MONTHS} from "../../../../constants/allMonths";
-import ArrowRight from "../../../../../assets/ArrowRight.svg";
+import ArrowLeft from "/assets/ArrowLeft.svg";
+import {ALL_MONTHS} from "/constants/allMonths";
+import ArrowRight from "/assets/ArrowRight.svg";
 import {styles} from "./stylesHeaderDate";
 
 interface HeaderDateProps {
@@ -34,10 +34,11 @@ const HeaderDate = (props: HeaderDateProps) => {
         <ArrowLeft/>
       </TouchableOpacity>
       <TouchableOpacity onPress={toggleCalendar}>
-        {isShowCalendar
-          ? <Text style={styles.textHeaderDate}>{currentDate.getFullYear()}</Text>
-          : <Text style={styles.textHeaderDate}>{ALL_MONTHS[currentDate.getMonth()]}</Text>
-        }
+
+        <Text style={styles.textHeaderDate}>
+          {isShowCalendar ? currentDate.getFullYear() : ALL_MONTHS[currentDate.getMonth()]}
+        </Text>
+
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.svgArrowSize}

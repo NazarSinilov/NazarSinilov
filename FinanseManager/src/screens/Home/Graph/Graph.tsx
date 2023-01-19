@@ -1,7 +1,7 @@
 import {LineChart} from "react-native-chart-kit";
 import React from "react";
 import {Dimensions} from "react-native";
-import {IExpense} from "../../../interface/interface";
+import {IExpense} from "/interface/interface";
 
 interface GraphProps {
   filterExpensesByDate: IExpense[]

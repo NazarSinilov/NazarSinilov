@@ -1,7 +1,7 @@
 import Balance from "./Balance/Balance";
-import {IExpense} from "../../../interface/interface";
+import {IExpense} from "/interface/interface";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "/redux/store";
 import {useEffect, useState} from "react";
 
 interface BalanceContainerProps {

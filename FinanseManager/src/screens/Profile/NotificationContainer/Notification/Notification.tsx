@@ -1,8 +1,8 @@
 import {Switch, Text, View} from "react-native";
-import Bell from "../../../../../assets/Bell.svg";
+import Bell from "/assets/Bell.svg";
 import React from "react";
 import {styles} from "./stylesNotification";
-import {colors} from "../../../../constants/colors";
+import {colors} from "/constants/colors";
 
 interface NotificationProps {
   isNotification: boolean

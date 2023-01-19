@@ -1,28 +1,27 @@
 import {
-  Dimensions,
   FlatList,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
+import BottomNavigation from "/components/BottomNavigation/BottomNavigation";
 import React, {useCallback, useMemo, useState} from "react";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 import {useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
-import {getFilterExpensesByCategory} from "../../utils/getFilterExpensesByCategory";
-import ArrowBottom from "../../../assets/ArrowDown.svg";
-import ArrowTop from "../../../assets/ArrowUp.svg";
-import ArrowRight from "../../../assets/ArrowRight.svg";
-import {getDate} from "../../utils/getDate";
+import {RootState} from "/redux/store";
+import {getFilterExpensesByCategory} from "/utils/getFilterExpensesByCategory";
+import ArrowBottom from "/assets/ArrowDown.svg";
+import ArrowTop from "/assets/ArrowUp.svg";
+import ArrowRight from "/assets/ArrowRight.svg";
+import {getDate} from "/utils/getDate";
 import {styles} from "./stylesExpenses";
-import {HEIGHT} from "../../constants/constants";
-import {IExpense} from "../../interface/interface";
+import {HEIGHT} from "/constants/constants";
+import {IExpense} from "/interface/interface";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Expenses">
 
-const Index = ({route}: ErrorProps) => {
+const Expenses = ({route}: ErrorProps) => {
   const {id, categoryId} = route.params
   const [isOpenExpense, setIsOpenExpense] = useState(false)
   const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
@@ -107,4 +106,4 @@ const Index = ({route}: ErrorProps) => {
   );
 };
 
-export default Index;
+export default Expenses;

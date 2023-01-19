@@ -1,4 +1,4 @@
-import {IExpense} from "../interface/interface";
+import {IExpense} from "/interface/interface";
 
 export const getFilterExpensesByDate = (allExpenses: IExpense[], date: Date) => {
   const filterDate = date.toLocaleDateString().split(".").slice(1, 3)

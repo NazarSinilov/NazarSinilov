@@ -1,11 +1,11 @@
 import {FlatList, View} from "react-native";
-import {ALL_MONTHS} from "../../../constants/allMonths";
-import Calendar from "../../../components/Calendar/Calendar";
+import {ALL_MONTHS} from "/constants/allMonths";
+import Calendar from "/components/Calendar/Calendar";
 import React, {useCallback} from "react";
 import {styles} from "./stylesMonthsList";
-import {saveCurrentDate} from "../../../redux/expensesSlice";
+import {saveCurrentDate} from "/redux/expensesSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
+import {RootState} from "/redux/store";
 
 const MonthsList = () => {
   const currentDateString = useSelector((state: RootState) => state.expenses.currentDate)

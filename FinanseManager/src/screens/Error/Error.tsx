@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from "react-native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 import {styles} from "./stylesError";
 
 type ErrorProps = NativeStackScreenProps<RootStackParamList, "Error">

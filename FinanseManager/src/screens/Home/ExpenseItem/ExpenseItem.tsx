@@ -1,14 +1,14 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from "react-native";
-import {IExpense} from "../../../interface/interface";
-import ArrowBottom from "../../../../assets/ArrowDown.svg"
-import ArrowTop from "../../../../assets/ArrowUp.svg"
-import ArrowRight from "../../../../assets/ArrowRight.svg"
-import Edit from "../../../../assets/Edit.svg"
-import Trash from "../../../../assets/Trash.svg"
-import {getDate} from "../../../utils/getDate";
+import {IExpense} from "/interface/interface";
+import ArrowBottom from "/assets/ArrowDown.svg"
+import ArrowTop from "/assets/ArrowUp.svg"
+import ArrowRight from "/assets/ArrowRight.svg"
+import Edit from "/assets/Edit.svg"
+import Trash from "/assets/Trash.svg"
+import {getDate} from "/utils/getDate";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
-import {RootStackParamList} from "../../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 import {styles} from "./stylesExpenseItem";
 
 interface ExpenseItemProps {

@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from "react-native";
-import {colors} from "../../constants/colors";
+import {colors} from "/constants/colors";
 
 export const styles = StyleSheet.create({
   wrapper: {

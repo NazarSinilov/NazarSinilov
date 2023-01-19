@@ -1,10 +1,10 @@
 import React from 'react';
 import Notification from "./Notification/Notification";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
-import {getNotificationTime, toggleIsNotification} from "../../../redux/userConfigSlice";
+import {RootState} from "/redux/store";
+import {getNotificationTime, toggleIsNotification} from "/redux/userConfigSlice";
 import {DateTimePickerAndroid} from "@react-native-community/datetimepicker";
-import {getTime} from "../../../utils/getTime";
+import {getTime} from "/utils/getTime";
 
 const NotificationContainer = () => {
   const dispatch = useDispatch()

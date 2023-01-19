@@ -1,6 +1,6 @@
 import {Text, TouchableOpacity, View} from "react-native";
-import GreenEllipse from "../../../../../assets/greenEllipse.svg";
-import RedEllipse from "../../../../../assets/redEllipse.svg";
+import GreenEllipse from "/assets/greenEllipse.svg";
+import RedEllipse from "/assets/redEllipse.svg";
 import React from "react";
 import {styles} from "./stylesBalance";
 

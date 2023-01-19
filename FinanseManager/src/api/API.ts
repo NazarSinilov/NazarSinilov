@@ -5,9 +5,10 @@ import {
   GOOGLE_SHEET_LIST_CATEGORIES,
   GOOGLE_SHEET_LIST_EXPENSE,
   GOOGLE_SHEET_NAME
-} from "../constants/constants";
-import {IExpense, IGoogleDriveInfo} from "../interface/interface";
-import {store} from "../redux/store";
+} from "/constants/constants";
+import {IExpense, IGoogleDriveInfo} from "/interface/interface";
+import {store} from "/redux/store";
+
 
 const request = async (method: string, url: string, data?: object) => {
   const result = await axios(`${url}`, {method, data})

@@ -3,7 +3,7 @@ import React from "react";
 import {styles} from "./stylesLogout";
 import {GoogleSignin} from "@react-native-google-signin/google-signin";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
-import {RootStackParamList} from "../../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 
 const Logout = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();

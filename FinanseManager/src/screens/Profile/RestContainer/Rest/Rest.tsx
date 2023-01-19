@@ -1,8 +1,8 @@
 import {Switch, Text, View} from "react-native";
-import Star from "../../../../../assets/Star.svg";
+import Star from "/assets/Star.svg";
 import React from "react";
 import {styles} from "./stylesRest";
-import {colors} from "../../../../constants/colors";
+import {colors} from "/constants/colors";
 
 interface RestProps {
   toggleSwitchRest: () => void

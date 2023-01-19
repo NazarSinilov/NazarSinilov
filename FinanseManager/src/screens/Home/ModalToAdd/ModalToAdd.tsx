@@ -1,6 +1,6 @@
 import {Text, TextInput, TouchableOpacity, View} from "react-native";
-import ArrowDown from "../../../../assets/ArrowDown.svg";
-import ArrowUp from "../../../../assets/ArrowUp.svg";
+import ArrowDown from "/assets/ArrowDown.svg";
+import ArrowUp from "/assets/ArrowUp.svg";
 import React from "react";
 import {styles} from "./stylesModalToAdd";
 import DropDownByAdd from "./DropDownByAdd/DropDownByAdd";

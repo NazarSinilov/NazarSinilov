@@ -1,7 +1,7 @@
 import HeaderDate from "./HeaderDate/HeaderDate";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
-import {saveCurrentDate, toggleIsShowCalendar} from "../../../redux/expensesSlice";
+import {RootState} from "/redux/store";
+import {saveCurrentDate, toggleIsShowCalendar} from "/redux/expensesSlice";
 
 const HeaderDateContainer = () => {
   const currentDateString = useSelector((state: RootState) => state.expenses.currentDate)

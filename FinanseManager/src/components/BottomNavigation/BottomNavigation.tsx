@@ -1,10 +1,10 @@
 import {TouchableOpacity, View} from "react-native";
-import HomeActive from "../../../assets/HomeActive.svg";
-import UserActive from "../../../assets/UserActive.svg";
-import Plus from "../../../assets/Plus.svg";
-import Cancel from "../../../assets/Cancel.svg";
+import HomeActive from "/assets/HomeActive.svg";
+import UserActive from "/assets/UserActive.svg";
+import Plus from "/assets/Plus.svg";
+import Cancel from "/assets/Cancel.svg";
 import {NavigationProp, useNavigation} from "@react-navigation/native";
-import {RootStackParamList} from "../../navigation/RootStackParamList";
+import {RootStackParamList} from "/navigation/RootStackParamList";
 import {styles} from "./stylesBottomNavigation";
 
 interface BottomNavigationProps {

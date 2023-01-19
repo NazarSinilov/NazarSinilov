@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {ICategories, IExpense, IExpenses} from "../interface/interface";
+import {ICategories, IExpense, IExpenses} from "/interface/interface";
 
 const expenses: IExpenses = {
   allExpenses: [],
