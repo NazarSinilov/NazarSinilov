@@ -5,7 +5,7 @@ import {
 } from "react-native";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import {useRoute} from "@react-navigation/native";
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 import {IExpense} from "/interface/interface";
 import {addExpenseRequest, editExpenseRequest} from "/api/API";
@@ -37,15 +37,19 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
   const [openGraph, setOpenGraph] = useState(false)
   const [value, setValue] = useState(0);
 
-  const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
-  const currentDateString = useSelector((state: RootState) => state.expenses.currentDate)
-  const currentDate = new Date(currentDateString)
-  const isShowCalendar = useSelector((state: RootState) => state.expenses.isShowCalendar)
-  const valueCategories = useSelector((state: RootState) => state.expenses.currentCategories)
+  const expenses = useSelector((state: RootState) => state.expenses)
 
+  const {
+    allExpenses,
+    isShowCalendar,
+    currentCategories: valueCategories,
+    currentDate: currentDateString
+  } = expenses
+
+  const currentDate = new Date(currentDateString)
   const dispatch = useDispatch()
 
-  const editExpense = async (item: IExpense) => {
+  const editExpense = useCallback((item: IExpense) => () => {
     buttonHandler()
     setIsEdit(true)
     setValueTitle(item.title)
@@ -53,7 +57,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     setValue(item.categoryId)
     setIsSpent(item.isSpent)
     setModifiableItem(item)
-  }
+  }, [])
 
   const setOpenGraphFunc = () => {
     setOpenGraph(prevState => !prevState)
