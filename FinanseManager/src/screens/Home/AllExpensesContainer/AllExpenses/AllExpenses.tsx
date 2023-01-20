@@ -16,7 +16,7 @@ const AllExpenses = (props: AllExpensesProps) => {
 
   const {filterExpensesByCategory, isLoading, fetchExpenses, deleteExpense, editExpense} = props
 
-  const renderItem = useCallback((item: IExpense) =>
+  const renderItem = useCallback(({item}: {item: IExpense }) =>
       <ExpenseItem
         item={item}
         deleteExpense={deleteExpense}
@@ -34,7 +34,7 @@ const AllExpenses = (props: AllExpensesProps) => {
     <FlatList
       data={filterExpensesByCategory}
       refreshControl={<RefreshControl refreshing={isLoading} onRefresh={fetchExpenses}/>}
-      renderItem={({item}) => renderItem(item)}
+      renderItem={renderItem}
     />
   );
 };

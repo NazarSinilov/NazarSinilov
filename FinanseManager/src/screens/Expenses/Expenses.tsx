@@ -41,7 +41,7 @@ const Expenses = ({route}: ErrorProps) => {
     return currentCategory[0].name
   }
 
-  const renderItem = useCallback((item: IExpense) =>
+  const renderItem = useCallback(({item}: {item: IExpense}) =>
     <View style={styles.itemWrapper}>
       <View style={styles.container}>
         <View style={[styles.arrowBlock, item.isSpent
@@ -70,7 +70,7 @@ const Expenses = ({route}: ErrorProps) => {
           <Text style={styles.date}>{getDate(item.date)}</Text>
         </View>
       </View>
-    </View>, [filterExpensesByCategory])
+    </View>, [isOpenExpense])
 
   return (
     <View style={styles.wrapper}>
@@ -95,7 +95,7 @@ const Expenses = ({route}: ErrorProps) => {
           waitForInteraction: false,
         }}
         initialScrollIndex={currentIndex}
-        renderItem={({item}) => renderItem(item)}
+        renderItem={renderItem}
       />
 
       <BottomNavigation

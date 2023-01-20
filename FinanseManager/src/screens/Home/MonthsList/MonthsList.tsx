@@ -18,14 +18,14 @@ const MonthsList = () => {
     dispatch(saveCurrentDate({date}))
   }
 
-  const renderItem = useCallback((item: string, index: number) =>
+  const renderItem = useCallback(({item, index} : {item: string, index: number}) =>
       <Calendar
         item={item}
         index={index}
         setDate={setDate}
         currentMonth={currentMonth}
       />
-    , [ALL_MONTHS])
+    , [currentMonth])
 
   return (
     <View style={styles.monthsListContainer}>
@@ -33,7 +33,7 @@ const MonthsList = () => {
         data={ALL_MONTHS}
         numColumns={3}
         style={styles.monthsList}
-        renderItem={({item, index}) => renderItem(item, index)}
+        renderItem={renderItem}
       />
     </View>
   );
