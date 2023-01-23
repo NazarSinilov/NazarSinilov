@@ -22,7 +22,7 @@ const AllExpenses = (props: AllExpensesProps) => {
         deleteExpense={deleteExpense}
         editExpense={editExpense}
       />
-    ,[filterExpensesByCategory])
+    ,[deleteExpense,editExpense])
 
   if (isLoading) {
     return (
@@ -39,4 +39,4 @@ const AllExpenses = (props: AllExpensesProps) => {
   );
 };
 
-export default AllExpenses;
+export default React.memo(AllExpenses);

@@ -106,4 +106,4 @@ const Expenses = ({route}: ErrorProps) => {
   );
 };
 
-export default Expenses;
+export default React.memo(Expenses);

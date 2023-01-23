@@ -39,4 +39,4 @@ const MonthsList = () => {
   );
 };
 
-export default MonthsList;
+export default React.memo(MonthsList);
