@@ -18,6 +18,7 @@ interface ModalToAddProps {
   isEdit: boolean
   value: number
   setValue: React.Dispatch<React.SetStateAction<number>>
+  errorValidation: boolean
 }
 
 const ModalToAdd = (props: ModalToAddProps) => {
@@ -34,7 +35,8 @@ const ModalToAdd = (props: ModalToAddProps) => {
     saveEditExpense,
     addExpense,
     value,
-    setValue
+    setValue,
+    errorValidation
   } = props
 
 
@@ -68,14 +70,14 @@ const ModalToAdd = (props: ModalToAddProps) => {
       />
 
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorValidation && styles.errorValidation]}
         autoFocus={true}
         value={valueTitle}
         onChangeText={text => setValueTitleFunc(text)}
         placeholder="Описание"
       />
       <TextInput
-        style={styles.textInput}
+        style={[styles.textInput, errorValidation && styles.errorValidation]}
         value={valuePrice}
         keyboardType="numeric"
         onChangeText={text => setValuePriceFunc(text)}

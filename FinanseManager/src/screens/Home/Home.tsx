@@ -36,6 +36,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
   const [modifiableItem, setModifiableItem] = useState<IExpense>()
   const [openGraph, setOpenGraph] = useState(false)
   const [value, setValue] = useState(0);
+  const [errorValidation, setErrorValidation] = useState(false)
 
   const expenses = useSelector((state: RootState) => state.expenses)
 
@@ -49,7 +50,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
   const currentDate = new Date(currentDateString)
   const dispatch = useDispatch()
 
-  const editExpense = useCallback((item: IExpense) => () => {
+  const editExpense = useCallback((item: IExpense) => {
     buttonHandler()
     setIsEdit(true)
     setValueTitle(item.title)
@@ -108,10 +109,12 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     }
   }
 
+
   const saveEditExpense = async () => {
     if (!modifiableItem) {
       return
     }
+    if (!validationForm()) return
     const backup = [...allExpenses]
     try {
       const date = modifiableItem.date.getTime()
@@ -139,21 +142,23 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     }
   }
 
-  const validationForm = (): boolean => {
+  const validationForm = () => {
     const valueTitleTrim = valueTitle.trim()
     if (!valueTitleTrim) {
       showToastr("Введите текст!")
-      setIsModalAddExpense(false)
+      setErrorValidation(true)
       return false
     }
-    if (!valuePrice) {
-      showToastr("Введите сумму трнзакции!")
-      setIsModalAddExpense(false)
+    if (!valuePrice || +valuePrice <= 0) {
+      showToastr("Введите сумму транзакции!")
+      setErrorValidation(true)
       return false
     }
-    if (+valuePrice <= 0) {
-      showToastr("Введите положительное значение!")
-      setIsModalAddExpense(false)
+    const regex = /^[0-9]+$/g;
+    const found = valuePrice.match(regex);
+    if (!found) {
+      showToastr("Поле \"Сумма\" должно содержать только цифры!")
+      setErrorValidation(true)
       return false
     }
     return true
@@ -177,9 +182,11 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
   }
   const setValueTitleFunc = (text: string) => {
     setValueTitle(text)
+    setErrorValidation(false)
   }
   const setValuePriceFunc = (text: string) => {
     setValuePrice(text)
+    setErrorValidation(false)
   }
   const route = useRoute()
 
@@ -222,6 +229,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
               addExpense={addExpense}
               value={value}
               setValue={setValue}
+              errorValidation={errorValidation}
           />
       }
       {completeMessage && <View style={styles.modal}>

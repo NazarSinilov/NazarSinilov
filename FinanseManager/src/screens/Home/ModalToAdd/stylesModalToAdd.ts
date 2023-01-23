@@ -67,4 +67,8 @@ export const styles = StyleSheet.create({
     color: colors.BLACK,
     fontSize: 16
   },
+  errorValidation: {
+    borderWidth: 1,
+    borderColor: colors.RED
+  }
 })
