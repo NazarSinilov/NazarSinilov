@@ -19,10 +19,11 @@ interface AllExpensesContainerProps {
   filterExpensesByDate: IExpense[]
   valueCategories: number
   editExpense: (item: IExpense) => void
+  successMessage: (message: string) => void
 }
 
-const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpense}: AllExpensesContainerProps) => {
-
+const AllExpensesContainer = (props: AllExpensesContainerProps) => {
+  const {filterExpensesByDate, valueCategories, editExpense, successMessage} = props
   const filterExpensesByCategory = getFilterExpensesByCategory([...filterExpensesByDate], valueCategories)
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
@@ -38,6 +39,7 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
     const backup = [...allExpenses]
     try {
       dispatch(removeExpenseAction({id}))
+      successMessage("Транзакция удалена")
       await removeExpenseRequest(id)
     } catch (err) {
       dispatch(saveAllExpenses({backup}))

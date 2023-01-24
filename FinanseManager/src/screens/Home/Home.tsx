@@ -212,6 +212,7 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
           filterExpensesByDate={filterExpensesByDate}
           valueCategories={valueCategories}
           editExpense={editExpense}
+          successMessage={successMessage}
         />
         : <Text style={styles.shadowText}>Добавьте транзакцию</Text>
       }
