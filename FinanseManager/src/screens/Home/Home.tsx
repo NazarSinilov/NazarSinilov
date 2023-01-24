@@ -149,6 +149,11 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
       setErrorValidation(true)
       return false
     }
+    if (valueTitleTrim.length > 100) {
+      showToastr("Длина описания не должна превышать 100 символов!")
+      setErrorValidation(true)
+      return false
+    }
     if (!valuePrice || +valuePrice <= 0) {
       showToastr("Введите сумму транзакции!")
       setErrorValidation(true)
@@ -158,6 +163,11 @@ const Home = ({navigation}: NativeStackNavigatorProps) => {
     const found = valuePrice.match(regex);
     if (!found) {
       showToastr("Поле \"Сумма\" должно содержать только цифры!")
+      setErrorValidation(true)
+      return false
+    }
+    if (+valuePrice > 1000000) {
+      showToastr("Сумма не должна превышать 1000000!")
       setErrorValidation(true)
       return false
     }
