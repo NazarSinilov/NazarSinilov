@@ -9,7 +9,7 @@ import {
 } from "/api/API";
 import {removeExpenseAction, saveAllExpenses, saveTableId} from "/redux/expensesSlice";
 import {getSynchronizationTime} from "/redux/userConfigSlice";
-import {useCallback, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {NavigationProp, useFocusEffect, useNavigation} from "@react-navigation/native";
 import {RootStackParamList} from "/navigation/RootStackParamList";
@@ -27,14 +27,12 @@ const AllExpensesContainer = ({filterExpensesByDate, valueCategories, editExpens
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
 
-  useFocusEffect(
-    useCallback(() => {
-      tableValidation()
-    }, []),
-  );
-
   const navigation = useNavigation<NavigationProp<RootStackParamList, keyof RootStackParamList>>();
   const allExpenses = useSelector((state: RootState) => state.expenses.allExpenses)
+
+  useEffect(() => {
+      tableValidation()
+  },[])
 
   const deleteExpense = async (id: number) => {
     const backup = [...allExpenses]
